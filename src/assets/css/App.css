@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+option {
+  color: black;
+}
+.drop-it-wrap {
+  width: 100%;
+  border: 5px dashed #ececec;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.drop-it-wrap .loader {
+  display: none;
+}
+.drop-it-wrap.uploading .loader {
+  display: block;
+}
+.drop-it-wrap.uploading .default {
+  display: none;
+}
+.drop-it-wrap.active {
+  border-color: blue;
+}
+.drop-it-wrap:hover {
+  border: 5px dashed #d3d3d3;
+}
+.drop-it-input {
+  position: absolute;
+  top: -99999999px;
+}
+@keyframes disco {
+  0% {
+    background: blue;
+  }
+  100% {
+    background: red;
+  }
+}
+.batch {
+  cursor: crosshair;
+  background: #fff;
+}
+.batch.uploading {
+  animation: disco 0.1s infinite alternate;
+}
