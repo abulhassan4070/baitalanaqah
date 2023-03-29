@@ -21,7 +21,8 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
+import { ReactComponent as UserIcon } from "../assets/svg/usericon.svg";
+import { ReactComponent as CartIcon } from "../assets/svg/carticon.svg";
 
 export default function NavigationHeader() {
   const { isOpen, onToggle } = useDisclosure();
@@ -87,7 +88,8 @@ export default function NavigationHeader() {
             variant={"link"}
             to={"#"}
           >
-            <IconButton aria-label="Login/Register" icon={<FaUserAlt />} />
+            <UserIcon />
+            <CartIcon />
           </Button>
         </Stack>
       </Flex>
