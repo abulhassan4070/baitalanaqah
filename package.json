@@ -1,5 +1,5 @@
 {
-  "name": "enzocustom",
+  "name": "baitalanaqah",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^5.0.0"
   }
