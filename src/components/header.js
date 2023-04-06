@@ -10,7 +10,6 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
-  Button,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -47,15 +46,17 @@ export default function NavigationHeader() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <img
-            src={logotext}
-            alt="logo"
-            style={{
-              maxWidth: "150px",
-              height: "auto",
-              width: "100%",
-            }}
-          />
+          <Link to={"/"}>
+            <img
+              src={logotext}
+              alt="logo"
+              style={{
+                maxWidth: "150px",
+                height: "auto",
+                width: "100%",
+              }}
+            />
+          </Link>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -73,13 +74,15 @@ export default function NavigationHeader() {
             aria-label="Twitter"
             icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
           />
-          <IconButton
-            as="a"
-            href="#"
-            backgroundColor={"white"}
-            aria-label="Twitter"
-            icon={<Icon icon="fa-regular:user" width={20} height={20} />}
-          />
+          <Link to={"/login"}>
+            <IconButton
+              as="a"
+              href="#"
+              backgroundColor={"white"}
+              aria-label="Twitter"
+              icon={<Icon icon="fa-regular:user" width={20} height={20} />}
+            />
+          </Link>
         </Stack>
       </Flex>
 

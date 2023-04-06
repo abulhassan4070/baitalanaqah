@@ -1,13 +1,14 @@
 import React from "react";
 
-import { Text } from "@chakra-ui/react";
-
+import Testimonial from "../../../components/testimonials";
+import Hero from "../../../components/hero";
+import LatestBlogs from "../../../components/latest";
 export default function HomePage() {
   return (
     <>
-      <Text fontSize="2xl" fontWeight="bold" color="gray.800">
-        Home
-      </Text>
+      <Hero />
+      <Testimonial />
+      <LatestBlogs />
     </>
   );
 }

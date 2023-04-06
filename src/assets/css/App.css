@@ -11,6 +11,7 @@
 body,
 html {
   font-family: "Zimra Regular", sans-serif;
+  overflow-x: hidden;
 }
 h1,
 h2,

@@ -1,13 +1,10 @@
 import React from "react";
 
-import { Text } from "@chakra-ui/react";
-
+import Blogs from "../../../components/blog";
 export default function BlogPage() {
   return (
     <>
-      <Text fontSize="2xl" fontWeight="bold" color="gray.800">
-        Blog
-      </Text>
+      <Blogs />
     </>
   );
 }
