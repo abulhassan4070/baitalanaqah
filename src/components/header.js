@@ -203,8 +203,8 @@ const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? "#"}
+        as={NavLink}
+        to={href ?? "#"}
         justify={"space-between"}
         align={"center"}
         _hover={{
