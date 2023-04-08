@@ -1,0 +1,22 @@
+.active {
+  text-decoration: underline;
+}
+.outer {
+  height: 5px;
+  margin: 0 5px 0 5px;
+}
+
+.content {
+  border: 1px solid #000;
+  border-left: none;
+  border-right: none;
+}
+
+.innerContent {
+  margin: 0 5px 0 5px;
+}
+
+.borderLeftRight {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}

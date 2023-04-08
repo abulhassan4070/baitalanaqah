@@ -12,9 +12,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logotext from "../assets/img/logotext.png";
 import { Icon } from "@iconify/react";
+import "../assets/css/components.css";
+
 export default function NavigationHeader() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -104,7 +106,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
+              <NavLink
                 to={navItem.href ?? "#"}
                 p={2}
                 fontSize={"sm"}
@@ -114,9 +116,10 @@ const DesktopNav = () => {
                   textDecoration: "none",
                   color: linkHoverColor,
                 }}
+                activeClassName="active"
               >
                 {navItem.label}
-              </Link>
+              </NavLink>
             </PopoverTrigger>
 
             {navItem.children && (

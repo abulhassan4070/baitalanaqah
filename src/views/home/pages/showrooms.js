@@ -1,13 +1,10 @@
 import React from "react";
 
-import { Text } from "@chakra-ui/react";
-
-export default function ShowroomPage() {
+import Showrooms from "../../../components/showrooms.js";
+export default function ShowroomsPage() {
   return (
     <>
-      <Text fontSize="2xl" fontWeight="bold" color="gray.800">
-        Showroom
-      </Text>
+      <Showrooms />
     </>
   );
 }
