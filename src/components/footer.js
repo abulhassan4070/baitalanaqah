@@ -88,7 +88,7 @@ export default function NavigationFooter() {
         align="center"
       >
         <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} baitalanaqah. All rights reserved.
+          &copy; {new Date().getFullYear()} Bait Al Anaqah. All rights reserved.
         </Text>
         <ButtonGroup variant="ghost">
           <IconButton

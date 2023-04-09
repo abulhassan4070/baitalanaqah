@@ -5,13 +5,13 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -22,12 +22,18 @@ export default function SignupCard() {
 
   return (
     <Flex
-      minH={"100vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        py={12}
+        px={6}
+        maxWidth={"100%"}
+        width={"400px"}
+      >
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Register
@@ -38,9 +44,11 @@ export default function SignupCard() {
           bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
+          maxWidth={"100%"}
+          width={"400px"}
         >
           <Stack spacing={4}>
-            <HStack>
+            <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4}>
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
@@ -53,7 +61,7 @@ export default function SignupCard() {
                   <Input type="text" />
                 </FormControl>
               </Box>
-            </HStack>
+            </SimpleGrid>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input type="email" />
@@ -75,17 +83,17 @@ export default function SignupCard() {
               </InputGroup>
             </FormControl>
             <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
-                size="lg"
-                bg={"black"}
-                color={"white"}
-                _hover={{
-                  bg: "black",
+              <Box
+                className="button-53"
+                mb="0px"
+                style={{
+                  marginBottom: "0px",
+                  marginTop: "10px",
+                  fontSize: "14px",
                 }}
               >
                 Register
-              </Button>
+              </Box>
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>

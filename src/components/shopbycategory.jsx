@@ -1,17 +1,9 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import { Text } from "@chakra-ui/layout";
 
-import {
-  Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Container,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
-
-export default function ShopPage() {
+export default function ShopByCategory() {
   var categories = [
     {
       image:
@@ -81,66 +73,28 @@ export default function ShopPage() {
     },
   ];
   return (
-    <Container maxW={"7xl"} mt="20px" p={10} bg="white">
-      <Breadcrumb
-        fontWeight="medium"
-        fontSize="sm"
-        spacing="8px"
-        textTransform="uppercase"
-        separator={<ChevronRightIcon color="gray.500" />}
-      >
-        <BreadcrumbItem>
-          <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink style={{ textDecoration: "none" }}>
-            SHop
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
-      <br />
-      <br />
-      <SimpleGrid
-        columns={{
-          base: 1,
-          sm: 2,
-          md: 3,
-        }}
-        spacing={4}
+    <main>
+      <Text fontSize="30px" fontWeight="bold" textAlign="center" p={10}>
+        Discover your Elegants
+      </Text>
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper"
+        slidesPerView={4}
+        spaceBetween={10}
       >
         {categories.map((category) => (
-          <Box>
+          <SwiperSlide>
             <div className="shopbycategory">
-              <Box
-                height={{
-                  base: "200px",
-                  sm: "300px",
-                  md: "400px",
-                }}
-                width={"100%"}
-                overflow={"hidden"}
-              >
-                <img
-                  src={category.image}
-                  alt="[+]"
-                  height={{
-                    base: "200px",
-                    sm: "300px",
-                    md: "400px",
-                  }}
-                  _hover={{
-                    transform: "scale(1.1)",
-                  }}
-                />
-              </Box>
+              <img src={category.image} alt="" />
               <h3>{category.title}</h3>
             </div>
-          </Box>
+          </SwiperSlide>
         ))}
-      </SimpleGrid>
-    </Container>
+      </Swiper>
+      <br />
+      <br />
+    </main>
   );
 }

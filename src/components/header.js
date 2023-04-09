@@ -47,18 +47,20 @@ export default function NavigationHeader() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link to={"/"}>
-            <img
-              src={logotext}
-              alt="logo"
-              style={{
-                maxWidth: "150px",
-                height: "auto",
-                width: "100%",
-              }}
-            />
-          </Link>
+        <Flex flex={{ base: 1 }} justify={"center"}>
+          <Flex display={{ base: "flex", md: "none" }} ml={10}>
+            <Link to={"/"}>
+              <img
+                src={logotext}
+                alt="logo"
+                style={{
+                  maxWidth: "150px",
+                  height: "auto",
+                  width: "100%",
+                }}
+              />
+            </Link>
+          </Flex>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -69,22 +71,26 @@ export default function NavigationHeader() {
           direction={"row"}
           spacing={6}
         >
-          <IconButton
-            as="a"
-            backgroundColor={"white"}
-            href="#"
-            aria-label="Twitter"
-            icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
-          />
-          <Link to={"/login"}>
+          <Box display={{ base: "none", md: "flex" }}>
             <IconButton
               as="a"
-              href="#"
               backgroundColor={"white"}
+              href="#"
               aria-label="Twitter"
-              icon={<Icon icon="fa-regular:user" width={20} height={20} />}
+              icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
             />
-          </Link>
+          </Box>
+          <Box display={{ base: "none", md: "flex" }}>
+            <Link to={"/login"}>
+              <IconButton
+                as="a"
+                href="#"
+                backgroundColor={"white"}
+                aria-label="Twitter"
+                icon={<Icon icon="fa-regular:user" width={20} height={20} />}
+              />
+            </Link>
+          </Box>
         </Stack>
       </Flex>
 
@@ -101,46 +107,62 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <NavLink
-                to={navItem.href ?? "#"}
-                p={2}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
+    <Stack direction={"row"} spacing={4} w={"100%"}>
+      {NAV_ITEMS.map((navItem) => {
+        if (navItem.logo === true) {
+          return (
+            <Link to={"/"}>
+              <img
+                src={logotext}
+                alt="logo"
+                style={{
+                  maxWidth: "150px",
+                  height: "auto",
+                  width: "100%",
                 }}
-                activeClassName="active"
-              >
-                {navItem.label}
-              </NavLink>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-      ))}
+              />
+            </Link>
+          );
+        }
+        return (
+          <Box key={navItem.label} px={3}>
+            <Popover trigger={"hover"} placement={"bottom-start"}>
+              <PopoverTrigger>
+                <NavLink
+                  to={navItem.href ?? "#"}
+                  p={2}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor,
+                  }}
+                  activeClassName="active"
+                >
+                  {navItem.label}
+                </NavLink>
+              </PopoverTrigger>
+              {navItem.children && (
+                <PopoverContent
+                  border={0}
+                  boxShadow={"xl"}
+                  bg={popoverContentBgColor}
+                  p={4}
+                  rounded={"xl"}
+                  minW={"sm"}
+                >
+                  <Stack>
+                    {navItem.children.map((child) => (
+                      <DesktopSubNav key={child.label} {...child} />
+                    ))}
+                  </Stack>
+                </PopoverContent>
+              )}
+            </Popover>
+          </Box>
+        );
+      })}
     </Stack>
   );
 };
@@ -189,9 +211,35 @@ const MobileNav = () => {
       p={4}
       display={{ md: "none" }}
     >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
+      {NAV_ITEMS.map((navItem) => {
+        if (navItem.logo === true) {
+          return <></>;
+        }
+        return <MobileNavItem key={navItem.label} {...navItem} />;
+      })}
+      <Stack
+        flex={{ base: 1, md: 0 }}
+        justify={"flex-start"}
+        direction={"row"}
+        spacing={6}
+      >
+        <IconButton
+          as="a"
+          backgroundColor={"white"}
+          href="#"
+          aria-label="Twitter"
+          icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
+        />
+        <Link to={"/login"}>
+          <IconButton
+            as="a"
+            href="#"
+            backgroundColor={"white"}
+            aria-label="Twitter"
+            icon={<Icon icon="fa-regular:user" width={20} height={20} />}
+          />
+        </Link>
+      </Stack>
     </Stack>
   );
 };
@@ -200,7 +248,11 @@ const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack
+      spacing={6}
+      onClick={children && onToggle}
+      style={{ cursor: "pointer" }}
+    >
       <Flex
         py={2}
         as={NavLink}
@@ -258,6 +310,9 @@ const NAV_ITEMS = [
   {
     label: "Customize",
     href: "customize",
+  },
+  {
+    logo: true,
   },
   {
     label: "Showrooms",

@@ -6,7 +6,6 @@ import {
   Input,
   Checkbox,
   Stack,
-  Button,
   Heading,
   useColorModeValue,
   Text,
@@ -20,15 +19,25 @@ export default function SimpleCard() {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        py={12}
+        px={6}
+        maxWidth={"100%"}
+        width={"400px"}
+      >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Login to your account</Heading>
+          <Heading fontSize={"4xl"}>Login</Heading>
         </Stack>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
+          width={"100%"}
+          maxWidth={"400px"}
         >
           <Stack spacing={4}>
             <FormControl id="email">
@@ -46,18 +55,30 @@ export default function SimpleCard() {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Link to={"/forgot-password"} color={"blue.400"}>Forgot password?</Link>
               </Stack>
-              <Button
-                bg={"black"}
-                color={"white"}
-                _hover={{
-                  bg: "black",
+              <Box
+                className="button-53"
+                mb="0px"
+                style={{
+                  marginBottom: "0px",
+                  marginTop: "10px",
+                  fontSize: "14px",
                 }}
               >
                 Sign in
-              </Button>
-              <Text>
+              </Box>
+              <Link
+                to={"/forgot-password"}
+                color={"blue.400"}
+                style={{
+                  marginBottom: "0px",
+                  marginTop: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                Forgot password?
+              </Link>
+              <Text mt="0px">
                 Don't have an account? &nbsp;
                 <Link to={"/register"} color={"blue.400"}>
                   Sign up
