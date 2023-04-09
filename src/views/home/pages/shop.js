@@ -7,6 +7,9 @@ import {
   BreadcrumbLink,
   Container,
   SimpleGrid,
+  Text,
+  VStack,
+  Heading,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
@@ -80,6 +83,9 @@ export default function ShopPage() {
       title: "WEDDING ACCESSORIES",
     },
   ];
+  const customizeImgUrl =
+    "https://images.prismic.io/enzo/5a8b3909-9f81-4b46-a70d-907b1446f096_25557_J1.jpeg?auto=compress,format";
+
   return (
     <Container maxW={"7xl"} mt="20px" p={10} bg="white">
       <Breadcrumb
@@ -140,6 +146,63 @@ export default function ShopPage() {
             </div>
           </Box>
         ))}
+      </SimpleGrid>
+      <SimpleGrid
+        gridTemplateColumns={{
+          base: "1fr",
+          md: "1fr 1fr",
+        }}
+        gridTemplateRows={{
+          base: "auto",
+          md: "auto",
+        }}
+        gridTemplateAreas={{
+          base: `'right' 'left'`,
+          md: `'left right'`,
+        }}
+        spacing={4}
+        mt="40px"
+        border={"1px"}
+      >
+        <VStack mx="40px" justifyContent={"center"} gridArea="left">
+          <Heading pt="20px">Customize</Heading>
+          <Text p="10px 40px 10px" textAlign={"center"}>
+            All of our garments are custom-made for each client. Select from
+            over 5,000 fabrics and 1,562 complimentary style and design options
+            to create a wardrobe that is truly customized to you.
+          </Text>
+          <Box pb="10px">
+            <Box width="fit-content" className="content">
+              <Box className="outer borderLeftRight" mt="-5px"></Box>
+              <Box
+                bg={"black"}
+                color={"white"}
+                width="fit-content"
+                className="innerContent borderLeftRight"
+                _hover={{
+                  bg: "white",
+                  color: "black",
+                }}
+              >
+                <Text p="10px 15px" textTransform="uppercase">
+                  Customize
+                </Text>
+              </Box>
+              <Box className="outer borderLeftRight" mb="-5px"></Box>
+            </Box>
+          </Box>
+        </VStack>
+        <Box gridArea="right">
+          <img
+            src={customizeImgUrl}
+            alt="customize"
+            height={{
+              base: "200px",
+              sm: "300px",
+              md: "400px",
+            }}
+          />
+        </Box>
       </SimpleGrid>
     </Container>
   );
