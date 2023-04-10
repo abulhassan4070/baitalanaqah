@@ -24,3 +24,20 @@
 .borderWhite {
   border-color: #fff !important;
 }
+
+.half-a-border-on-bottom {
+  border-bottom: 1px solid black;
+  position: relative;
+}
+.half-a-border-on-bottom:after {
+  padding: 0;
+  margin: 0;
+  display: block; /* probably not really needed? */
+  content: "";
+  width: 50%;
+  height: 1.1px; /* slight higher to work around rounding errors(?) on some zoom levels in some browsers. */
+  background-color: white;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+}
