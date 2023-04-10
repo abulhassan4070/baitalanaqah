@@ -93,33 +93,51 @@ const Fabrics = () => {
   const fabric_list = [
     {
       id: 0,
-      name: "ERMENEGILDO ZEGNA",
+      name: "Holland & Sherry",
+      desc: "A luxury fabric brand that offers a wide range of high-quality fabrics for suits.",
       img: "https://images.prismic.io/enzo/2ec411c6-5724-4b4c-8d45-0f2649925c5b_Zegna.jpg?auto=compress,format",
     },
     {
       id: 1,
-      name: "LORO PIANA",
+      name: "Dormeuil",
+      desc: "A French fabric brand that offers luxury fabrics for suits, jackets, and trousers.",
       img: "https://images.prismic.io/enzo/2ab8d0db-f98f-44f8-b098-85249c93335a_Loro_Piana.jpg?auto=compress,format",
     },
     {
       id: 2,
-      name: "ENZO SARTORI",
+      name: "Scabal",
+      desc: "A Belgian fabric brand that offers high-quality fabrics for suits, jackets, and trousers.",
       img: "https://images.prismic.io/enzo/0d477793-1a59-4b27-8daf-876b26bedb5c_Enzo_Sartori.jpg?auto=compress,format",
     },
     {
       id: 3,
-      name: "VITALE BARBERIS",
+      name: "Loro Piana",
+      desc: "An Italian fabric brand that offers a range of fabrics for suits and jackets, including wool, silk, and cashmere.",
       img: "https://images.prismic.io/enzo/b5217f08-9c48-41aa-a741-a55ea759df0c_VBC_5.jpg?auto=compress,format",
     },
     {
       id: 4,
-      name: "HOLLAND & SHERRY",
+      name: "Zegna",
+      desc: "An Italian luxury fashion brand that offers a range of fabrics for suits and jackets.",
       img: "https://images.prismic.io/enzo/31a0f1dc-2e2d-45aa-88ed-46843f34d282_Holland_Sherry.jpg?auto=compress,format",
     },
     {
       id: 5,
-      name: "SIGNATURE",
+      name: "Ariston",
+      desc: "An Italian fabric brand that offers high-quality fabrics for suits, jackets, and trousers.",
       img: "https://images.prismic.io/enzo/08c16976-5fb5-4d44-ad33-046aa1afcb55_Signature.jpg?auto=compress,format",
+    },
+    {
+      id: 6,
+      name: "Cerruti",
+      desc: "An Italian fashion brand that offers a range of fabrics for suits and jackets, including wool, silk, and linen.",
+      img: "https://images.prismic.io/enzo/2ec411c6-5724-4b4c-8d45-0f2649925c5b_Zegna.jpg?auto=compress,format",
+    },
+    {
+      id: 7,
+      name: "Vitale Barberis Canonico",
+      desc: "An Italian fabric brand that offers a range of fabrics for suits and jackets, including wool and cashmere.",
+      img: "https://images.prismic.io/enzo/2ab8d0db-f98f-44f8-b098-85249c93335a_Loro_Piana.jpg?auto=compress,format",
     },
   ];
 

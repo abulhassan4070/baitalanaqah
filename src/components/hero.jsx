@@ -21,19 +21,13 @@ function HeroSection() {
           type="video/mp4"
         />
       </video>
-      <AbsoluteCenter height="100vh" width="75%"  display={"flex"}>
-        <Flex justifyContent="center" alignItems="end" display={"flex"}>
+      <AbsoluteCenter height="100vh" width="50%" display={"flex"}>
+        <Flex justifyContent="center" alignItems="center" display={"flex"}>
           <Box textAlign="center">
             <Text color="white" fontSize="3xl" fontWeight="bold">
               BAIT AL ANAQAH
             </Text>
-            <Text color="white">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries
-            </Text>
+            <Text color="white">Fashion that tells your story.</Text>
             <br />
             <Flex justifyContent="center">
               <Box width="fit-content" className="content borderWhite">
