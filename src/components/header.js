@@ -72,13 +72,17 @@ export default function NavigationHeader() {
           spacing={6}
         >
           <Box display={{ base: "none", md: "flex" }}>
-            <IconButton
-              as="a"
-              backgroundColor={"white"}
-              href="#"
-              aria-label="Twitter"
-              icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
-            />
+            <Link to={"/cart"}>
+              <IconButton
+                as="a"
+                backgroundColor={"white"}
+                href="#"
+                aria-label="Twitter"
+                icon={
+                  <Icon icon="solar:bag-3-outline" width={30} height={30} />
+                }
+              />
+            </Link>
           </Box>
           <Box display={{ base: "none", md: "flex" }}>
             <Link to={"/login"}>
@@ -223,13 +227,15 @@ const MobileNav = () => {
         direction={"row"}
         spacing={6}
       >
-        <IconButton
-          as="a"
-          backgroundColor={"white"}
-          href="#"
-          aria-label="Twitter"
-          icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
-        />
+        <Link to={"/cart"}>
+          <IconButton
+            as="a"
+            backgroundColor={"white"}
+            href="#"
+            aria-label="Twitter"
+            icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
+          />
+        </Link>
         <Link to={"/login"}>
           <IconButton
             as="a"

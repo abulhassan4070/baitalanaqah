@@ -45,10 +45,6 @@ export default function AboutUsSection() {
               >
                 Bait Al Anaqah,
               </Text>
-              <br />
-              <Text as={"span"} color={"black"}>
-                use everywhere!
-              </Text>
             </Heading>
             <Text color={"gray.500"}>
               Welcome to Bait Al Anaqah, where we embody the spirit of luxury

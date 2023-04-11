@@ -18,16 +18,17 @@ const FabricList = (props) => {
     <VStack align={"left"}>
       {props.fabric_list.map((fabric) => {
         return (
-          <Box cursor={"pointer"} className="half-a-border-on-bottom">
-            <Heading
+          <Box cursor={"pointer"}>
+            <Text
               key={fabric.name}
+              fontSize={"20px"}
               onMouseOver={() => {
                 props.handleMouseOver(fabric.id);
               }}
               color={props.fabricId === fabric.id ? "gray.500" : "black"}
             >
               {fabric.name}
-            </Heading>
+            </Text>
           </Box>
         );
       })}
@@ -61,31 +62,6 @@ const HFabricList = (props) => {
         );
       })}
     </HStack>
-  );
-};
-
-const CrossBorderBox = (props) => {
-  return (
-    <Box pb="10px">
-      <Box width="fit-content" className="content">
-        <Box className="outer borderLeftRight" mt="-5px"></Box>
-        <Box
-          bg={props.boxColor.bg}
-          color={props.boxColor.fg}
-          width="fit-content"
-          className="innerContent borderLeftRight"
-          _hover={{
-            bg: props.boxColor.fg,
-            color: props.boxColor.bg,
-          }}
-        >
-          <Text p="10px 15px" textTransform="uppercase">
-            {props.boxName}
-          </Text>
-        </Box>
-        <Box className="outer borderLeftRight" mb="-5px"></Box>
-      </Box>
-    </Box>
   );
 };
 
@@ -149,65 +125,49 @@ const Fabrics = () => {
 
   return (
     <Container maxW={"7xl"} mt="20px" p={10} bg="white">
+      <Box textAlign={"center"}>
+        <Heading>Our Fabrics</Heading>
+      </Box>
       <SimpleGrid
         height={"600px"}
-        id="grid"
-        p="50px"
-        gridTemplateColumns={{
-          base: "1fr",
-          md: "1fr 1fr",
-        }}
-        gridTemplateRows={{
-          base: "auto 1fr auto",
-          md: "auto",
-        }}
-        gridTemplateAreas={{
-          base: `'caption' 'img' 'list'`,
-          md: `'caption caption' 'list img'`,
-        }}
         spacing={4}
-        mt="40px"
-        border={"1px"}
+        mt="10px"
+        columns={{ base: 1, md: 2 }}
       >
-        <Box gridArea="caption" textAlign={"center"}>
-          <Heading>Our Fabrics</Heading>
+        <Box id="vlist" display={{ base: "none", md: "flex" }} style={{
+          alignItems: "center",
+        }}>
+          <FabricList
+            fabricId={fabricId}
+            fabric_list={fabric_list}
+            handleMouseOver={handleMouseOver}
+          />
         </Box>
-        <Center id="listbox" gridArea="list" pr="30px">
-          <Box id="vlist" display={{ base: "none", md: "block" }}>
-            <FabricList
-              fabricId={fabricId}
-              fabric_list={fabric_list}
-              handleMouseOver={handleMouseOver}
-            />
-          </Box>
-          <Box id="hlist" display={{ base: "block", md: "none" }}>
-            <Center>
-              <HFabricList
-                fabricId={fabricId}
-                fabric_list={fabric_list}
-                handleOnClick={handleMouseOver}
-              />
-            </Center>
-          </Box>
-        </Center>
-        <Center
-          gridArea="img"
-          bgImage={fabric_list[fabricId].img}
-          bgSize={"cover"}
-        >
+        <Center bgImage={fabric_list[fabricId].img} bgSize={"cover"}>
           <Box>
             <Heading id="heading" color={"white"} pb="10px">
               {fabric_list[fabricId].name}
             </Heading>
-
+            <br />
             <Center>
-              <CrossBorderBox
-                boxName={"Learn more"}
+              <Box
+                className="button-53 white"
                 boxColor={{ bg: "black", fg: "white" }}
-              ></CrossBorderBox>
+              >
+                Learn more
+              </Box>
             </Center>
           </Box>
         </Center>
+        <Box id="hlist" display={{ base: "block", md: "none" }}>
+          <Center>
+            <HFabricList
+              fabricId={fabricId}
+              fabric_list={fabric_list}
+              handleOnClick={handleMouseOver}
+            />
+          </Center>
+        </Box>
       </SimpleGrid>
     </Container>
   );

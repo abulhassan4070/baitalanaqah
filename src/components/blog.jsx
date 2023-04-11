@@ -67,24 +67,24 @@ const BlogsList = () => {
   return (
     <Container maxW={"7xl"} p="12">
       <Breadcrumb
-          fontWeight="medium"
-          fontSize="sm"
-          spacing="8px"
-          textTransform="uppercase"
-          separator={<ChevronRightIcon color="gray.500" />}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-              <NavLink to="/">Home</NavLink>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
+        fontWeight="medium"
+        fontSize="sm"
+        spacing="8px"
+        textTransform="uppercase"
+        separator={<ChevronRightIcon color="gray.500" />}
+      >
+        <BreadcrumbItem>
+          <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
+            <NavLink to="/">Home</NavLink>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
 
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink style={{ textDecoration: "none" }}>
-              Blogs
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink style={{ textDecoration: "none" }}>
+            Blogs
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
       <Box
         marginTop={{ base: "1", sm: "5" }}
         display="flex"

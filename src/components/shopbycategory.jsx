@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import { Text } from "@chakra-ui/layout";
+import { Text,Container } from "@chakra-ui/layout";
 
 export default function ShopByCategory() {
   var categories = [
@@ -73,9 +73,9 @@ export default function ShopByCategory() {
     },
   ];
   return (
-    <main>
+    <Container maxW={"7xl"}>
       <Text fontSize="30px" fontWeight="bold" textAlign="center" p={10}>
-        Discover your Elegants
+        Discover your Elegance
       </Text>
       <Swiper
         navigation={true}
@@ -95,6 +95,6 @@ export default function ShopByCategory() {
       </Swiper>
       <br />
       <br />
-    </main>
+    </Container>
   );
 }

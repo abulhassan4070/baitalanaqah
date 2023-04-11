@@ -6,6 +6,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Heading,
+  Container,
 } from "@chakra-ui/react";
 
 import { ChevronRightIcon } from "@chakra-ui/icons";
@@ -52,7 +53,7 @@ const cities = [
 ];
 const Showrooms = () => {
   return (
-    <Box mt="20px">
+    <Container maxW={"7xl"} mt="20px" p={10} bg="white">
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -85,7 +86,7 @@ const Showrooms = () => {
         <br />
         <ShowroomsList cities={cities} button={true} />
       </Box>
-    </Box>
+    </Container>
   );
 };
 

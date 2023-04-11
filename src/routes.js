@@ -1,4 +1,5 @@
 import BlogPage from "views/home/pages/blog";
+import CartPage from "views/home/pages/cart";
 import CustomizePage from "views/home/pages/customize";
 import ForgotPasswordPage from "views/home/pages/forgotpage";
 import HomePage from "views/home/pages/home";
@@ -58,12 +59,20 @@ const sidebarRoutes = [
     layout: "",
     path: "/register",
     component: RegisterPage,
-  }, {
+  },
+  {
     name: "Home",
     secondary: "Forgot Password",
     layout: "",
     path: "/forgot-password",
     component: ForgotPasswordPage,
+  },
+  {
+    name: "Home",
+    secondary: "Cart",
+    layout: "",
+    path: "/cart",
+    component: CartPage,
   },
 ];
 const routes = [...sidebarRoutes];

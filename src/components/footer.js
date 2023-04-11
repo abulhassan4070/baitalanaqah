@@ -13,7 +13,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logotext from "../assets/img/logotext.png";
+import logowithtext from "../assets/img/logowithtext.png";
 
 export default function NavigationFooter() {
   return (
@@ -25,33 +25,6 @@ export default function NavigationFooter() {
         justify="space-between"
         py={{ base: "4", md: "8" }}
       >
-        <Stack spacing={{ base: "6", md: "8" }} align="start">
-          <Text fontSize="lg" fontWeight="bold">
-            <img
-              src={logotext}
-              alt="logo"
-              style={{
-                maxWidth: "150px",
-                height: "auto",
-                width: "100%",
-              }}
-            />
-          </Text>
-          <Text color="muted">
-            <a target="_blank" rel="noreferrer" href="tel:9711111111">
-              +971 1111 111
-            </a>
-            <br />
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="mailto:info@baitalanaqah.com"
-            >
-              info@baitalanaqah.com
-            </a>
-            <br />
-          </Text>
-        </Stack>
         <Stack
           direction={{ base: "column-reverse", md: "column", lg: "row" }}
           spacing={{ base: "12", md: "8" }}
@@ -78,6 +51,33 @@ export default function NavigationFooter() {
               </Stack>
             </Stack>
           </Stack>
+        </Stack>
+         <Stack spacing={{ base: "6", md: "8" }} align="start">
+          <Text fontSize="lg" fontWeight="bold">
+            <img
+              src={logowithtext}
+              alt="logo"
+              style={{
+                maxWidth: "150px",
+                height: "auto",
+                width: "100%",
+              }}
+            />
+          </Text>
+          <Text color="muted">
+            <a target="_blank" rel="noreferrer" href="tel:9711111111">
+              +971 1111 111
+            </a>
+            <br />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="mailto:info@baitalanaqah.com"
+            >
+              info@baitalanaqah.com
+            </a>
+            <br />
+          </Text>
         </Stack>
       </Stack>
       <Divider />

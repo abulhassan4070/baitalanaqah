@@ -1,4 +1,5 @@
 import { AbsoluteCenter, Box, Text, Stack, Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   return (
@@ -21,39 +22,37 @@ function HeroSection() {
           type="video/mp4"
         />
       </video>
-      <AbsoluteCenter height="100vh" width="50%" display={"flex"}>
+      <AbsoluteCenter
+        height="100vh"
+        width="50%"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "end",
+        }}
+      >
         <Flex justifyContent="center" alignItems="center" display={"flex"}>
           <Box textAlign="center">
-            <Text color="white" fontSize="3xl" fontWeight="bold">
+            <Text
+              color="white"
+              fontSize={{
+                base: "2xl",
+                md: "4xl",
+                lg: "5xl",
+              }}
+              fontWeight="bold"
+            >
               BAIT AL ANAQAH
             </Text>
             <Text color="white">Fashion that tells your story.</Text>
             <br />
             <Flex justifyContent="center">
-              <Box width="fit-content" className="content borderWhite">
-                <Box
-                  className="outer borderLeftRight borderWhite"
-                  mt="-5px"
-                ></Box>
-                <Box
-                  width="fit-content"
-                  className="innerContent borderLeftRight borderWhite"
-                  color="white"
-                  _hover={{
-                    bg: "white",
-                    color: "black",
-                  }}
-                >
-                  <Text p="10px 15px" textTransform="uppercase">
-                    Book an Appointment
-                  </Text>
+              <Link to="/showrooms">
+                <Box className="button-53 white" mt="10px">
+                  Book an Appointment
                 </Box>
-                <Box
-                  className="outer borderLeftRight borderWhite"
-                  mb="-5px"
-                ></Box>
-              </Box>
-              <Box p={3}></Box>
+              </Link>
+              {/* <Box p={3}></Box>
               <Box width="fit-content" className="content borderWhite">
                 <Box
                   className="outer borderLeftRight borderWhite"
@@ -76,7 +75,7 @@ function HeroSection() {
                   className="outer borderLeftRight borderWhite"
                   mb="-5px"
                 ></Box>
-              </Box>
+              </Box> */}
             </Flex>
             <Box p={70}></Box>
           </Box>
