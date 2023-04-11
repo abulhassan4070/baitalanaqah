@@ -1,6 +1,5 @@
 import React from "react";
 
-import Blogs from "../../../components/blog";
 import {
   Box,
   Breadcrumb,
