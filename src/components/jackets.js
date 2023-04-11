@@ -5,7 +5,6 @@ import {
   SimpleGrid,
   HStack,
   Icon,
-  Container,
 } from "@chakra-ui/react";
 import "assets/css/components.css";
 import { useState } from "react";
@@ -59,48 +58,43 @@ const Jackets = () => {
     setJacketId(id);
   };
   return (
-    <Container maxW={"7xl"} mt="20px" p={10} bg="white">
-      <Box textAlign={"center"}>
-        <Heading>Our Fabrics</Heading>
-      </Box>
-      <SimpleGrid
-        height={"600px"}
-        spacing={4}
-        mt="10px"
-        columns={{ base: 1, md: 1 }}
+    <SimpleGrid
+      height={"600px"}
+      spacing={4}
+      mt="10px"
+      columns={{ base: 1, md: 1 }}
+    >
+      <Center
+        bgImage={{ base: jacket_list[jacketId].img, md: fullImage }}
+        bgSize={"cover"}
+        display={{ base: "flex", md: "flex" }}
       >
-        <Center
-          bgImage={{ base: jacket_list[jacketId].img, md: fullImage }}
-          bgSize={"cover"}
-          display={{ base: "flex", md: "flex" }}
-        >
-          <Box textAlign={"center"} color={"white"} width={"80%"}>
-            <Heading id="heading" color={"white"} pb="10px">
-              Inside our Jackets
-            </Heading>
+        <Box textAlign={"center"} color={"white"} width={"80%"}>
+          <Heading id="heading" color={"white"} pb="10px">
+            Inside our Jackets
+          </Heading>
 
-            <br />
-            <Center>
-              <Box
-                className="button-53 white"
-                boxColor={{ bg: "black", fg: "white" }}
-              >
-                Learn more
-              </Box>
-            </Center>
-          </Box>
-        </Center>
-        <Box id="hlist" display={{ base: "block", md: "none" }}>
+          <br />
           <Center>
-            <HJacketList
-              jacketId={jacketId}
-              jacket_list={jacket_list}
-              handleOnClick={handleOnClick}
-            />
+            <Box
+              className="button-53 white"
+              boxColor={{ bg: "black", fg: "white" }}
+            >
+              Learn more
+            </Box>
           </Center>
         </Box>
-      </SimpleGrid>
-    </Container>
+      </Center>
+      <Box id="hlist" display={{ base: "block", md: "none" }}>
+        <Center>
+          <HJacketList
+            jacketId={jacketId}
+            jacket_list={jacket_list}
+            handleOnClick={handleOnClick}
+          />
+        </Center>
+      </Box>
+    </SimpleGrid>
   );
 };
 export default Jackets;
