@@ -30,7 +30,7 @@ const FabricList = (props) => {
               {fabric.name}
             </Text>
             <hr />
-            <br/>
+            <br />
           </Box>
         );
       })}
@@ -136,9 +136,13 @@ const Fabrics = () => {
         mt="10px"
         columns={{ base: 1, md: 2 }}
       >
-        <Box id="vlist" display={{ base: "none", md: "flex" }} style={{
-          alignItems: "center",
-        }}>
+        <Box
+          id="vlist"
+          display={{ base: "none", md: "flex" }}
+          style={{
+            alignItems: "center",
+          }}
+        >
           <FabricList
             fabricId={fabricId}
             fabric_list={fabric_list}
@@ -155,12 +159,7 @@ const Fabrics = () => {
             </Text>
             <br />
             <Center>
-              <Box
-                className="button-53 white"
-                boxColor={{ bg: "black", fg: "white" }}
-              >
-                Learn more
-              </Box>
+              <Box className="button-53 white">Learn more</Box>
             </Center>
           </Box>
         </Center>

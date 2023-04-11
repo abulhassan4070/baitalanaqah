@@ -70,16 +70,18 @@ const Jackets = () => {
         display={{ base: "flex", md: "flex" }}
       >
         <Box textAlign={"center"} color={"white"} width={"80%"}>
-          <Heading id="heading" color={"white"} pb="10px">
+          <Heading
+            id="heading"
+            color={"white"}
+            pb="10px"
+            textTransform={"uppercase"}
+          >
             Inside our Jackets
           </Heading>
 
           <br />
           <Center>
-            <Box
-              className="button-53 white"
-              boxColor={{ bg: "black", fg: "white" }}
-            >
+            <Box className="button-53 white" textTransform={"uppercase"}>
               Learn more
             </Box>
           </Center>
