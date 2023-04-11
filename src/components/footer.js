@@ -2,6 +2,7 @@ import {
   Box,
   ButtonGroup,
   Divider,
+  Icon,
   IconButton,
   Stack,
   Text,
@@ -11,6 +12,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaTwitter,
+  FaWhatsapp,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logowithtext from "../assets/img/logowithtext.png";
@@ -18,9 +20,20 @@ import logowithtext from "../assets/img/logowithtext.png";
 export default function NavigationFooter() {
   return (
     <Box px={10} as="footer" role="contentinfo" backgroundColor={"gray.100"}>
+      <Box position="fixed" bottom="20px" right="20px" zIndex={3}>
+        <IconButton
+          borderRadius={"50%"}
+          as="a"
+          width={"60px"}
+          height={"60px"}
+          href="#"
+          backgroundColor={"black"}
+          aria-label="Whatsapp"
+          icon={<Icon as={FaWhatsapp} fontSize="1.5rem" color={"white"} />}
+        />
+      </Box>
       <Stack
         spacing="8"
-        
         direction={{ base: "column", md: "row" }}
         justify="space-between"
         py={{ base: "4", md: "8" }}
@@ -52,7 +65,7 @@ export default function NavigationFooter() {
             </Stack>
           </Stack>
         </Stack>
-         <Stack spacing={{ base: "6", md: "8" }} align="start">
+        <Stack spacing={{ base: "6", md: "8" }} align="start">
           <Text fontSize="lg" fontWeight="bold">
             <img
               src={logowithtext}

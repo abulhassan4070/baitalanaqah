@@ -10,77 +10,43 @@ import {
   Text,
   VStack,
   Heading,
+  Image,
+  Center,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function ShopPage() {
   var categories = [
     {
       image:
-        "https://images.prismic.io/enzo/e1a428a6-9b22-487b-8395-584388e723f3_Full+Tux_2202_NW_Grey_C2.jpg?auto=compress,format",
+        "https://images.unsplash.com/photo-1609840170480-4c440bcd5d8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
 
       title: "SUITS",
     },
     {
       image:
-        "https://images.prismic.io/enzo/ff82ee27-8764-43a0-bed3-d726c2d1bd0f_Jacket+1817.jpg?auto=compress,format",
-
-      title: "TUXEDOS",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/c4bdbd61-d479-418d-9a0b-1045f5f8dd7e_Long+Sleeve+Shirt_1901_NW_Grey_C2.jpg?auto=compress,format",
-
-      title: "JACKETS",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/03042526-7b3b-4c20-95b3-76b7b20df996_trousers.jpg?auto=compress,format",
+        "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
 
       title: "SHIRTS",
     },
     {
       image:
-        "https://images.prismic.io/enzo/14f28091-a537-45ed-acbd-8a44560c356e_Waistcoat+1430.jpg?auto=compress,format",
+        "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
 
       title: "TROUSERS",
     },
     {
       image:
-        "https://images.prismic.io/enzo/f2067f63-fd44-4a2c-8ef2-5e1adae66906_Overcoat_1281_NW_Grey_C2.jpg?auto=compress,format",
+        "https://images.unsplash.com/photo-1604006852748-903fccbc4019?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
 
-      title: "WAISTCOATS",
+      title: "POLO",
     },
     {
       image:
-        "https://images.prismic.io/enzo/f1920740-1310-4fd4-823a-06721d98532a_Bomber+Jacket_2327_NW_Grey_C2.jpg?auto=compress,format",
+        "https://images.unsplash.com/photo-1622445275463-afa2ab738c34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
 
-      title: "OVERCOATS",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/43619028-6d7b-4504-8d06-2271d03587dc_HuntingJacket_1774_NW_Grey_C2.jpg?auto=compress,format",
-
-      title: "BOMBERS",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/ec9101dc-ffe7-452e-a024-5f53458636b7_Accessories_Suit_Tie+1215.jpg?auto=compress,format",
-
-      title: "TRENCH COATS",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/edea02fc-045f-4b56-a6bc-6c9c9bdec9a2_Wedding+Accessories_Black+Satin+Bowtie+T200_3.jpg?auto=compress,format",
-
-      title: "ACCESSORIES",
-    },
-    {
-      image:
-        "https://images.prismic.io/enzo/76fead05-ee9b-4eea-9e46-6b9e3332460d_Briefcase_Dark+Maple_MB05.jpg?auto=compress,format",
-
-      title: "WEDDING ACCESSORIES",
+      title: "TSHIRTS",
     },
   ];
   const customizeImgUrl =
@@ -120,29 +86,20 @@ export default function ShopPage() {
         {categories.map((category) => (
           <Box>
             <div className="shopbycategory">
-              <Box
-                height={{
-                  base: "200px",
-                  sm: "300px",
-                  md: "400px",
-                }}
-                width={"100%"}
-                overflow={"hidden"}
-              >
-                <img
+              <Box height="100%">
+                <Image
                   src={category.image}
-                  alt="[+]"
-                  height={{
-                    base: "200px",
-                    sm: "300px",
-                    md: "400px",
-                  }}
-                  _hover={{
-                    transform: "scale(1.1)",
-                  }}
+                  height="100%"
+                  width="100%"
+                  objectFit="cover"
                 />
               </Box>
-              <h3>{category.title}</h3>
+              <Center>
+                <h3 style={{ color: "black", fontSize: "20px" }}>
+                  {category.title}
+                </h3>
+              </Center>
+              <br />
             </div>
           </Box>
         ))}
@@ -171,26 +128,11 @@ export default function ShopPage() {
             over 5,000 fabrics and 1,562 complimentary style and design options
             to create a wardrobe that is truly customized to you.
           </Text>
-          <Box pb="10px">
-            <Box width="fit-content" className="content">
-              <Box className="outer borderLeftRight" mt="-5px"></Box>
-              <Box
-                bg={"black"}
-                color={"white"}
-                width="fit-content"
-                className="innerContent borderLeftRight"
-                _hover={{
-                  bg: "white",
-                  color: "black",
-                }}
-              >
-                <Text p="10px 15px" textTransform="uppercase">
-                  Customize
-                </Text>
-              </Box>
-              <Box className="outer borderLeftRight" mb="-5px"></Box>
+          <Link to="/customize">
+            <Box className="button-53" mt="10px">
+              Customize
             </Box>
-          </Box>
+          </Link>
         </VStack>
         <Box gridArea="right">
           <img

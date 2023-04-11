@@ -21,7 +21,7 @@ const FabricList = (props) => {
           <Box cursor={"pointer"}>
             <Text
               key={fabric.name}
-              fontSize={"20px"}
+              fontSize={"30px"}
               onMouseOver={() => {
                 props.handleMouseOver(fabric.id);
               }}
@@ -29,6 +29,8 @@ const FabricList = (props) => {
             >
               {fabric.name}
             </Text>
+            <hr />
+            <br/>
           </Box>
         );
       })}
@@ -144,10 +146,13 @@ const Fabrics = () => {
           />
         </Box>
         <Center bgImage={fabric_list[fabricId].img} bgSize={"cover"}>
-          <Box>
+          <Box textAlign={"center"} color={"white"} width={"80%"}>
             <Heading id="heading" color={"white"} pb="10px">
               {fabric_list[fabricId].name}
             </Heading>
+            <Text id="desc" color={"white"} pb="10px">
+              {fabric_list[fabricId].desc}
+            </Text>
             <br />
             <Center>
               <Box

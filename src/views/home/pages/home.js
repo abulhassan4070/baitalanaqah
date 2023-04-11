@@ -1,6 +1,5 @@
 import React from "react";
 
-import LatestBlogs from "../../../components/latest";
 import AboutUsSection from "components/about";
 import HeroSection from "../../../components/hero";
 import TestimonialSection from "../../../components/testimonials";
@@ -69,10 +68,10 @@ export default function HomePage() {
             />
           </Box>
         </SimpleGrid>
-      </Box>{" "}
-      <Fabrics />
+      </Box>
       <TestimonialSection />
-      <LatestBlogs />
+      <Fabrics />
+      {/* <LatestBlogs /> */}
     </>
   );
 }
