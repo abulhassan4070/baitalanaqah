@@ -11,7 +11,7 @@
 @import url("./button.css");
 body,
 html {
-  font-family: "Zimra Regular", sans-serif;
+  font-family: "Zimra Regular", serif !important;
   overflow-x: hidden;
 }
 h1,
@@ -20,16 +20,16 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Zimra Black", serif;
+  font-family: "Zimra Black", serif !important;
 }
 p {
-  font-family: "Zimra Regular", sans-serif;
+  font-family: "Zimra Regular", serif !important;
 }
 a {
-  font-family: "Zimra Regular", sans-serif;
+  font-family: "Zimra Regular", serif !important;
 }
 :where(button, input, optgroup, select, textarea) {
-  font-family: "Zimra Regular", sans-serif !important;
+  font-family: "Zimra Regular", serif !important;
 }
 option {
   color: black;

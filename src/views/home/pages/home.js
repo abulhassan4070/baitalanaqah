@@ -34,8 +34,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <ShopByCategory />
       <AboutUsSection />
+      <ShopByCategory />
       <Box p={{ base: "20px", md: "40px" }}>
         <SimpleGrid
           mt="20px"
@@ -73,6 +73,8 @@ export default function HomePage() {
       <TestimonialSection />
       <Fabrics />
       <Jackets />
+      <br />
+      <br />
       {/* <LatestBlogs /> */}
     </>
   );

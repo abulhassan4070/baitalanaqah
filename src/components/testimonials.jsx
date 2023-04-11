@@ -82,6 +82,10 @@ const TestimonialAvatar = ({
         <Text fontSize={"sm"} color={useColorModeValue("gray.600", "gray.400")}>
           {title}
         </Text>
+        <Text color={"gold"}>
+        &#9733; &#9733; &#9733;
+        &#9733; &#9733;
+        </Text>
       </Stack>
     </Flex>
   );
@@ -92,7 +96,7 @@ export default function TestimonialSection() {
     <Box bg={useColorModeValue("gray.100", "gray.700")}>
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
-          <Heading>What our  Clients says</Heading>
+          <Heading>What our Clients says</Heading>
           <Text>We have been working with clients around the world</Text>
         </Stack>
         <Stack

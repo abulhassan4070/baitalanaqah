@@ -27,6 +27,9 @@ export default function NavigationFooter() {
           width={"60px"}
           height={"60px"}
           href="#"
+          _hover={{
+            backgroundColor: "black",
+          }}
           backgroundColor={"black"}
           aria-label="Whatsapp"
           icon={<Icon as={FaWhatsapp} fontSize="1.5rem" color={"white"} />}
@@ -39,30 +42,72 @@ export default function NavigationFooter() {
         py={{ base: "4", md: "8" }}
       >
         <Stack
-          direction={{ base: "column-reverse", md: "column", lg: "row" }}
+          direction={{ md: "column", lg: "row" }}
           spacing={{ base: "12", md: "8" }}
         >
-          <Stack
-            direction={{
-              sm: "row",
-              base: "column",
-            }}
-            spacing="8"
-          >
-            <Stack spacing="4" minW="36" flex="1">
-              <Stack spacing="3" shouldWrapChildren>
-                <Link to={"#"}>About us</Link>
-                <Link to={"#"}>Gift Cards</Link>
-                <Link to={"#"}>Our Locations</Link>
-              </Stack>
-            </Stack>
-            <Stack spacing="4" minW="36" flex="1">
-              <Stack spacing="3" shouldWrapChildren>
-                <Link to={"#"}>Contact Us</Link>
-                <Link to={"#"}>Terms & Conditions</Link>
-                <Link to={"#"}>Accesbility</Link>
-              </Stack>
-            </Stack>
+          <Stack>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                About us
+              </Box>
+            </Link>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                Contact Us
+              </Box>
+            </Link>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                Our Locations
+              </Box>
+            </Link>
+          </Stack>
+          <Stack>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                Terms & Conditions
+              </Box>
+            </Link>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                Privacy Policy
+              </Box>
+            </Link>
+            <Link to={"#"}>
+              <Box
+                _hover={{
+                  color: "black",
+                  textDecoration: "underline",
+                }}
+              >
+                Responsible Disclosure
+              </Box>
+            </Link>
           </Stack>
         </Stack>
         <Stack spacing={{ base: "6", md: "8" }} align="start">

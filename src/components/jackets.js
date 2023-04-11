@@ -10,16 +10,16 @@ import "assets/css/components.css";
 import { useState } from "react";
 
 const fullImage =
-  "https://images.prismic.io/enzo/07cd9e28-f7c1-454d-be93-c1b44cfb6fac_CANVAS_header.jpg?auto=compress,format";
+  "https://images.unsplash.com/photo-1633655442356-ab2dbc69c772?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8amFja2V0JTIwZmFicmljc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60";
 
 const jacket_list = [
   {
     id: 0,
-    img: "https://images.prismic.io/enzo/43230d34-9d33-470f-8283-d54c8f52dc77_CANVAS_header_A+%281%29-min.jpg?auto=compress,format",
+    img: "https://images.unsplash.com/photo-1633655442356-ab2dbc69c772?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8amFja2V0JTIwZmFicmljc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
   },
   {
     id: 1,
-    img: "https://images.prismic.io/enzo/e4e02749-0ff5-46db-bf47-d0a390377bf3_CANVAS_header_B-min.jpg?auto=compress,format",
+    img: "https://images.unsplash.com/photo-1640746791140-4ab07eb35c6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80",
   },
 ];
 
