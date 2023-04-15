@@ -15,7 +15,6 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import logotext from "../assets/img/logotext.png";
 import { Icon } from "@iconify/react";
-import "../assets/css/components.css";
 
 export default function NavigationHeader() {
   const { isOpen, onToggle } = useDisclosure();
@@ -33,11 +32,7 @@ export default function NavigationHeader() {
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
       >
-        <Flex
-          flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
-        >
+        <Flex display={{ base: "flex", md: "none" }}>
           <IconButton
             onClick={onToggle}
             icon={
@@ -47,20 +42,24 @@ export default function NavigationHeader() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
+        <Flex
+          display={{ base: "flex", md: "none" }}
+          width={"100%"}
+          justify={"center"}
+        >
+          <Link to={"/"}>
+            <img
+              src={logotext}
+              alt="logo"
+              style={{
+                maxWidth: "150px",
+                height: "auto",
+                width: "100%",
+              }}
+            />
+          </Link>
+        </Flex>
         <Flex flex={{ base: 1 }} justify={"center"}>
-          <Flex display={{ base: "flex", md: "none" }} ml={10}>
-            <Link to={"/"}>
-              <img
-                src={logotext}
-                alt="logo"
-                style={{
-                  maxWidth: "150px",
-                  height: "auto",
-                  width: "100%",
-                }}
-              />
-            </Link>
-          </Flex>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -107,7 +106,6 @@ export default function NavigationHeader() {
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
@@ -123,31 +121,43 @@ const DesktopNav = () => {
                   maxWidth: "150px",
                   height: "auto",
                   width: "100%",
+                  margin: "5px 25px",
                 }}
               />
             </Link>
           );
         }
         return (
-          <Box key={navItem.label} px={3}>
-            <Popover trigger={"hover"} placement={"bottom-start"}>
-              <PopoverTrigger>
-                <NavLink
-                  to={navItem.href ?? "#"}
-                  p={2}
-                  fontSize={"sm"}
-                  fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: "none",
-                    color: linkHoverColor,
-                  }}
-                  activeClassName="active"
-                >
-                  {navItem.label}
-                </NavLink>
-              </PopoverTrigger>
-              {navItem.children && (
+          <Box
+            key={navItem.label}
+            px={5}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {navItem.children && (
+              <Popover trigger={"hover"}>
+                <PopoverTrigger>
+                  <Flex
+                    p={2}
+                    fontSize={"sm"}
+                    fontWeight={500}
+                    color={linkColor}
+                    className={"hfont header-nav-link"}
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {navItem.label}
+                    <Icon icon="gridicons:dropdown" />
+                  </Flex>
+                </PopoverTrigger>
                 <PopoverContent
                   border={0}
                   boxShadow={"xl"}
@@ -162,8 +172,22 @@ const DesktopNav = () => {
                     ))}
                   </Stack>
                 </PopoverContent>
-              )}
-            </Popover>
+              </Popover>
+            )}
+            {!navItem.children && (
+              <NavLink
+                to={navItem.href ?? "#"}
+                p={2}
+                fontSize={"sm"}
+                fontWeight={500}
+                color={linkColor}
+                className={"hfont header-nav-link"}
+                activeClassName="active"
+                display={"flex"}
+              >
+                {navItem.label}
+              </NavLink>
+            )}
           </Box>
         );
       })}
@@ -185,8 +209,9 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
+            _groupHover={{ color: "black" }}
             fontWeight={500}
+            className="hfont"
           >
             {label}
           </Text>
@@ -259,15 +284,13 @@ const MobileNavItem = ({ label, children, href }) => {
       onClick={children && onToggle}
       style={{ cursor: "pointer" }}
     >
-      <Flex
-        py={2}
-        as={NavLink}
+      <NavLink
         to={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
-        _hover={{
-          textDecoration: "none",
-        }}
+        p={2}
+        fontSize={"sm"}
+        fontWeight={500}
+        className={"hfont header-nav-link"}
+        activeClassName="active"
       >
         <Text
           fontWeight={600}
@@ -285,7 +308,21 @@ const MobileNavItem = ({ label, children, href }) => {
             h={6}
           />
         )}
-      </Flex>
+      </NavLink>
+      {/* <Flex
+        py={2}
+        as={NavLink}
+        to={href ?? "#"}
+        justify={"space-between"}
+        align={"center"}
+        className={"hfont header-nav-link"}
+        activeClassName="active"
+        _hover={{
+          textDecoration: "none",
+        }}
+      >
+       
+      </Flex> */}
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
@@ -310,22 +347,34 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Shop",
-    href: "shop",
+    label: "Suits",
+    href: "suits",
   },
   {
-    label: "Customize",
-    href: "customize",
+    label: "Corporate",
+    href: "corporate",
   },
   {
     logo: true,
   },
   {
-    label: "Showrooms",
-    href: "showrooms",
+    label: "Tailor",
+    href: "tailor",
   },
   {
-    label: "Blogs",
-    href: "blogs",
+    label: "More",
+    href: "more",
+    children: [
+      {
+        label: "Contact",
+        subLabel: "Get in touch",
+        href: "contact",
+      },
+      {
+        label: "About",
+        subLabel: "Learn more about us",
+        href: "about",
+      },
+    ],
   },
 ];

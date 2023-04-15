@@ -1,180 +1,138 @@
-import {
-  Box,
-  ButtonGroup,
-  Divider,
-  Icon,
-  IconButton,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Container, IconButton, SimpleGrid } from "@chakra-ui/react";
 import {
   FaFacebookF,
   FaInstagram,
-  FaLinkedin,
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import logowithtext from "../assets/img/logowithtext.png";
+import { Icon } from "@iconify/react";
 
 export default function NavigationFooter() {
   return (
-    <Box px={10} as="footer" role="contentinfo" backgroundColor={"gray.100"}>
-      <Box position="fixed" bottom="20px" right="20px" zIndex={3}>
-        <IconButton
-          borderRadius={"50%"}
-          as="a"
-          width={"60px"}
-          height={"60px"}
-          href="#"
-          _hover={{
-            backgroundColor: "black",
-          }}
-          backgroundColor={"black"}
-          aria-label="Whatsapp"
-          icon={<Icon as={FaWhatsapp} fontSize="1.5rem" color={"white"} />}
-        />
-      </Box>
-      <Stack
-        spacing="8"
-        direction={{ base: "column", md: "row" }}
-        justify="space-between"
-        py={{ base: "4", md: "8" }}
-      >
-        <Stack
-          direction={{ md: "column", lg: "row" }}
-          spacing={{ base: "12", md: "8" }}
-        >
-          <Stack>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                About us
-              </Box>
-            </Link>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                Contact Us
-              </Box>
-            </Link>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                Our Locations
-              </Box>
-            </Link>
-          </Stack>
-          <Stack>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                Terms & Conditions
-              </Box>
-            </Link>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                Privacy Policy
-              </Box>
-            </Link>
-            <Link to={"#"}>
-              <Box
-                _hover={{
-                  color: "black",
-                  textDecoration: "underline",
-                }}
-              >
-                Responsible Disclosure
-              </Box>
-            </Link>
-          </Stack>
-        </Stack>
-        <Stack spacing={{ base: "6", md: "8" }} align="start">
-          <Text fontSize="lg" fontWeight="bold">
-            <img
-              src={logowithtext}
-              alt="logo"
-              style={{
-                maxWidth: "150px",
-                height: "auto",
-                width: "100%",
-              }}
-            />
-          </Text>
-          <Text color="muted">
-            <a target="_blank" rel="noreferrer" href="tel:9711111111">
-              +971 1111 111
-            </a>
-            <br />
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="mailto:info@baitalanaqah.com"
-            >
-              info@baitalanaqah.com
-            </a>
-            <br />
-          </Text>
-        </Stack>
-      </Stack>
-      <Divider />
-      <Stack
-        py="4"
-        justify="space-between"
-        direction={{ base: "column-reverse", md: "row" }}
-        align="center"
-      >
-        <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} Bait Al Anaqah. All rights reserved.
-        </Text>
-        <ButtonGroup variant="ghost">
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="LinkedIn"
-            icon={<FaLinkedin fontSize="1.25rem" />}
-          />
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="Twitter"
-            icon={<FaTwitter fontSize="1.25rem" />}
-          />
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="Instagram"
-            icon={<FaInstagram fontSize="1.25rem" />}
-          />
-          <IconButton
-            as="a"
-            href="#"
-            aria-label="Facebook"
-            icon={<FaFacebookF fontSize="1.25rem" />}
-          />
-        </ButtonGroup>
-      </Stack>
-    </Box>
+    <footer class="footer">
+      <div class="footer-top">
+        <Container maxW={"7xl"}>
+          <SimpleGrid
+            columns={{
+              base: 1,
+              md: 2,
+              lg: 4,
+            }}
+            spacing={10}
+          >
+            <div class="col-lg-5 col-md-12 footer-info">
+              <a href="index.html" class="logo d-flex align-items-center">
+                <img
+                  src={logowithtext}
+                  alt="logo"
+                  style={{
+                    maxWidth: "150px",
+                    height: "auto",
+                  }}
+                />
+              </a>
+              <p>Fashion that tells your story.</p>
+              <br />
+              <IconButton
+                as="a"
+                href="#"
+                me={1}
+                aria-label="Twitter"
+                icon={<FaTwitter fontSize="1.25rem" />}
+              />
+              <IconButton
+                as="a"
+                href="#"
+                me={1}
+                aria-label="Instagram"
+                icon={<FaInstagram fontSize="1.25rem" />}
+              />
+              <IconButton
+                as="a"
+                href="#"
+                me={1}
+                aria-label="Facebook"
+                icon={<FaFacebookF fontSize="1.25rem" />}
+              />
+              <IconButton
+                as="a"
+                href="#"
+                me={1}
+                aria-label="Whatsapp"
+                icon={<FaWhatsapp fontSize="1.25rem" />}
+              />
+            </div>
+
+            <div class="col-lg-2 col-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Home</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Shop</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>About us</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Contact us</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-2 col-6 footer-links">
+              <h4>Our Services</h4>
+              <ul>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Fabrics</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Showrooms</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Appointments</span>
+                </li>
+                <li>
+                  <Icon icon="bi:chevron-right" />
+                  <span>Tailor</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+                Bait Al Anaqah <br />
+                Dubai UAE
+                <br />
+                <strong>Phone:</strong> +1 9999 9999 99
+                <br />
+                <strong>Email:</strong> info@baitalanaqah.com
+                <br />
+              </p>
+            </div>
+          </SimpleGrid>
+        </Container>
+      </div>
+
+      <div class="container hfont">
+        <div class="copyright">
+          &copy; 2023 Copyright{" "}
+          <strong>
+            <span>Bait Al Anaqah. </span>
+          </strong>{" "}
+          All Rights Reserved
+        </div>
+      </div>
+    </footer>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Text, Link, SimpleGrid, Flex } from "@chakra-ui/react";
 
-import "../assets/css/components.css";
+
 
 export default function ShowroomsList(props) {
   return (

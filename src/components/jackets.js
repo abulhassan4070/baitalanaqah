@@ -6,7 +6,7 @@ import {
   HStack,
   Icon,
 } from "@chakra-ui/react";
-import "assets/css/components.css";
+
 import { useState } from "react";
 
 const fullImage =

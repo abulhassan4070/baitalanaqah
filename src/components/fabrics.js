@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
-import "assets/css/components.css";
+
 
 const FabricList = (props) => {
   return (
