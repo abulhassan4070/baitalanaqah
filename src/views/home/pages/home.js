@@ -3,11 +3,9 @@ import React from "react";
 import AboutUsSection from "components/about";
 import HeroSection from "../../../components/hero";
 import TestimonialSection from "../../../components/testimonials";
-import Fabrics from "components/fabrics";
 import ShopByCategory from "components/shopbycategory";
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/layout";
 import ShowroomsList from "components/showroomlist";
-import Jackets from "components/jackets";
 export default function HomePage() {
   const cities = [
     {
@@ -70,12 +68,13 @@ export default function HomePage() {
           </Box>
         </SimpleGrid>
       </Box>
+      <br />
+      <br />
       <TestimonialSection />
-      <Fabrics />
-      <Jackets />
-      <br />
-      <br />
-      {/* <LatestBlogs /> */}
+      {/* <Fabrics />
+      <Jackets /> */}
+      {/* <br />
+      <br /> */}
     </>
   );
 }

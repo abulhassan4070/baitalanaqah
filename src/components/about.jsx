@@ -1,3 +1,4 @@
+import { CheckCircleIcon } from "@chakra-ui/icons";
 import {
   Container,
   Stack,
@@ -11,6 +12,8 @@ import {
   createIcon,
   IconProps,
   useColorModeValue,
+  SimpleGrid,
+  Link,
 } from "@chakra-ui/react";
 
 export default function AboutUsSection() {
@@ -18,6 +21,7 @@ export default function AboutUsSection() {
     <Box bg={useColorModeValue("gray.100", "gray.700")}>
       <Container maxW={"7xl"}>
         <Stack
+          className="section"
           align={"center"}
           spacing={{ base: 8, md: 10 }}
           py={{ base: 20, md: 28 }}
@@ -29,6 +33,8 @@ export default function AboutUsSection() {
               fontWeight={600}
               fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
             >
+              <h5 class="section-title">About</h5>
+              <br />
               <Text
                 as={"span"}
                 position={"relative"}
@@ -50,12 +56,52 @@ export default function AboutUsSection() {
               Welcome to Bait Al Anaqah, where we embody the spirit of luxury
               and sophistication in everything we do. Our story began with a
               passion for creating beautiful, high-quality apparel that exudes
-              elegance and style. At Bait Al Anaqah, we believe that true
-              elegance lies in the details. That is why we take great care in
-              every step of the tailoring process, from selecting the finest
-              fabrics to creating custom patterns that are tailored to each
-              individual client.
+              elegance and style.
             </Text>
+            <br />
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              spacing={5}
+              style={{
+                marginTop: "10px",
+              }}
+            >
+              <Flex alignItems={"center"}>
+                <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
+                <Text color={"gray.500"}>Award Winning</Text>
+              </Flex>
+              <Flex alignItems={"center"}>
+                <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
+                <Text color={"gray.500"}>Professional Staff</Text>
+              </Flex>
+            </SimpleGrid>
+            <SimpleGrid
+              columns={{ base: 1, md: 2 }}
+              spacing={5}
+              style={{
+                marginTop: "10px",
+              }}
+            >
+              <Flex alignItems={"center"}>
+                <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
+                <Text color={"gray.500"}>24/7 Opened</Text>
+              </Flex>
+              <Flex alignItems={"center"}>
+                <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
+                <Text color={"gray.500"}>Fair Prices</Text>
+              </Flex>
+            </SimpleGrid>
+            <Flex
+              style={{
+                marginTop: "10px",
+              }}
+            >
+              <Link to="/showrooms">
+                <Box className="buttonStyle outline" mt="10px">
+                  Make an Appointment
+                </Box>
+              </Link>
+            </Flex>
           </Stack>
           <Flex
             flex={1}

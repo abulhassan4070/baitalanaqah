@@ -1,46 +1,62 @@
-/* CSS */
-.button-53 {
-  --b: 1.5px; /* border thickness */
-  --s: 2px; /* size of the corner */
-  --color: #373b44;
-
-  padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background: conic-gradient(
-      from 90deg at var(--b) var(--b),
-      #0000 90deg,
-      var(--color) 0
-    )
-    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
-    calc(100% - var(--b) - 2 * var(--_p));
-  transition: 0.3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: 4px;
-  font-size: 16px;
+.buttonStyle {
+  background-color: #000000;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  font-weight: normal;
+  color: #FFF;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  padding: 0.75rem 1.2rem;
   text-align: center;
-  border: 0;
+  transition-duration: 0.2s;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
-.button-53.white {
-  --color: #fff;
-}
-.button-53.black {
-  --color: #000;
-}
-.button-53:hover,
-.button-53:focus-visible {
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: 4px;
+  width: auto;
 }
 
-.button-53:active {
-  background: var(--color);
-  color: #fff;
+.buttonStyle:hover {
+  background-color: #111827;
+  border-color: #111827;
 }
-.button-53.white:active {
-  color: #000;
+
+.buttonStyle:focus {
+  box-shadow: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .buttonStyle {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+.buttonStyle.outline {
+  background-color: transparent;
+  border-color: #000000;
+  color: #000000;
+}
+.buttonStyle.outline:hover {
+  background-color: #000000;
+  border-color: #000000;
+  color: #e9ddda;
+}
+.buttonStyle.outline.white {
+  background-color: transparent;
+  border-color: #e9ddda;
+  color: #e9ddda;
+}
+.buttonStyle.outline.white:hover {
+  background-color: #e9ddda;
+  border-color: #e9ddda;
+  color: #000000;
 }

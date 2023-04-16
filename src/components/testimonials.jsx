@@ -1,158 +1,74 @@
-import { ReactNode } from "react";
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Stack,
-  Container,
-  Avatar,
-  useColorModeValue,
-} from "@chakra-ui/react";
-
-const Testimonial = ({ children }: { children: ReactNode }) => {
-  return <Box>{children}</Box>;
-};
-
-const TestimonialContent = ({ children }: { children: ReactNode }) => {
-  return (
-    <Stack
-      bg={useColorModeValue("white", "gray.800")}
-      boxShadow={"lg"}
-      p={8}
-      rounded={"xl"}
-      align={"center"}
-      pos={"relative"}
-      _after={{
-        content: `""`,
-        w: 0,
-        h: 0,
-        borderLeft: "solid transparent",
-        borderLeftWidth: 16,
-        borderRight: "solid transparent",
-        borderRightWidth: 16,
-        borderTop: "solid",
-        borderTopWidth: 16,
-        borderTopColor: useColorModeValue("white", "gray.800"),
-        pos: "absolute",
-        bottom: "-16px",
-        left: "50%",
-        transform: "translateX(-50%)",
-      }}
-    >
-      {children}
-    </Stack>
-  );
-};
-
-const TestimonialHeading = ({ children }: { children: ReactNode }) => {
-  return (
-    <Heading as={"h3"} fontSize={"xl"}>
-      {children}
-    </Heading>
-  );
-};
-
-const TestimonialText = ({ children }: { children: ReactNode }) => {
-  return (
-    <Text
-      textAlign={"center"}
-      color={useColorModeValue("gray.600", "gray.400")}
-      fontSize={"sm"}
-    >
-      {children}
-    </Text>
-  );
-};
-
-const TestimonialAvatar = ({
-  src,
-  name,
-  title,
-}: {
-  src: string,
-  name: string,
-  title: string,
-}) => {
-  return (
-    <Flex align={"center"} mt={8} direction={"column"}>
-      <Avatar src={src} alt={name} mb={2} />
-      <Stack spacing={-1} align={"center"}>
-        <Text fontWeight={600}>{name}</Text>
-        <Text fontSize={"sm"} color={useColorModeValue("gray.600", "gray.400")}>
-          {title}
-        </Text>
-        <Text color={"gold"}>
-        &#9733; &#9733; &#9733;
-        &#9733; &#9733;
-        </Text>
-      </Stack>
-    </Flex>
-  );
-};
+import { Swiper, SwiperSlide } from "swiper/react";
+import testimonial from "../assets/img/testimonials.jpg";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Icon } from "@iconify/react";
+import { Box,  Text } from "@chakra-ui/react";
 
 export default function TestimonialSection() {
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.700")}>
-      <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
-        <Stack spacing={0} align={"center"}>
-          <Heading>What our Clients says</Heading>
-          <Text>We have been working with clients around the world</Text>
-        </Stack>
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={{ base: 10, md: 4, lg: 10 }}
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+        <Box textAlign={"center"}>
+          <h2>Testimonials</h2>
+          <Text className="hfont" fontSize={"4xl"} fontWeight={"bold"}>
+            What they are saying about us
+          </Text>
+        </Box>
+        <div
+          class="testimonials-slider swiper"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Lorem ipsum dolor</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"Jane Cooper"}
-              title={"CEO"}
-            />
-          </Testimonial>
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Lorem ipsum dolor</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"John Doe"}
-              title={"CEO"}
-            />
-          </Testimonial>
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Lorem ipsum dolor</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"John Doe"}
-              title={"CEO"}
-            />
-          </Testimonial>
-        </Stack>
-      </Container>
-    </Box>
+          <Swiper
+            navigation={true}
+            spaceBetween={30}
+            keyboard={true}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 40,
+              },
+              1200: {
+                slidesPerView: 3,
+              },
+            }}
+            loop={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+            className="mySwiper"
+          >
+            {[1, 2, 3, 4, 5].map((item) => (
+              <SwiperSlide>
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <Icon icon="material-symbols:star-rounded" color={"gold"} />
+                    <Icon icon="material-symbols:star-rounded" color={"gold"} />
+                    <Icon icon="material-symbols:star-rounded" color={"gold"} />
+                    <Icon icon="material-symbols:star-rounded" color={"gold"} />
+                    <Icon icon="material-symbols:star-rounded" color={"gold"} />
+                  </div>
+                  <p>
+                    Proin iaculis purus consequat sem cure digni ssim donec
+                    porttitora entum suscipit rhoncus. Accusantium quam,
+                    ultricies eget id, aliquam eget nibh et. Maecen aliquam,
+                    risus at semper.
+                  </p>
+                  <div class="profile mt-auto">
+                    <img src={testimonial} class="testimonial-img" alt="" />
+                    <h3>Lakshmanan R</h3>
+                    <h4>Client</h4>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </section>
   );
 }

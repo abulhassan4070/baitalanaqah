@@ -1,5 +1,10 @@
-import { AbsoluteCenter, Box, Text, Stack, Flex } from "@chakra-ui/react";
+import { Box, Text, Stack, Flex, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
 
 function HeroSection() {
   return (
@@ -22,65 +27,78 @@ function HeroSection() {
           type="video/mp4"
         />
       </video>
-      <AbsoluteCenter
-        height="100vh"
-        width="50%"
+      <Center
+        height={"100vh"}
         style={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "end",
+          justifyContent: "end",
+          alignItems: "center",
         }}
       >
-        <Flex justifyContent="center" alignItems="center" display={"flex"}>
-          <Box textAlign="center">
-            <Text
-              color="white"
-              fontSize={{
-                base: "2xl",
-                md: "4xl",
-                lg: "5xl",
+        <Swiper
+          cssMode={true}
+          pagination={{
+            clickable: true,
+            currentClass:
+              "heropagination-active swiper-pagination-bullet-active",
+            bulletClass: "heropagination swiper-pagination-bullet",
+          }}
+          mousewheel={true}
+          keyboard={true}
+          loop={true}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          slidesPerView={1}
+          spaceBetween={30}
+          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+          className="mySwiper"
+        >
+          {[1, 2, 3, 4, 5].map((item) => (
+            <SwiperSlide
+              style={{
+                padding: "0 100px",
               }}
-              fontWeight="bold"
             >
-              BAIT AL ANAQAH
-            </Text>
-            <Text color="white">Fashion that tells your story.</Text>
-            <br />
-            <Flex justifyContent="center">
-              <Link to="/showrooms">
-                <Box className="button-53 white" mt="10px">
-                  Book an Appointment
-                </Box>
-              </Link>
-              {/* <Box p={3}></Box>
-              <Box width="fit-content" className="content borderWhite">
-                <Box
-                  className="outer borderLeftRight borderWhite"
-                  mt="-5px"
-                ></Box>
-                <Box
-                  width="fit-content"
-                  className="innerContent borderLeftRight borderWhite"
+              <Box textAlign="center">
+                <Text color="white">Fashion that tells your story.</Text>
+                <Text
+                  as={"h1"}
                   color="white"
-                  _hover={{
-                    bg: "white",
-                    color: "black",
+                  fontSize={{
+                    base: "3xl",
+                    md: "4xl",
+                    lg: "7xl",
                   }}
+                  fontWeight="bold"
                 >
-                  <Text p="10px 15px" textTransform="uppercase">
-                    Customize Your Suit
-                  </Text>
-                </Box>
-                <Box
-                  className="outer borderLeftRight borderWhite"
-                  mb="-5px"
-                ></Box>
-              </Box> */}
-            </Flex>
-            <Box p={70}></Box>
-          </Box>
-        </Flex>
-      </AbsoluteCenter>
+                  BAIT AL ANAQAH
+                </Text>
+                <Text color="white" fontSize="lg">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Magni perspiciatis, enim fugit illo architecto minus laborum
+                  iure consequatur atque dolorum provident corrupti ipsum quas
+                  ducimus reiciendis nostrum illum. Similique, a.
+                </Text>
+                <Flex justifyContent="center">
+                  <Link to="/showrooms">
+                    <Box className="buttonStyle outline white" mt="10px">
+                      Appointment
+                    </Box>
+                  </Link>
+                  <Box p={2}></Box>
+                  <Link to="/showrooms">
+                    <Box className="buttonStyle" mt="10px">
+                      Contact Us
+                    </Box>
+                  </Link>
+                </Flex>
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Center>
     </Stack>
   );
 }

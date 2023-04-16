@@ -1,4 +1,4 @@
-import { Container, IconButton, SimpleGrid } from "@chakra-ui/react";
+import { Box, Container, IconButton, SimpleGrid } from "@chakra-ui/react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,6 +11,21 @@ import { Icon } from "@iconify/react";
 export default function NavigationFooter() {
   return (
     <footer class="footer">
+      <Box position="fixed" bottom="20px" right="20px" zIndex={3}>
+        <IconButton
+          borderRadius={"50%"}
+          as="a"
+          width={"60px"}
+          height={"60px"}
+          href="#"
+          _hover={{
+            backgroundColor: "black",
+          }}
+          backgroundColor={"black"}
+          aria-label="Whatsapp"
+          icon={<Icon icon="fa-brands:whatsapp" color="white" fontSize={25} />}
+        />
+      </Box>
       <div class="footer-top">
         <Container maxW={"7xl"}>
           <SimpleGrid
