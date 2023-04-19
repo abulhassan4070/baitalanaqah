@@ -146,15 +146,14 @@ export default function NavigationFooter() {
             </div>
           </SimpleGrid>
         </Container>
-      </div>
-
-      <div class="container hfont">
-        <div class="copyright">
-          &copy; 2023 Copyright{" "}
-          <strong>
-            <span>Bait Al Anaqah. </span>
-          </strong>{" "}
-          All Rights Reserved
+        <div class="container ">
+          <div class="copyright">
+            &copy; 2023 Copyright{" "}
+            <strong>
+              <span>Bait Al Anaqah. </span>
+            </strong>{" "}
+            All Rights Reserved
+          </div>
         </div>
       </div>
     </footer>

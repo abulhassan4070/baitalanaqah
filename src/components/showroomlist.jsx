@@ -29,7 +29,7 @@ export default function ShowroomsList(props) {
               <Box mt="10px"></Box>
               {props.button && (
                 <Flex>
-                  <Box className="button-53" mt="10px">
+                  <Box className="buttonStyle" mt="10px">
                     <span>Book Now</span>
                   </Box>
                 </Flex>

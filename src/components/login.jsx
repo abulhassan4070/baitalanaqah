@@ -57,7 +57,7 @@ export default function SimpleCard() {
                 <Checkbox>Remember me</Checkbox>
               </Stack>
               <Box
-                className="button-53"
+                className="buttonStyle"
                 mb="0px"
                 style={{
                   marginBottom: "0px",

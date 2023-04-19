@@ -84,7 +84,7 @@ export default function SignupCard() {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Box
-                className="button-53"
+                className="buttonStyle"
                 mb="0px"
                 style={{
                   marginBottom: "0px",

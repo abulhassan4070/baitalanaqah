@@ -81,7 +81,7 @@ const Jackets = () => {
 
           <br />
           <Center>
-            <Box className="button-53 white" textTransform={"uppercase"}>
+            <Box className="buttonStyle white" textTransform={"uppercase"}>
               Learn more
             </Box>
           </Center>

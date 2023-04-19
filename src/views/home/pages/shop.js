@@ -129,7 +129,7 @@ export default function ShopPage() {
             to create a wardrobe that is truly customized to you.
           </Text>
           <Link to="/customize">
-            <Box className="button-53" mt="10px">
+            <Box className="buttonStyle" mt="10px">
               Customize
             </Box>
           </Link>

@@ -4,13 +4,14 @@ import { Navigation } from "swiper";
 import { Text, Container } from "@chakra-ui/layout";
 import { Image, SimpleGrid, Box, Flex } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
+import { HeaderText } from "widgets/header";
 
-export default function ShopByCategory() {
+export default function ListOfAbaya() {
   return (
     <Container maxW={"7xl"}>
-      <Text fontSize="30px" fontWeight="bold" textAlign="center" p={10}>
-        Our Products
-      </Text>
+      <br/>
+      <HeaderText title="ABAYA" subtitle="Top selling abaya" />
+      <br/>
       <Swiper
         navigation={true}
         modules={[Navigation]}
@@ -50,7 +51,7 @@ export default function ShopByCategory() {
               >
                 <Box height="100%" width="100%">
                   <Image
-                    src="https://images.unsplash.com/photo-1609840170480-4c440bcd5d8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                    src="https://images.pexels.com/photos/7249214/pexels-photo-7249214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                     height="100%"
                     width="100%"
                     objectFit="cover"
@@ -69,7 +70,15 @@ export default function ShopByCategory() {
                     }}
                     justifyContent={"space-between"}
                   >
-                    <h3 style={{ color: "black", fontSize: "20px" }}>SUITS</h3>
+                    <Text
+                      style={{
+                        color: "black",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      ABAYA
+                    </Text>
                     <Flex justifyContent="flex-end">
                       <Icon
                         icon="material-symbols:star-rounded"
