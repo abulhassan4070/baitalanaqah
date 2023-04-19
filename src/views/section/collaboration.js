@@ -1,4 +1,4 @@
-import { Container, Image, SimpleGrid } from "@chakra-ui/react";
+import { Container, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import { HeaderText } from "widgets/header";
 
@@ -62,14 +62,18 @@ export default function CollaboratorsSection() {
           <div class="column hero-brand-logo">
             <Image
               alt=""
-              src="https://smartinternz.com/documents/college_logos/new/5.png"
-            />
-          </div>
-          <div class="column hero-brand-logo">
-            <Image
-              alt=""
               src="https://smartinternz.com/documents/college_logos/new/6.png"
             />
+          </div>
+          <div
+            class="column hero-brand-logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text>And many more...</Text>
           </div>
         </SimpleGrid>
       ) : (
@@ -112,11 +116,15 @@ export default function CollaboratorsSection() {
               src="https://smartinternz.com/assets/homepage/companie/new/public_is_sapient.png"
             />
           </div>
-          <div class="column hero-brand-logo">
-            <Image
-              alt=""
-              src="https://smartinternz.com/assets/homepage/companie/new/rnslabs.png"
-            />
+          <div
+            class="column hero-brand-logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text>And many more...</Text>
           </div>
         </SimpleGrid>
       )}

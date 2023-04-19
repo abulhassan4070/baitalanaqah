@@ -7,10 +7,12 @@ import {
 } from "react-icons/fa";
 import logowithtext from "../assets/img/logowithtext.png";
 import { Icon } from "@iconify/react";
+import { paigeColoOpacity } from "variables/constants";
+import { paigeColor } from "variables/constants";
 
 export default function NavigationFooter() {
   return (
-    <footer class="footer">
+    <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
       <Box position="fixed" bottom="20px" right="20px" zIndex={3}>
         <IconButton
           borderRadius={"50%"}
@@ -26,7 +28,10 @@ export default function NavigationFooter() {
           icon={<Icon icon="fa-brands:whatsapp" color="white" fontSize={25} />}
         />
       </Box>
-      <div class="footer-top">
+      <div
+        class="footer-top"
+        style={{ backgroundColor: paigeColoOpacity["5"] }}
+      >
         <Container maxW={"7xl"}>
           <SimpleGrid
             columns={{
@@ -50,6 +55,7 @@ export default function NavigationFooter() {
               <p>Fashion that tells your story.</p>
               <br />
               <IconButton
+                background={paigeColor}
                 as="a"
                 href="#"
                 me={1}
@@ -57,6 +63,7 @@ export default function NavigationFooter() {
                 icon={<FaTwitter fontSize="1.25rem" />}
               />
               <IconButton
+                background={paigeColor}
                 as="a"
                 href="#"
                 me={1}
@@ -64,6 +71,7 @@ export default function NavigationFooter() {
                 icon={<FaInstagram fontSize="1.25rem" />}
               />
               <IconButton
+                background={paigeColor}
                 as="a"
                 href="#"
                 me={1}
@@ -71,6 +79,7 @@ export default function NavigationFooter() {
                 icon={<FaFacebookF fontSize="1.25rem" />}
               />
               <IconButton
+                background={paigeColor}
                 as="a"
                 href="#"
                 me={1}

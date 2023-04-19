@@ -359,7 +359,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Tailor",
-    href: "tailor",
+    href: "tailors",
   },
   {
     label: "More",

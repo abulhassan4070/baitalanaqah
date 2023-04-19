@@ -7,6 +7,7 @@ import LoginPage from "views/home/pages/loginpage";
 import RegisterPage from "views/home/pages/registerpage";
 import ShopPage from "views/home/pages/shop";
 import ShowroomPage from "views/home/pages/showrooms";
+import TailorsPage from "views/tailors/tailor";
 
 const sidebarRoutes = [
   {
@@ -73,6 +74,14 @@ const sidebarRoutes = [
     layout: "",
     path: "/cart",
     component: CartPage,
+  },
+
+  {
+    name: "Home",
+    secondary: "Tailors",
+    layout: "",
+    path: "/tailors",
+    component: TailorsPage,
   },
 ];
 const routes = [...sidebarRoutes];

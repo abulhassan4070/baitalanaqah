@@ -138,7 +138,6 @@ option {
 
 .footer {
   background: #f6f9ff;
-  padding: 0 0 30px 0;
   font-size: 14px;
 }
 
@@ -299,6 +298,7 @@ option {
 .footer .copyright {
   text-align: center;
   padding-top: 30px;
+  padding-bottom: 30px;
   color: #000000;
 }
 
@@ -488,14 +488,14 @@ option {
   }
 }
 
-.hero-brand-logo img {
+.hero-brand-logo {
   width: 100%;
-  box-shadow: 1px 1px 10px #ccc;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin-bottom: 15px;
   transition: all 0.3s ease-in-out;
 }
-.hero-brand-logo img:hover {
-  box-shadow: 1px 1px 7px #2d2d2dc4;
+.hero-brand-logo:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin-top: -10px;
   transition: all 0.3s ease-in-out;
 }
