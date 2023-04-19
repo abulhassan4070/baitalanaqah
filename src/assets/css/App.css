@@ -108,6 +108,12 @@ option {
   width: 15px !important;
   height: 15px !important;
 }
+.swiper-pagination-bullet {
+  background: #ffffff !important;
+  margin: 5px !important;
+  width: 15px !important;
+  height: 15px !important;
+}
 .swiper-pagination-bullet-active {
   background: #e9ddda !important;
 }
@@ -426,4 +432,70 @@ option {
     opacity: 1;
     transform: scale(1.12);
   }
+}
+.swiper,
+.swiper-container {
+  overflow: unset !important;
+  width: 100%;
+}
+
+.partner-tab {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+  border-bottom-left-radius: 290486px;
+  border-top-left-radius: 290486px;
+  border-bottom-right-radius: 290486px;
+  border-top-right-radius: 290486px;
+}
+
+.partner-tabs-container {
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  font-size: 1rem;
+  height: 3.5rem;
+  padding: 5px;
+  width: 40%;
+  border-bottom-left-radius: 290486px;
+  border-top-left-radius: 290486px;
+  border-bottom-right-radius: 290486px;
+  border-top-right-radius: 290486px;
+  background-color: #f0e8e8;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.partner-tab .card-content {
+  text-align: center;
+}
+
+.partner-tabs-container .is-active {
+  background-color: #000000;
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .partner-tabs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    margin-bottom: 90px;
+  }
+}
+
+.hero-brand-logo img {
+  width: 100%;
+  box-shadow: 1px 1px 10px #ccc;
+  margin-bottom: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.hero-brand-logo img:hover {
+  box-shadow: 1px 1px 7px #2d2d2dc4;
+  margin-top: -10px;
+  transition: all 0.3s ease-in-out;
 }

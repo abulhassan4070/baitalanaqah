@@ -6,9 +6,6 @@
   color: #FFF;
   cursor: pointer;
   flex: 0 0 auto;
-  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.5rem;
@@ -22,7 +19,12 @@
   touch-action: manipulation;
   width: auto;
 }
-
+.buttonStyle.small {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: 0.5rem 1rem;
+}
 .buttonStyle:hover {
   background-color: #111827;
   border-color: #111827;

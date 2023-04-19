@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import videoFile from "../assets/video/banner.mp4";
 
 function HeroSection() {
   return (
@@ -22,10 +23,7 @@ function HeroSection() {
           zIndex: "-1",
         }}
       >
-        <source
-          src="https://www.baitalanaqah.com/img/video.mp4"
-          type="video/mp4"
-        />
+        <source src={videoFile} type="video/mp4" />
       </video>
       <Center
         height={"100vh"}

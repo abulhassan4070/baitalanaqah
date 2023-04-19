@@ -15,10 +15,10 @@ import {
   SimpleGrid,
   Link,
 } from "@chakra-ui/react";
-
+import { paigeColoOpacity } from "variables/constants";
 export default function AboutUsSection() {
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.700")}>
+    <Box bg={paigeColoOpacity["5"]} id="about">
       <Container maxW={"7xl"}>
         <Stack
           className="section"
@@ -35,20 +35,7 @@ export default function AboutUsSection() {
             >
               <h5 class="section-title">About</h5>
               <br />
-              <Text
-                as={"span"}
-                position={"relative"}
-                _after={{
-                  content: "''",
-                  width: "full",
-                  height: "30%",
-                  position: "absolute",
-                  bottom: 1,
-                  left: 0,
-                  bg: "gray.500",
-                  zIndex: -1,
-                }}
-              >
+              <Text as={"span"} position={"relative"}>
                 Bait Al Anaqah,
               </Text>
             </Heading>
@@ -96,9 +83,9 @@ export default function AboutUsSection() {
                 marginTop: "10px",
               }}
             >
-              <Link to="/showrooms">
+              <Link to="/about">
                 <Box className="buttonStyle outline" mt="10px">
-                  Make an Appointment
+                  Read More ...
                 </Box>
               </Link>
             </Flex>
