@@ -8,6 +8,7 @@ import RegisterPage from "views/home/pages/registerpage";
 import ShopPage from "views/home/pages/shop";
 import ShowroomPage from "views/home/pages/showrooms";
 import TailorsPage from "views/tailors/tailor";
+import ContactPage from "views/home/pages/contact";
 
 const sidebarRoutes = [
   {
@@ -82,6 +83,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/tailors",
     component: TailorsPage,
+  },
+  {
+    name: "Home",
+    secondary: "Contact",
+    layout: "",
+    path: "/contact",
+    component: ContactPage,
   },
 ];
 const routes = [...sidebarRoutes];
