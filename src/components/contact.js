@@ -52,7 +52,10 @@ export default function Contact() {
         </SimpleGrid>
         <Box>
           <AspectRatio ratio={16 / 9}>
-            <iframe src="https://www.google.com/maps/embed/v1/place?q=SRI+PARAMAKALYANI+COLLEGE,+Main+Road,+Alwarkurichi,+Tamil+Nadu,+India&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" />
+            <iframe
+              title="contact_map"
+              src="https://www.google.com/maps/embed/v1/place?q=SRI+PARAMAKALYANI+COLLEGE,+Main+Road,+Alwarkurichi,+Tamil+Nadu,+India&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+            />
           </AspectRatio>
         </Box>
       </SimpleGrid>
