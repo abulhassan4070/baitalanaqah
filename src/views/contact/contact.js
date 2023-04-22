@@ -15,7 +15,7 @@ import { NavLink } from "react-router-dom";
 import { paigeColor } from "variables/constants";
 import { HeaderText } from "widgets/header";
 
-export default function Contact() {
+export default function ContactPage() {
   return (
     <Container maxW={"7xl"} p="12">
       <Breadcrumb

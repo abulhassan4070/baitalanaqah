@@ -22,7 +22,7 @@ export default function CollaboratorsSection() {
             class={activeTab === 1 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(1)}
           >
-            CARPORATE
+            CORPORATE
           </div>
         </div>
         {activeTab === 0 ? (

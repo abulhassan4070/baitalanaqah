@@ -9,6 +9,8 @@ import ContactPage from "views/home/pages/contact";
 import LoginPage from "views/auth/loginpage";
 import RegisterPage from "views/auth/registerpage";
 import ForgotPage from "views/auth/forgotpage";
+import AboutPage from "views/about/about";
+import CollaborationsPage from "views/collaborations/collaborations";
 
 const sidebarRoutes = [
   {
@@ -81,7 +83,7 @@ const sidebarRoutes = [
     secondary: "Collaborations",
     layout: "",
     path: "/collaborations",
-    component: ContactPage,
+    component: CollaborationsPage,
   },
   {
     name: "Home",
@@ -96,6 +98,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/contact",
     component: ContactPage,
+  },
+  {
+    name: "Home",
+    secondary: "About",
+    layout: "",
+    path: "/about",
+    component: AboutPage,
   },
 ];
 const routes = [...sidebarRoutes];
