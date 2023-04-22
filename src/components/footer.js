@@ -1,4 +1,10 @@
-import { Box, Container, IconButton, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  IconButton,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -41,18 +47,31 @@ export default function NavigationFooter() {
             }}
             spacing={10}
           >
-            <div class="col-lg-5 col-md-12 footer-info">
+            <div class="footer-info text-center">
               <a href="index.html" class="logo d-flex align-items-center">
                 <img
                   src={logowithtext}
                   alt="logo"
                   style={{
-                    maxWidth: "150px",
                     height: "auto",
                   }}
                 />
               </a>
-              <p>Fashion that tells your story.</p>
+              <Center>
+                <p>Fashion that tells your story.</p>
+              </Center>
+              <br />
+            </div>
+            <Box pt={5} className="footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+                Bait Al Anaqah,<br/> Dubai UAE
+                <br />
+                <strong>Phone:</strong> +1 9999 9999 99
+                <br />
+                <strong>Email:</strong> info@baitalanaqah.com
+                <br />
+              </p>
               <br />
               <IconButton
                 background={paigeColor}
@@ -86,9 +105,8 @@ export default function NavigationFooter() {
                 aria-label="Whatsapp"
                 icon={<FaWhatsapp fontSize="1.25rem" />}
               />
-            </div>
-
-            <div class="col-lg-2 col-6 footer-links">
+            </Box>
+            <Box pt={5} className="footer-links">
               <h4>Useful Links</h4>
               <ul>
                 <li>
@@ -108,9 +126,8 @@ export default function NavigationFooter() {
                   <span>Contact us</span>
                 </li>
               </ul>
-            </div>
-
-            <div class="col-lg-2 col-6 footer-links">
+            </Box>
+            <Box pt={5} className="footer-links">
               <h4>Our Services</h4>
               <ul>
                 <li>
@@ -130,20 +147,7 @@ export default function NavigationFooter() {
                   <span>Tailor</span>
                 </li>
               </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-              <h4>Contact Us</h4>
-              <p>
-                Bait Al Anaqah <br />
-                Dubai UAE
-                <br />
-                <strong>Phone:</strong> +1 9999 9999 99
-                <br />
-                <strong>Email:</strong> info@baitalanaqah.com
-                <br />
-              </p>
-            </div>
+            </Box>
           </SimpleGrid>
         </Container>
         <div class="container ">

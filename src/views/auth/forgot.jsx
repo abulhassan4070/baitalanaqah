@@ -5,12 +5,12 @@ import {
   Heading,
   Input,
   Stack,
-  Text,
   useColorModeValue,
   Box,
+  FormLabel,
 } from "@chakra-ui/react";
 
-export default function ForgotPasswordForm(): JSX.Element {
+export default function ForgotComponent(): JSX.Element {
   return (
     <Flex
       align={"center"}
@@ -27,15 +27,7 @@ export default function ForgotPasswordForm(): JSX.Element {
         width={"400px"}
       >
         <Stack align={"center"}>
-          <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
-            Forgot your password?
-          </Heading>
-          <Text
-            fontSize={{ base: "sm", sm: "md" }}
-            color={useColorModeValue("gray.800", "gray.400")}
-          >
-            You&apos;ll get an email with a reset link
-          </Text>
+          <Heading fontSize={"4xl"}>Reset password</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -46,12 +38,14 @@ export default function ForgotPasswordForm(): JSX.Element {
           maxWidth={"400px"}
         >
           <FormControl id="email">
+            <FormLabel>Email address</FormLabel>
             <Input
               placeholder="your-email@example.com"
               _placeholder={{ color: "gray.500" }}
               type="email"
             />
           </FormControl>
+          <br />
           <Stack spacing={6}>
             <Button
               bg={"black"}

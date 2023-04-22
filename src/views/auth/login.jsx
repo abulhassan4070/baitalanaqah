@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export default function SimpleCard() {
+export default function LoginCompoent() {
   return (
     <Flex
       align={"center"}

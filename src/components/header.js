@@ -351,8 +351,8 @@ const NAV_ITEMS = [
     href: "suits",
   },
   {
-    label: "Corporate",
-    href: "corporate",
+    label: "Collaborations",
+    href: "collaborations",
   },
   {
     logo: true,

@@ -1,14 +1,14 @@
 import BlogPage from "views/home/pages/blog";
 import CartPage from "views/home/pages/cart";
 import CustomizePage from "views/home/pages/customize";
-import ForgotPasswordPage from "views/home/pages/forgotpage";
 import HomePage from "views/home/pages/home";
-import LoginPage from "views/home/pages/loginpage";
-import RegisterPage from "views/home/pages/registerpage";
 import ShopPage from "views/home/pages/shop";
 import ShowroomPage from "views/home/pages/showrooms";
 import TailorsPage from "views/tailors/tailor";
 import ContactPage from "views/home/pages/contact";
+import LoginPage from "views/auth/loginpage";
+import RegisterPage from "views/auth/registerpage";
+import ForgotPage from "views/auth/forgotpage";
 
 const sidebarRoutes = [
   {
@@ -67,7 +67,7 @@ const sidebarRoutes = [
     secondary: "Forgot Password",
     layout: "",
     path: "/forgot-password",
-    component: ForgotPasswordPage,
+    component: ForgotPage,
   },
   {
     name: "Home",
@@ -76,7 +76,13 @@ const sidebarRoutes = [
     path: "/cart",
     component: CartPage,
   },
-
+  {
+    name: "Home",
+    secondary: "Collaborations",
+    layout: "",
+    path: "/collaborations",
+    component: ContactPage,
+  },
   {
     name: "Home",
     secondary: "Tailors",

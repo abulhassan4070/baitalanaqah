@@ -1,6 +1,6 @@
 import React from "react";
 
-import Contact from "../../../components/contact";
+import Contact from "../../contact/contact";
 
 export default function ContactPage() {
   return (

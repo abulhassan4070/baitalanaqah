@@ -1,10 +1,10 @@
 import React from "react";
-import ForgotPasswordForm from "../../../components/forgot";
+import ForgotComponent from "./forgot";
 
 export default function ForgotPage() {
   return (
     <>
-      <ForgotPasswordForm />
+      <ForgotComponent />
     </>
   );
 }

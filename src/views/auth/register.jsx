@@ -17,7 +17,7 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 
-export default function SignupCard() {
+export default function RegistrationComponent() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
