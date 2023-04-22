@@ -79,16 +79,11 @@ function HeroSection() {
                   iure consequatur atque dolorum provident corrupti ipsum quas
                   ducimus reiciendis nostrum illum. Similique, a.
                 </Text>
+                <br />
                 <Flex justifyContent="center">
-                  <Link to="/showrooms">
+                  <Link to="/categories">
                     <Box className="buttonStyle outline white" mt="10px">
-                      Appointment
-                    </Box>
-                  </Link>
-                  <Box p={2}></Box>
-                  <Link to="/showrooms">
-                    <Box className="buttonStyle" mt="10px">
-                      Contact Us
+                      Discover More
                     </Box>
                   </Link>
                 </Flex>

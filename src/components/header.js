@@ -375,6 +375,11 @@ const NAV_ITEMS = [
         subLabel: "Learn more about us",
         href: "about",
       },
+      {
+        label: "Blogs",
+        subLabel: "Gentleman's guide",
+        href: "blogs",
+      },
     ],
   },
 ];

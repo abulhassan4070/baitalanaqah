@@ -148,10 +148,10 @@ export default function NavigationFooter() {
         </Container>
         <div class="container ">
           <div class="copyright">
-            &copy; 2023 Copyright{" "}
+            &copy; 2023 Copyright
             <strong>
               <span>Bait Al Anaqah. </span>
-            </strong>{" "}
+            </strong>
             All Rights Reserved
           </div>
         </div>
