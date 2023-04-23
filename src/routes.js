@@ -11,6 +11,7 @@ import RegisterPage from "views/auth/registerpage";
 import ForgotPage from "views/auth/forgotpage";
 import AboutPage from "views/about/about";
 import CollaborationsPage from "views/collaborations/collaborations";
+import HowItWorksPage from "views/howitworks/howitworks";
 
 const sidebarRoutes = [
   {
@@ -105,6 +106,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/about",
     component: AboutPage,
+  },
+  {
+    name: "Home",
+    secondary: "How It Works",
+    layout: "",
+    path: "/howitworks",
+    component: HowItWorksPage,
   },
 ];
 const routes = [...sidebarRoutes];

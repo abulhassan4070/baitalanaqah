@@ -376,6 +376,11 @@ const NAV_ITEMS = [
         href: "about",
       },
       {
+        label: "How",
+        subLabel: "Know how it works",
+        href: "howitworks",
+      },
+      {
         label: "Blogs",
         subLabel: "Gentleman's guide",
         href: "blogs",
