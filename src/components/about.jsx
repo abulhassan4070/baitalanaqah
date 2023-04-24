@@ -33,7 +33,7 @@ export default function AboutUsSection() {
               fontWeight={600}
               fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
             >
-              <h5 class="section-title">About</h5>
+              <h5 class="section-title">Our Story</h5>
               <br />
               <Text as={"span"} position={"relative"}>
                 Bait Al Anaqah,

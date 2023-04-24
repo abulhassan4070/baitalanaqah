@@ -119,7 +119,7 @@ export default function NavigationFooter() {
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>About us</span>
+                  <span>Our Story</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />

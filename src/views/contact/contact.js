@@ -1,20 +1,33 @@
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Text,
   SimpleGrid,
   Stack,
   Container,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
+  Box,
+  Text,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Textarea,
 } from "@chakra-ui/react";
 
-import { MdEmail, MdPhone, MdLocationPin, MdAccessTime } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { paigeColor } from "variables/constants";
 import { HeaderText } from "widgets/header";
 
+import {
+  MdPhone,
+  MdEmail,
+  MdOutlineEmail,
+  MdLocationPin,
+  MdAccessTime,
+} from "react-icons/md";
+import { BsChat, BsPerson } from "react-icons/bs";
 export default function ContactPage() {
   return (
     <Container maxW={"7xl"} p="12">
@@ -37,11 +50,8 @@ export default function ContactPage() {
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <br/>
-      <HeaderText
-        title="Contact Us"
-        subtitle="We are always ready to help you"
-      />
+      <br />
+      <HeaderText title="Contact Us" subtitle="Information about our company" />
       <SimpleGrid columns={{ base: 1, md: 2 }} gap={5} p={5}>
         <SimpleGrid columns={{ base: 2, md: 2 }} gap={5}>
           <Stack bgColor={paigeColor} p={5}>
@@ -85,6 +95,79 @@ export default function ContactPage() {
           />
         </Box>
       </SimpleGrid>
+      <br />
+      <br />
+      <HeaderText
+        title="Contact Form"
+        subtitle="We are always ready to help you"
+      />
+      <Box p={4} width={{ base: "100%", md: "100%" }}>
+        <Box m={8} color="#0B0E3F">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
+            <FormControl id="name">
+              <FormLabel>Your Name</FormLabel>
+              <InputGroup borderColor="#E0E1E7">
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<BsPerson color="gray.800" />}
+                />
+                <Input type="text" size="md" />
+              </InputGroup>
+            </FormControl>
+            <FormControl id="name">
+              <FormLabel>Email Id</FormLabel>
+              <InputGroup borderColor="#E0E1E7">
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<MdOutlineEmail color="gray.800" />}
+                />
+                <Input type="text" size="md" />
+              </InputGroup>
+            </FormControl>
+          </SimpleGrid>
+          <br />
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
+            <FormControl id="phone">
+              <FormLabel>Phone Number</FormLabel>
+              <InputGroup borderColor="#E0E1E7">
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<MdPhone color="gray.800" />}
+                />
+                <Input type="text" size="md" />
+              </InputGroup>
+            </FormControl>
+            <FormControl id="subject">
+              <FormLabel>Subject</FormLabel>
+              <InputGroup borderColor="#E0E1E7">
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<BsChat color="gray.800" />}
+                />
+                <Input type="text" size="md" />
+              </InputGroup>
+            </FormControl>
+          </SimpleGrid>
+          <br />
+          <FormControl id="name">
+            <FormLabel>Message</FormLabel>
+            <Textarea
+              borderColor="gray.300"
+              _hover={{
+                borderRadius: "gray.300",
+              }}
+              placeholder="message"
+            />
+          </FormControl>
+          <br />
+
+          <FormControl id="name" float="right">
+            <Box className="buttonStyle" color="white">
+              Send Message
+            </Box>
+          </FormControl>
+        </Box>
+      </Box>
     </Container>
   );
 }

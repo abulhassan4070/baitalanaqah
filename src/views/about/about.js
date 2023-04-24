@@ -27,12 +27,12 @@ export default function AboutPage() {
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              About Us
+              Our Story
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
-        <HeaderText title="About Us" subtitle="The story of our brand" />
+        <HeaderText title="Our Story" subtitle="The story of our brand" />
       </Container>
     </>
   );
