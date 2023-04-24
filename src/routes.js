@@ -1,6 +1,5 @@
 import BlogPage from "views/home/pages/blog";
 import CartPage from "views/home/pages/cart";
-import CustomizePage from "views/home/pages/customize";
 import HomePage from "views/home/pages/home";
 import ShopPage from "views/home/pages/shop";
 import ShowroomPage from "views/home/pages/showrooms";
@@ -12,6 +11,7 @@ import ForgotPage from "views/auth/forgotpage";
 import AboutPage from "views/about/about";
 import CollaborationsPage from "views/collaborations/collaborations";
 import HowItWorksPage from "views/howitworks/howitworks";
+import CustomizePage from "views/customize/customize";
 
 const sidebarRoutes = [
   {
@@ -113,6 +113,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/howitworks",
     component: HowItWorksPage,
+  },
+  {
+    name: "Home",
+    secondary: "Customize",
+    layout: "",
+    path: "/customize",
+    component: CustomizePage,
   },
 ];
 const routes = [...sidebarRoutes];

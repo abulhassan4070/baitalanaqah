@@ -381,6 +381,11 @@ const NAV_ITEMS = [
         href: "howitworks",
       },
       {
+        label: "Customize",
+        subLabel: "Customizing suits",
+        href: "customize",
+      },
+      {
         label: "Blogs",
         subLabel: "Gentleman's guide",
         href: "blogs",
