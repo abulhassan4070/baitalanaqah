@@ -59,23 +59,22 @@ export default function ContactPage() {
             <Text fontWeight={"bold"} fontSize={18}>
               Address
             </Text>
-            <Text fontSize={12}>SPK College</Text>
-            <Text fontSize={12}>Alwarkurichi, Tenkasi</Text>
+            <Text fontSize={12}>Bait Al Anaqah,</Text>
+            <Text fontSize={12}>Dubai, UAE</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdPhone} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
               Call Us
             </Text>
-            <Text fontSize={12}>+91 6382775774</Text>
+            <Text fontSize={12}>+9710000000</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdEmail} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
               Email Us
             </Text>
-            <Text fontSize={12}>lakshmanan.coder@gmail.com</Text>
-            <Text fontSize={12}>klakshmanan48@gmail.com</Text>
+            <Text fontSize={12}>info@baitalanaqah.com</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdAccessTime} size="40px" />
@@ -91,7 +90,7 @@ export default function ContactPage() {
             height="100%"
             width="100%"
             title="contact_map"
-            src="https://www.google.com/maps/embed/v1/place?q=SRI+PARAMAKALYANI+COLLEGE,+Main+Road,+Alwarkurichi,+Tamil+Nadu,+India&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462563.0326903283!2d54.8978318798675!3d25.075658402515966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1682401880672!5m2!1sen!2sin"
           />
         </Box>
       </SimpleGrid>

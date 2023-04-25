@@ -358,7 +358,7 @@ const NAV_ITEMS = [
     logo: true,
   },
   {
-    label: "Tailor",
+    label: "Tailors",
     href: "tailors",
   },
   {
