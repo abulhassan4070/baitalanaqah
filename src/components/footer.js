@@ -4,6 +4,7 @@ import {
   Container,
   IconButton,
   SimpleGrid,
+  Text,
 } from "@chakra-ui/react";
 import {
   FaFacebookF,
@@ -19,20 +20,30 @@ import { paigeColor } from "variables/constants";
 export default function NavigationFooter() {
   return (
     <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
-      <Box position="fixed" bottom="20px" right="20px" zIndex={3}>
-        <IconButton
-          borderRadius={"50%"}
-          as="a"
-          width={"60px"}
-          height={"60px"}
-          href="#"
-          _hover={{
-            backgroundColor: "black",
-          }}
-          backgroundColor={"black"}
-          aria-label="Whatsapp"
-          icon={<Icon icon="fa-brands:whatsapp" color="white" fontSize={25} />}
-        />
+      <Box
+        position="fixed"
+        bottom="20px"
+        right="20px"
+        zIndex={3}
+        href="#"
+        _hover={{
+          backgroundColor: "black",
+        }}
+        display={"flex"}
+        backgroundColor={"black"}
+        color={"white"}
+        style={{
+          borderRadius: "50px",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+          padding: "10px 15px",
+        }}
+      >
+        <Icon icon="fa-brands:whatsapp" fontSize={25} />
+        <Text fontSize={20} ms={3}>
+          Whatsapp
+        </Text>
       </Box>
       <div
         class="footer-top"
@@ -65,7 +76,8 @@ export default function NavigationFooter() {
             <Box pt={5} className="footer-contact text-center text-md-start">
               <h4>Contact Us</h4>
               <p>
-                Bait Al Anaqah,<br/> Dubai UAE
+                Bait Al Anaqah,
+                <br /> Dubai UAE
                 <br />
                 <strong>Phone:</strong> +1 9999 9999 99
                 <br />
@@ -119,7 +131,7 @@ export default function NavigationFooter() {
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>About us</span>
+                  <span>Our Story</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />

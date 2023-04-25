@@ -358,7 +358,7 @@ const NAV_ITEMS = [
     logo: true,
   },
   {
-    label: "Tailor",
+    label: "Tailors",
     href: "tailors",
   },
   {
@@ -371,7 +371,7 @@ const NAV_ITEMS = [
         href: "contact",
       },
       {
-        label: "About",
+        label: "Our Story",
         subLabel: "Learn more about us",
         href: "about",
       },
