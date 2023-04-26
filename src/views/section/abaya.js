@@ -52,7 +52,7 @@ export default function AbayaSection() {
               marginTop: "10px",
             }}
           >
-            <Link to="/abaya">
+            <Link to="/shop/abaya">
               <Box className="buttonStyle white outline" mt="10px">
                 Shop Now
               </Box>

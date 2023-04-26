@@ -1,7 +1,6 @@
 import BlogPage from "views/home/pages/blog";
 import CartPage from "views/home/pages/cart";
 import HomePage from "views/home/pages/home";
-import ShopPage from "views/home/pages/shop";
 import ShowroomPage from "views/home/pages/showrooms";
 import TailorsPage from "views/tailors/tailor";
 import ContactPage from "views/home/pages/contact";
@@ -12,6 +11,10 @@ import AboutPage from "views/about/about";
 import CollaborationsPage from "views/collaborations/collaborations";
 import HowItWorksPage from "views/howitworks/howitworks";
 import CustomizePage from "views/customize/customize";
+import ShopCategories from "views/shop/helpers/categories";
+import AbayaCategory from "views/shop/helpers/abaya";
+import ShopPage from "views/shop/shop";
+import SuitsCategory from "views/shop/helpers/suits";
 
 const sidebarRoutes = [
   {
@@ -28,15 +31,6 @@ const sidebarRoutes = [
     path: "/customize",
     component: CustomizePage,
   },
-
-  {
-    name: "Home",
-    secondary: "Shop",
-    layout: "",
-    path: "/shop",
-    component: ShopPage,
-  },
-
   {
     name: "Home",
     secondary: "Showrooms",
@@ -121,8 +115,39 @@ const sidebarRoutes = [
     path: "/customize",
     component: CustomizePage,
   },
+  {
+    name: "Shop",
+    secondary: "Shop",
+    layout: "",
+    path: "/shop/*",
+    component: ShopPage,
+  },
 ];
-const routes = [...sidebarRoutes];
+
+const shopRoutes = [
+  {
+    name: "Home",
+    secondary: "Shop",
+    layout: "",
+    path: "/shop",
+    component: ShopCategories,
+  },
+  {
+    name: "Suits",
+    secondary: "Suits",
+    layout: "",
+    path: "/shop/suits",
+    component: SuitsCategory,
+  },
+  {
+    name: "Abaya",
+    secondary: "Abaya",
+    layout: "",
+    path: "/shop/abaya",
+    component: AbayaCategory,
+  },
+];
+const routes = [...sidebarRoutes, ...shopRoutes];
 
 export default routes;
-export { sidebarRoutes };
+export { sidebarRoutes, shopRoutes };

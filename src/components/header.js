@@ -347,8 +347,8 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Suits",
-    href: "suits",
+    label: "Shop",
+    href: "shop",
   },
   {
     label: "Collaborations",
@@ -375,16 +375,16 @@ const NAV_ITEMS = [
         subLabel: "Learn more about us",
         href: "about",
       },
-      {
-        label: "How",
-        subLabel: "Know how it works",
-        href: "howitworks",
-      },
-      {
-        label: "Customize",
-        subLabel: "Customizing suits",
-        href: "customize",
-      },
+      // {
+      //   label: "How",
+      //   subLabel: "Know how it works",
+      //   href: "howitworks",
+      // },
+      // {
+      //   label: "Customize",
+      //   subLabel: "Customizing suits",
+      //   href: "customize",
+      // },
       {
         label: "Blogs",
         subLabel: "Gentleman's guide",

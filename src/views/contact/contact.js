@@ -152,6 +152,7 @@ export default function ContactPage() {
             <FormLabel>Message</FormLabel>
             <Textarea
               borderColor="gray.300"
+              rows={5}
               _hover={{
                 borderRadius: "gray.300",
               }}

@@ -15,12 +15,6 @@ export default function Home() {
             key={key}
           />
         );
-      }
-      if (prop.collapse) {
-        return getRoutes(prop.items);
-      }
-      if (prop.category) {
-        return getRoutes(prop.items);
       } else {
         return null;
       }

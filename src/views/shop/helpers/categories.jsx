@@ -15,38 +15,38 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
+import abayaImage from "../../../assets/img/shop/abaya.jpeg";
+import blazersImage from "../../../assets/img/shop/blazers.jpeg";
+import poloImage from "../../../assets/img/shop/polo.jpeg";
+import shirtsImage from "../../../assets/img/shop/shirts.jpeg";
+import suitsImage from "../../../assets/img/shop/suits.jpeg";
+import trousersImage from "../../../assets/img/shop/trousers.jpeg";
 
-export default function ShopPage() {
+export default function ShopCategories() {
   var categories = [
     {
-      image:
-        "https://images.unsplash.com/photo-1609840170480-4c440bcd5d8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-
+      image: abayaImage,
+      title: "ABAYA",
+    },
+    {
+      image: suitsImage,
       title: "SUITS",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-
+      image: shirtsImage,
       title: "SHIRTS",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-
+      image: trousersImage,
       title: "TROUSERS",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1604006852748-903fccbc4019?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-
-      title: "POLO",
+      image: blazersImage,
+      title: "BLAZERS",
     },
     {
-      image:
-        "https://images.unsplash.com/photo-1622445275463-afa2ab738c34?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-
-      title: "TSHIRTS",
+      image: poloImage,
+      title: "POLO",
     },
   ];
   const customizeImgUrl =
@@ -69,7 +69,7 @@ export default function ShopPage() {
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            SHop
+            Shop
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -85,12 +85,20 @@ export default function ShopPage() {
       >
         {categories.map((category) => (
           <Box>
-            <div className="shopbycategory">
-              <Box height="100%">
+            <Link
+              className="shopbycategory"
+              to={`/shop/${category.title.toLowerCase()}`}
+            >
+              <Box height="300px" width="100%" overflow={"hidden"}>
                 <Image
                   src={category.image}
                   height="100%"
                   width="100%"
+                  transitionDuration={"0.5s"}
+                  _hover={{
+                    opacity: "0.7",
+                    transform: "scale(1.1)",
+                  }}
                   objectFit="cover"
                 />
               </Box>
@@ -100,7 +108,7 @@ export default function ShopPage() {
                 </h3>
               </Center>
               <br />
-            </div>
+            </Link>
           </Box>
         ))}
       </SimpleGrid>
@@ -121,9 +129,9 @@ export default function ShopPage() {
         mt="40px"
         border={"1px"}
       >
-        <VStack mx="40px" justifyContent={"center"} gridArea="left">
+        <VStack mx="20px" justifyContent={"center"} gridArea="left">
           <Heading pt="20px">Customize</Heading>
-          <Text p="10px 40px 10px" textAlign={"center"}>
+          <Text textAlign={"center"}>
             All of our garments are custom-made for each client. Select from
             over 5,000 fabrics and 1,562 complimentary style and design options
             to create a wardrobe that is truly customized to you.
@@ -135,15 +143,7 @@ export default function ShopPage() {
           </Link>
         </VStack>
         <Box gridArea="right">
-          <img
-            src={customizeImgUrl}
-            alt="customize"
-            height={{
-              base: "200px",
-              sm: "300px",
-              md: "400px",
-            }}
-          />
+          <img src={customizeImgUrl} alt="customize" />
         </Box>
       </SimpleGrid>
     </Container>

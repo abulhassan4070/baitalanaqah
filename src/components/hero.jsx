@@ -6,6 +6,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import videoFile from "../assets/video/banner.mp4";
+import TrustBox from "widgets/trustpilot";
 
 function HeroSection() {
   return (
@@ -79,9 +80,8 @@ function HeroSection() {
                   iure consequatur atque dolorum provident corrupti ipsum quas
                   ducimus reiciendis nostrum illum. Similique, a.
                 </Text>
-                <br />
                 <Flex justifyContent="center">
-                  <Link to="/categories">
+                  <Link to="/shop">
                     <Box className="buttonStyle outline white" mt="10px">
                       Discover More
                     </Box>
@@ -92,6 +92,20 @@ function HeroSection() {
           ))}
         </Swiper>
       </Center>
+      <Box
+        style={{
+          width: "100%",
+          position: "absolute",
+          bottom: "70px",
+          left: "10px",
+          zIndex: "1",
+          textAlign: "left",
+        }}
+      >
+        <Box width={100}>
+          <TrustBox />
+        </Box>
+      </Box>
     </Stack>
   );
 }

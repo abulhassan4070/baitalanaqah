@@ -68,7 +68,7 @@ export default function SuitsSection() {
             marginTop: "10px",
           }}
         >
-          <Link to="/suits">
+          <Link to="/shop/suits">
             <Box className="buttonStyle white outline" mt="10px">
               Shop Now
             </Box>
