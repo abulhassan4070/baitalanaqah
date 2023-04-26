@@ -25,8 +25,24 @@ import {
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { HeaderText } from "widgets/header";
+import { useRef } from "react";
+import "../../assets/css/customize.css";
 
 export default function CustomizePage() {
+  // This ref will be connected to the overlay div
+  const overlayRef = useRef();
+
+  // This function is called when the "Start Searching" button gets clicked
+  const openSearch = () => {
+    overlayRef.current.style.visibility = "visible";
+    overlayRef.current.style.right = 0;
+    overlayRef.current.style.transition = "0.5s";
+  };
+
+  // This function is called when the "Close" button is clicked
+  const closeSearch = () => {
+    overlayRef.current.style.visibility = "hidden";
+  };
   return (
     <>
       <Container maxW={"7xl"} p="12">
@@ -53,7 +69,7 @@ export default function CustomizePage() {
         <HeaderText title="Customize" subtitle="Customizing suits" />
       </Container>
       <Container maxW={"container.xl"} p={0}>
-        <Flex h={"100vh"} p={2}>
+        <Flex h={"100vh"} p={0}>
           <VStack
             w="full"
             h="full"
@@ -65,7 +81,14 @@ export default function CustomizePage() {
             h="full"
             alignItems={"flex-start"}
             border={"1px solid black"}
+            className="container"
           >
+            <div ref={overlayRef} className="overlay">
+              <Button onClick={closeSearch}>{"<"}</Button>
+              <div className="text" onClick={closeSearch}>
+                Hello World
+              </div>
+            </div>
             <Tabs isFitted w={"full"} h={"max-content"}>
               <TabList>
                 <Tab>Fabric</Tab>
@@ -142,7 +165,7 @@ export default function CustomizePage() {
                         mx={4}
                         borderTop={"1px dashed black"}
                       >
-                        <Flex bg={"gray.100"} p={4}>
+                        <Flex bg={"gray.100"} p={4} onClick={openSearch}>
                           <Box as="span" flex="1" textAlign="left">
                             Canvas
                           </Box>

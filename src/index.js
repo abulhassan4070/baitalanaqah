@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "assets/css/App.css";
+import "assets/css/customize.css";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import HomeLayout from "views/home";
 import { ChakraProvider } from "@chakra-ui/react";
