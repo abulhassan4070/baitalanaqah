@@ -11,7 +11,7 @@ export default function Home() {
         return (
           <Route
             path={prop.layout + prop.path}
-            element={<prop.component />}
+            element={<prop.component name={prop.name.toLowerCase()} />}
             key={key}
           />
         );

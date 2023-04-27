@@ -120,7 +120,7 @@ export default function ListOfSuits() {
                         Add to Cart
                       </Box>
                       <Box className="buttonStyle small outline" mt="10px">
-                        Buy Now
+                        Customize
                       </Box>
                     </SimpleGrid>
                   </Box>

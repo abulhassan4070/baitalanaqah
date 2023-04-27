@@ -12,9 +12,8 @@ import CollaborationsPage from "views/collaborations/collaborations";
 import HowItWorksPage from "views/howitworks/howitworks";
 import CustomizePage from "views/customize/customize";
 import ShopCategories from "views/shop/helpers/categories";
-import AbayaCategory from "views/shop/helpers/abaya";
 import ShopPage from "views/shop/shop";
-import SuitsCategory from "views/shop/helpers/suits";
+import Category from "views/shop/helpers/category";
 
 const sidebarRoutes = [
   {
@@ -137,14 +136,42 @@ const shopRoutes = [
     secondary: "Suits",
     layout: "",
     path: "/shop/suits",
-    component: SuitsCategory,
+    component: Category,
   },
   {
     name: "Abaya",
     secondary: "Abaya",
     layout: "",
     path: "/shop/abaya",
-    component: AbayaCategory,
+    component: Category,
+  },
+  {
+    name: "Shirts",
+    secondary: "Shirts",
+    layout: "",
+    path: "/shop/shirts",
+    component: Category,
+  },
+  {
+    name: "Trousers",
+    secondary: "Trousers",
+    layout: "",
+    path: "/shop/trousers",
+    component: Category,
+  },
+  {
+    name: "Blazers",
+    secondary: "Blazers",
+    layout: "",
+    path: "/shop/blazers",
+    component: Category,
+  },
+  {
+    name: "Polo",
+    secondary: "Polo",
+    layout: "",
+    path: "/shop/polo",
+    component: Category,
   },
 ];
 const routes = [...sidebarRoutes, ...shopRoutes];
