@@ -14,6 +14,7 @@ import CustomizePage from "views/customize/customize";
 import ShopCategories from "views/shop/helpers/categories";
 import ShopPage from "views/shop/shop";
 import Category from "views/shop/helpers/category";
+import Product from "views/products/helpers/product";
 
 const sidebarRoutes = [
   {
@@ -174,7 +175,16 @@ const shopRoutes = [
     component: Category,
   },
 ];
-const routes = [...sidebarRoutes, ...shopRoutes];
+const productsRoutes = [
+  {
+    name: "Product",
+    secondary: "Product",
+    layout: "",
+    path: "/products/*",
+    component: Product,
+  },
+];
+const routes = [...sidebarRoutes, ...shopRoutes, ...productsRoutes];
 
 export default routes;
-export { sidebarRoutes, shopRoutes };
+export { sidebarRoutes, shopRoutes, productsRoutes };

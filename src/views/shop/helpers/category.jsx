@@ -15,37 +15,13 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
-import abaya from "../../../assets/img/shop/abaya.jpeg";
-import suits from "../../../assets/img/shop/suits.jpeg";
-import shirts from "../../../assets/img/shop/shirts.jpeg";
-import trousers from "../../../assets/img/shop/trousers.jpeg";
-import blazers from "../../../assets/img/shop/blazers.jpeg";
-import polo from "../../../assets/img/shop/polo.jpeg";
+import { Link, NavLink } from "react-router-dom";
 
-var name, image;
+var name;
 
 export default function Category(props) {
   name = props.name;
-  image = getImage(name);
-  function getImage(name) {
-    switch (name) {
-      case "abaya":
-        return abaya;
-      case "suits":
-        return suits;
-      case "shirts":
-        return shirts;
-      case "trousers":
-        return trousers;
-      case "blazers":
-        return blazers;
-      case "polo":
-        return polo;
-      default:
-        return abaya;
-    }
-  }
+
   return (
     <Container maxW={"7xl"} mt="20px" p={10} bg="white">
       <Breadcrumb
@@ -112,9 +88,16 @@ function CategoryItem() {
       }}
     >
       <VStack>
-        <Box height="100%" width="100%">
-          <Image src={image} height="100%" width="100%" objectFit="cover" />
-        </Box>
+        <Link to={`/products/${name}`} state={{ name: name }}>
+          <Box height="100%" width="100%">
+            <Image
+              src={require(`../../../assets/img/shop/${name}.jpeg`)}
+              height="100%"
+              width="100%"
+              objectFit="cover"
+            />
+          </Box>
+        </Link>
 
         <Box p={2}>
           <SimpleGrid
