@@ -31,7 +31,7 @@ export default function AboutUsSection() {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
-              fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+              fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
               <h5 class="section-title">Our Story</h5>
               <br />
