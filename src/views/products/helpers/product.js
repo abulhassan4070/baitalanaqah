@@ -24,13 +24,14 @@ import {
   VStack,
   Textarea,
   Tooltip,
+  Heading,
+  Center,
 } from "@chakra-ui/react";
 
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   FaFacebook,
-  FaHeart,
   FaPhoneAlt,
   FaPinterest,
   FaRuler,
@@ -39,6 +40,9 @@ import {
 } from "react-icons/fa";
 
 export default function Product() {
+  const refBottomImage = useRef(false);
+  const refName = useRef("");
+
   var categ = {};
   categ["abaya"] = 1;
   categ["suits"] = 1;
@@ -46,15 +50,37 @@ export default function Product() {
   categ["trousers"] = 1;
   categ["blazers"] = 3;
   categ["polo"] = 1;
-
+  var nameofImage;
   const location = useLocation();
-  const { name } = location.state;
-  const count = categ[name];
+
+  if (refName.current === "") {
+    const { name } = location.state;
+    nameofImage = name;
+  } else {
+    if (refBottomImage.current === false) {
+      nameofImage = refName.current.replace(/[0-9]/g, "");
+    } else {
+      nameofImage = refName.current;
+    }
+  }
+
+  const [image, setImage] = useState(nameofImage);
+  const count = categ[nameofImage];
   const categArray = Array.from({ length: count }, (_, i) => i + 1);
-  const [image, setImage] = useState(name);
+
   const handleImageClick = (img) => {
+    refBottomImage.current = false;
+    refName.current = img;
     setImage(img);
   };
+  const handleBottomImageClick = (img) => {
+    refBottomImage.current = true;
+    refName.current = img;
+    setImage(img);
+  };
+
+  const categories = Object.keys(categ);
+  const filteredCategories = categories.filter((c) => c !== nameofImage);
 
   return (
     <>
@@ -81,7 +107,7 @@ export default function Product() {
             {count > 1 ? (
               <VStack align={"flex-start"}>
                 {categArray.map((c) => {
-                  let append = name;
+                  let append = nameofImage;
                   if (c !== 1) append = append + c;
                   return (
                     <Box
@@ -118,17 +144,19 @@ export default function Product() {
           </HStack>
           <VStack gridArea={"right"}>
             <VStack w={"full"} border={"3px double black"} py={4}>
-              <Text pb={4} textTransform={"uppercase"}>
-                {name}
-              </Text>
-              <Text pb={4}>320</Text>
-              <Text pb={4}>
+              <Heading pb={4} textTransform={"uppercase"}>
+                {nameofImage}
+              </Heading>
+              <Heading fontSize={20} pb={4}>
+                320
+              </Heading>
+              <Heading fontSize={12} pb={4}>
                 <span style={{ textDecoration: "line-through" }}>
                   {"\u20B9"} 10,046{" "}
                 </span>
                 <span>{"\u20B9"} 7,032 </span>
                 <span style={{ color: "red" }}>Save {"\u20B9"} 3,013</span>
-              </Text>
+              </Heading>
               <Box px="50px" w={"full"}>
                 <Divider />
               </Box>
@@ -147,60 +175,23 @@ export default function Product() {
                   L
                 </Box>
               </Box>
-              <Box
-                as="button"
-                borderRadius="full"
-                bg="black"
-                color="white"
-                px={4}
-                h={8}
-                textTransform={"uppercase"}
-              >
+              <Box textTransform={"uppercase"} className="buttonStyle">
                 Custom Tailored
               </Box>
               <HStack py={4}>
                 <FaRuler /> <Text>Size Chart</Text>
               </HStack>
               <HStack pb={4}>
-                <Box
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "1px solid black",
-                    padding: 10,
-                  }}
-                  textTransform={"uppercase"}
-                >
+                <Box textTransform={"uppercase"} className="buttonStyle">
                   Add to Cart
                 </Box>
-                <Box
-                  flex={1}
-                  as="button"
-                  borderRadius="full"
-                  bg="black"
-                  color="white"
-                  px={4}
-                  h={8}
-                  textTransform={"uppercase"}
-                >
+                <Box textTransform={"uppercase"} className="buttonStyle">
                   Buy It Now
                 </Box>
               </HStack>
               <Box px={20} width={"full"}>
-                <Box
-                  width={"full"}
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "1px solid black",
-                    padding: "10px",
-                  }}
-                  textTransform={"uppercase"}
-                >
-                  <FaHeart stroke={"black"} strokeWidth={20} color="white" />{" "}
-                  <Text pl={4}>Add to My Styleboard</Text>
+                <Box className="buttonStyle" textTransform={"uppercase"}>
+                  Add to My Styleboard
                 </Box>
               </Box>
             </VStack>
@@ -469,6 +460,59 @@ export default function Product() {
               </HStack>
             </HStack>
           </VStack>
+        </SimpleGrid>
+        <Text className="text-inside-line" mt={50}>
+          <span style={{ margin: "0 10px", fontSize: "20px" }}>
+            Design Details
+          </span>
+        </Text>
+        <VStack fontSize={14} mt={4}>
+          <Text>Colour : White</Text>
+          <Text>Fabric : Linen</Text>
+          <Text>Style : Broad Lpel Double Breasted</Text>
+          <Text>Design : Broad Stripe</Text>
+        </VStack>
+        <Center my={16}>
+          <Heading fontSize={20} textTransform={"uppercase"}>
+            You may also like
+          </Heading>
+        </Center>
+        <SimpleGrid
+          columns={{
+            base: 5,
+          }}
+          spacing={4}
+        >
+          {filteredCategories.map((category) => (
+            <Box>
+              <Link className="shopbycategory">
+                <Box
+                  height={{ md: "300px", sm: "200px", base: "100px" }}
+                  width="100%"
+                  overflow={"hidden"}
+                >
+                  <Image
+                    src={require(`../../../assets/img/shop/${category}.jpeg`)}
+                    height="100%"
+                    width="100%"
+                    transitionDuration={"0.5s"}
+                    _hover={{
+                      opacity: "0.7",
+                      transform: "scale(1.1)",
+                    }}
+                    objectFit="cover"
+                    onClick={() => handleBottomImageClick(category)}
+                  />
+                </Box>
+                <Center>
+                  <h3 style={{ color: "black", fontSize: "20px" }}>
+                    {category}
+                  </h3>
+                </Center>
+                <br />
+              </Link>
+            </Box>
+          ))}
         </SimpleGrid>
       </Container>
     </>

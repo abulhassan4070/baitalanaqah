@@ -3,7 +3,7 @@
   border: 2px solid #000000;
   box-sizing: border-box;
   font-weight: normal;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 1.125rem;
@@ -61,4 +61,30 @@
   background-color: #e9ddda;
   border-color: #e9ddda;
   color: #000000;
+}
+
+.text-inside-line {
+  overflow: hidden;
+  text-align: center;
+}
+
+.text-inside-line:before,
+.text-inside-line:after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.text-inside-line:before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.text-inside-line:after {
+  left: 0.5em;
+  margin-right: -50%;
 }
