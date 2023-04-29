@@ -23,14 +23,17 @@ import {
   UnorderedList,
   VStack,
   Textarea,
+  Tooltip,
 } from "@chakra-ui/react";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   FaFacebook,
+  FaHeart,
   FaPhoneAlt,
   FaPinterest,
+  FaRuler,
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
@@ -115,9 +118,11 @@ export default function Product() {
           </HStack>
           <VStack gridArea={"right"}>
             <VStack w={"full"} border={"3px double black"} py={4}>
-              <Text textTransform={"uppercase"}>{name}</Text>
-              <Text>320</Text>
-              <Text>
+              <Text pb={4} textTransform={"uppercase"}>
+                {name}
+              </Text>
+              <Text pb={4}>320</Text>
+              <Text pb={4}>
                 <span style={{ textDecoration: "line-through" }}>
                   {"\u20B9"} 10,046{" "}
                 </span>
@@ -127,18 +132,20 @@ export default function Product() {
               <Box px="50px" w={"full"}>
                 <Divider />
               </Box>
-              <Text>Size</Text>
-              <Box
-                style={{
-                  width: "50px",
-                  height: "50px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  border: "1px solid black",
-                }}
-              >
-                L
+              <Text py={4}>Size</Text>
+              <Box pb={4}>
+                <Box
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: "1px solid black",
+                  }}
+                >
+                  L
+                </Box>
               </Box>
               <Box
                 as="button"
@@ -151,8 +158,10 @@ export default function Product() {
               >
                 Custom Tailored
               </Box>
-              <Box>Size Chart</Box>
-              <HStack>
+              <HStack py={4}>
+                <FaRuler /> <Text>Size Chart</Text>
+              </HStack>
+              <HStack pb={4}>
                 <Box
                   style={{
                     display: "flex",
@@ -178,32 +187,67 @@ export default function Product() {
                   Buy It Now
                 </Box>
               </HStack>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  border: "1px solid black",
-                  padding: 10,
-                }}
-                textTransform={"uppercase"}
-              >
-                Add to My Styleboard
+              <Box px={20} width={"full"}>
+                <Box
+                  width={"full"}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: "1px solid black",
+                    padding: "10px",
+                  }}
+                  textTransform={"uppercase"}
+                >
+                  <FaHeart stroke={"black"} strokeWidth={20} color="white" />{" "}
+                  <Text pl={4}>Add to My Styleboard</Text>
+                </Box>
               </Box>
             </VStack>
-            <HStack pt={4}>
-              <HStack pr={4}>
-                <Text textTransform={"uppercase"}>Customize</Text>
+
+            <HStack pt={4} float={"left"} width={"full"}>
+              <HStack px={4}>
+                <Tooltip
+                  label="Customise this style in a similar fabric or request variations"
+                  bg="white"
+                  color="black"
+                  border={"1px solid black"}
+                  px={2}
+                  py={4}
+                >
+                  <Text color={"gold"} textTransform={"uppercase"}>
+                    Customize
+                  </Text>
+                </Tooltip>
               </HStack>
-              <HStack pr={4}>
+              <HStack pr={4} as={Link}>
                 <FaWhatsapp />
-                <Text>Whatsapp</Text>
+                <Tooltip
+                  label="Message us on +971555825072 Between 10am-10pm and we will get back to you shortly."
+                  bg="white"
+                  color="black"
+                  border={"1px solid black"}
+                  px={2}
+                  py={4}
+                >
+                  <Text textDecoration={"underline"}>Whatsapp</Text>
+                </Tooltip>
               </HStack>
-              <HStack>
+              <HStack as={Link}>
                 <FaPhoneAlt />
-                <Text>Call</Text>
+                <Tooltip
+                  label="Please contact our Customer Care team from 10am-10pm on phone number +971564662950, or email:sales@vavci.ae"
+                  bg="white"
+                  color="black"
+                  border={"1px solid black"}
+                  px={2}
+                  py={4}
+                >
+                  <Text textDecoration={"underline"}>Call Us</Text>
+                </Tooltip>
               </HStack>
             </HStack>
+
             <Accordion allowToggle w={"full"} pt={4}>
               <AccordionItem
                 borderTop={"1px solid black"}
@@ -378,16 +422,49 @@ export default function Product() {
               </AccordionItem>
             </Accordion>
             <HStack pt={4}>
-              <HStack pr={4}>
+              <HStack pr={4} className="share">
                 <FaFacebook />
+                <Box
+                  as="span"
+                  visibility="hidden"
+                  sx={{
+                    ".share:hover &": {
+                      visibility: "visible",
+                    },
+                  }}
+                >
+                  _
+                </Box>
                 <Text>Share</Text>
               </HStack>
-              <HStack pr={4}>
+              <HStack pr={4} className="tweet">
                 <FaTwitter />
+                <Box
+                  as="span"
+                  visibility="hidden"
+                  sx={{
+                    ".tweet:hover &": {
+                      visibility: "visible",
+                    },
+                  }}
+                >
+                  _
+                </Box>
                 <Text>Tweet</Text>
               </HStack>
-              <HStack>
+              <HStack className="pin-it">
                 <FaPinterest />
+                <Box
+                  as="span"
+                  visibility="hidden"
+                  sx={{
+                    ".pin-it:hover &": {
+                      visibility: "visible",
+                    },
+                  }}
+                >
+                  _
+                </Box>
                 <Text>Pin it</Text>
               </HStack>
             </HStack>
