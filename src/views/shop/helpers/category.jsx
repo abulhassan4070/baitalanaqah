@@ -65,12 +65,12 @@ function CategoryList() {
           columns={{ base: 1, md: 2, lg: 3 }}
           spacing={12}
         >
-          <CategoryItem name={name} />
-          <CategoryItem name={name} />
-          <CategoryItem name={name} />
-          <CategoryItem name={name} />
-          <CategoryItem name={name} />
-          <CategoryItem name={name} />
+          <CategoryItem />
+          <CategoryItem />
+          <CategoryItem />
+          <CategoryItem />
+          <CategoryItem />
+          <CategoryItem />
         </SimpleGrid>
       </Center>
     </>
