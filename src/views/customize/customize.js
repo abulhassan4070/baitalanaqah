@@ -1,4 +1,8 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import {
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
 import {
   Container,
   Breadcrumb,
@@ -22,10 +26,11 @@ import {
   AccordionIcon,
   AccordionButton,
   AccordionPanel,
+  Text,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { HeaderText } from "widgets/header";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "../../assets/css/customize.css";
 
 export default function CustomizePage() {
@@ -43,6 +48,26 @@ export default function CustomizePage() {
   const closeSearch = () => {
     overlayRef.current.style.visibility = "hidden";
   };
+
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const handleTabsChange = (index) => {
+    setTabIndex(index);
+  };
+
+  const handleTabsClick = (i) => {
+    //alert(tabIndex);
+    /*
+    if (tabIndex === 0) {
+      if (i === -1) return;
+    } else if (tabIndex === 4) {
+      if (i === 1) return;
+    }
+    */
+    i += tabIndex;
+    setTabIndex(i);
+  };
+
   return (
     <>
       <Container maxW={"7xl"} p="12">
@@ -89,7 +114,14 @@ export default function CustomizePage() {
                 Hello World
               </div>
             </div>
-            <Tabs isFitted w={"full"} h={"max-content"}>
+            <Tabs
+              isFitted
+              w={"full"}
+              h={"max-content"}
+              isLazy
+              index={tabIndex}
+              onChange={handleTabsChange}
+            >
               <TabList>
                 <Tab>Fabric</Tab>
                 <Tab>Lining</Tab>
@@ -112,40 +144,106 @@ export default function CustomizePage() {
                 }}
               >
                 <TabPanel>
-                  <Heading>Select your Fabric</Heading>
+                  <Heading fontSize={16} py={4}>
+                    Select your Fabric
+                  </Heading>
                   <Button>Filters</Button>
-                  <SimpleGrid columns={2} spacing={2}>
-                    <Box bg={"green"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"green"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"green"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"green"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"green"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
+                  <SimpleGrid columns={2} spacing={2} py={4}>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/1.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/2.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/3.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/4.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/1.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/2.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/3.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/fabric/4.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
                   </SimpleGrid>
                 </TabPanel>
                 <TabPanel>
-                  <Heading>Select your Lining</Heading>
+                  <Heading fontSize={16} py={4}>
+                    Select your Lining
+                  </Heading>
                   <Button>Filters</Button>
-                  <SimpleGrid columns={2} spacing={2}>
-                    <Box bg={"blue"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"blue"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"blue"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"blue"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
-                    <Box bg={"blue"} height={"100px"}></Box>
-                    <Box bg={"red"} height={"100px"}></Box>
+                  <SimpleGrid columns={2} spacing={2} py={4}>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/1.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/2.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/3.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/4.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/1.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/2.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/3.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
+                    <Box
+                      bgImg={require("assets/img/customize/lining/4.jpeg")}
+                      height={"300px"}
+                      bgSize={"cover"}
+                    ></Box>
                   </SimpleGrid>
                 </TabPanel>
                 <TabPanel>
-                  <Heading>Select your Jacket</Heading>
-                  <Accordion allowToggle>
+                  <Heading fontSize={16} py={4}>
+                    Select your Jacket
+                  </Heading>
+                  <Accordion allowToggle defaultIndex={[0]}>
                     <AccordionItem bg={"gray.200"} mb={8}>
                       <h2>
                         <AccordionButton p={4}>
@@ -232,40 +330,254 @@ export default function CustomizePage() {
                   </Accordion>
                 </TabPanel>
                 <TabPanel>
-                  <Heading>Select your Trousers</Heading>
+                  <Heading fontSize={16} py={4}>
+                    Select your Trousers
+                  </Heading>
+                  <Accordion allowToggle defaultIndex={[0]}>
+                    <AccordionItem bg={"gray.200"} mb={8}>
+                      <h2>
+                        <AccordionButton p={4}>
+                          <Flex w="full">
+                            <Box as="span" flex="1" textAlign="left">
+                              Style
+                            </Box>
+                            <Box as="span" flex="1" textAlign="right"></Box>
+                            <AccordionIcon />
+                          </Flex>
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel
+                        pb={4}
+                        mx={4}
+                        borderTop={"1px dashed black"}
+                      >
+                        <Flex bg={"gray.100"} p={4} onClick={openSearch}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Pleat Quantity
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            1 Pleat
+                          </Box>
+                        </Flex>
+                        <Flex bg={"gray.100"} mt={4} p={4}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Pant Crease
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            Without Crease
+                          </Box>
+                        </Flex>
+                      </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem bg={"gray.200"} mb={8}>
+                      <h2>
+                        <AccordionButton p={4}>
+                          <Flex w="full">
+                            <Box as="span" flex="1" textAlign="left">
+                              Waistband
+                            </Box>
+                            <Box as="span" flex="1" textAlign="right">
+                              Belt Loops
+                            </Box>
+                            <AccordionIcon />
+                          </Flex>
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel
+                        pb={4}
+                        mx={4}
+                        borderTop={"1px dashed black"}
+                      >
+                        <Flex bg={"gray.100"} p={4}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Waistband Closure
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            Extension With Button and Hook
+                          </Box>
+                        </Flex>
+                        <Flex bg={"gray.100"} mt={4} p={4}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Waistband Style
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            Belt Loops
+                          </Box>
+                        </Flex>
+                        <Flex bg={"gray.100"} mt={4} p={4}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Suspender Buttons
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            Suspender Buttons
+                          </Box>
+                        </Flex>
+                        <Flex bg={"gray.100"} mt={4} p={4}>
+                          <Box as="span" flex="1" textAlign="left">
+                            Waistband V-split
+                          </Box>
+                          <Box as="span" flex="1" textAlign="right">
+                            No waistband V-split
+                          </Box>
+                        </Flex>
+                      </AccordionPanel>
+                    </AccordionItem>
+                  </Accordion>
                 </TabPanel>
                 <TabPanel>
-                  <Heading>Your Summary</Heading>
+                  <Heading fontSize={20} py={4}>
+                    Your Summary
+                  </Heading>
+                  <Heading fontSize={16} py={4}>
+                    FABRIC
+                  </Heading>
+                  <Text fontSize={18}>Fabric</Text>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      FABRIC
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      Super 150's Wool Blue Sharkskin
+                    </Box>
+                  </Flex>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    p={0}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      FABRIC ID
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      TGES219
+                    </Box>
+                  </Flex>
+                  <Heading fontSize={16} py={4} mt={4}>
+                    LINING
+                  </Heading>
+                  <Text fontSize={18}>Lining</Text>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      LINING
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      Silver Solid
+                    </Box>
+                  </Flex>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    p={0}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      LINING ID
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      TR148
+                    </Box>
+                  </Flex>
+                  <Heading fontSize={16} py={4} mt={4}>
+                    JACKET
+                  </Heading>
+                  <Text fontSize={18}>Style</Text>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      CANVAS
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      Half
+                    </Box>
+                  </Flex>
+                  <Flex
+                    fontSize={14}
+                    mt={4}
+                    p={0}
+                    pb={3}
+                    borderBottom={"1px"}
+                    borderColor={"gray.200"}
+                  >
+                    <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
+                      CLOSURE
+                    </Box>
+                    <Box as="span" flex="1" textAlign="right">
+                      2 Button
+                    </Box>
+                  </Flex>
                 </TabPanel>
               </TabPanels>
             </Tabs>
             <VStack
+              pt={2}
               width={"full"}
               style={{
                 position: "sticky",
-                height: "75px",
-                top: "calc(100% - 75px)",
+                height: "120px",
+                top: "calc(100% - 120px)",
               }}
               px={4}
               borderTop={"1px solid black"}
             >
               <HStack width={"full"}>
-                <HStack float={"left"}>
+                <HStack
+                  as={Button}
+                  float={"left"}
+                  onClick={() => handleTabsClick(-1)}
+                  style={
+                    tabIndex === 0
+                      ? { pointerEvents: "none", opacity: "0.4" }
+                      : {}
+                  }
+                >
+                  <ArrowBackIcon />
                   <span>PREV</span>
                 </HStack>
                 <Spacer />
-                <HStack float={"right"}>
+                <HStack
+                  as={Button}
+                  float={"right"}
+                  onClick={() => handleTabsClick(1)}
+                  style={
+                    tabIndex === 4
+                      ? { pointerEvents: "none", opacity: "0.4" }
+                      : {}
+                  }
+                >
                   <span>NEXT</span>
+                  <ArrowForwardIcon />
                 </HStack>
               </HStack>
               <HStack width={"full"}>
                 <HStack float={"left"}>
-                  <span>$1,495</span>
-                  <span>Shipping info</span>
+                  <span className="buttonStyle">$1,495</span>
+                  <span className="buttonStyle">Shipping info</span>
                 </HStack>
                 <Spacer />
-                <HStack float={"right"}>
-                  <span>HeartIcon</span>
+                <HStack float={"right"} className="buttonStyle">
                   <span>ADD TO BAG</span>
                 </HStack>
               </HStack>
