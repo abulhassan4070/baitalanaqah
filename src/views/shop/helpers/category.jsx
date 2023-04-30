@@ -146,7 +146,7 @@ function CategoryItem() {
               Add to Cart
             </Box>
             <Box className="buttonStyle small outline" mt="10px">
-              Customize
+              Buy Now
             </Box>
           </SimpleGrid>
         </Box>

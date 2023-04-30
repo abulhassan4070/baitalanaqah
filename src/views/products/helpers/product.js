@@ -189,28 +189,9 @@ export default function Product() {
                   Buy It Now
                 </Box>
               </HStack>
-              <Box px={20} width={"full"}>
-                <Box className="buttonStyle" textTransform={"uppercase"}>
-                  Add to My Styleboard
-                </Box>
-              </Box>
             </VStack>
 
             <HStack pt={4} float={"left"} width={"full"}>
-              <HStack px={4}>
-                <Tooltip
-                  label="Customise this style in a similar fabric or request variations"
-                  bg="white"
-                  color="black"
-                  border={"1px solid black"}
-                  px={2}
-                  py={4}
-                >
-                  <Text color={"gold"} textTransform={"uppercase"}>
-                    Customize
-                  </Text>
-                </Tooltip>
-              </HStack>
               <HStack pr={4} as={Link}>
                 <FaWhatsapp />
                 <Tooltip
