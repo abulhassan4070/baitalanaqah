@@ -27,11 +27,14 @@ import {
   AccordionButton,
   AccordionPanel,
   Text,
+  Select,
+  Image,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { HeaderText } from "widgets/header";
 import { useRef, useState } from "react";
 import "../../assets/css/customize.css";
+import { MdRefresh } from "react-icons/md";
 
 export default function CustomizePage() {
   // This ref will be connected to the overlay div
@@ -64,8 +67,7 @@ export default function CustomizePage() {
       if (i === 1) return;
     }
     */
-    i += tabIndex;
-    setTabIndex(i);
+    setTabIndex(tabIndex + i);
   };
 
   return (
@@ -100,7 +102,36 @@ export default function CustomizePage() {
             h="full"
             alignItems={"flex-start"}
             border={"1px solid black"}
-          ></VStack>
+          >
+            <Box position={"relative"} w={"full"} h={"full"}>
+              <Box position={"absolute"} top={10} left={10}>
+                <Select variant={"unstyled"} fontSize={20}>
+                  <option value="option1">Abaya</option>
+                  <option value="option2">Suits</option>
+                  <option value="option3">Shirts</option>
+                  <option value="option4">Jackets</option>
+                  <option value="option5">Blazers</option>
+                  <option value="option6">Trousers</option>
+                </Select>
+              </Box>
+              <Box
+                position={"absolute"}
+                top={10}
+                right={10}
+                _hover={{
+                  transform: "rotate(90deg)",
+                }}
+                transition={"all .5s linear"}
+              >
+                <MdRefresh size={25} />
+              </Box>
+              <Image
+                h={"full"}
+                w={"full"}
+                src={require("assets/img/advancedtech.webp")}
+              />
+            </Box>
+          </VStack>
           <VStack
             w="full"
             h="full"
