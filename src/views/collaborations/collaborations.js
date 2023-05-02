@@ -7,16 +7,19 @@ import {
   SimpleGrid,
   Image,
 } from "@chakra-ui/react";
+import i18n from "i18nConfig";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { HeaderText } from "widgets/header";
 
 export default function CollaborationsPage() {
   const [activeTab, setActiveTab] = React.useState(0);
+  const { t } = useTranslation();
 
   return (
     <>
-      <Container maxW={"7xl"} p="12">
+      <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
         <Breadcrumb
           fontWeight="medium"
           fontSize="sm"
@@ -26,33 +29,33 @@ export default function CollaborationsPage() {
         >
           <BreadcrumbItem>
             <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">{t("home")}</NavLink>
             </BreadcrumbLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              Collaborations
+              {t("collaborations")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
         <HeaderText
-          title="Collaborators"
-          subtitle="Some of our partners and collaborators"
+          title={t("collaboratorsTitle")}
+          subtitle={t("collaboratorsSubtitle")}
         />
         <div class="partner-tabs-container">
           <div
             class={activeTab === 0 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(0)}
           >
-            PARTNERS
+            {t("partners")}
           </div>
           <div
             class={activeTab === 1 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(1)}
           >
-            CORPORATE
+            {t("corporate")}
           </div>
         </div>
         {activeTab === 0 ? (

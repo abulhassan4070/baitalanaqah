@@ -21,8 +21,11 @@ import poloImage from "../../../assets/img/shop/polo.jpeg";
 import shirtsImage from "../../../assets/img/shop/shirts.jpeg";
 import suitsImage from "../../../assets/img/shop/suits.jpeg";
 import trousersImage from "../../../assets/img/shop/trousers.jpeg";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function ShopCategories() {
+  const { t } = useTranslation();
   var categories = [
     {
       image: abayaImage,
@@ -53,7 +56,7 @@ export default function ShopCategories() {
     "https://images.prismic.io/enzo/5a8b3909-9f81-4b46-a70d-907b1446f096_25557_J1.jpeg?auto=compress,format";
 
   return (
-    <Container maxW={"7xl"} mt="20px" p={10} bg="white">
+    <Container maxW={"7xl"} mt="20px" p={10} bg="white" dir={i18n.dir()}>
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -63,13 +66,13 @@ export default function ShopCategories() {
       >
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            Shop
+            {t("shop")}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -104,7 +107,7 @@ export default function ShopCategories() {
               </Box>
               <Center>
                 <h3 style={{ color: "black", fontSize: "20px" }}>
-                  {category.title}
+                  {t("ofShop." + category.title.toLowerCase()).toUpperCase()}
                 </h3>
               </Center>
               <br />
@@ -130,15 +133,11 @@ export default function ShopCategories() {
         border={"1px"}
       >
         <VStack mx="20px" justifyContent={"center"} gridArea="left">
-          <Heading pt="20px">Customize</Heading>
-          <Text textAlign={"center"}>
-            All of our garments are custom-made for each client. Select from
-            over 5,000 fabrics and 1,562 complimentary style and design options
-            to create a wardrobe that is truly customized to you.
-          </Text>
+          <Heading pt="20px">{t("customize")}</Heading>
+          <Text textAlign={"center"}>{t("ofShop.customizeText")}</Text>
           <Link to="/customize">
             <Box className="buttonStyle" mt="10px">
-              Customize
+              {t("customize")}
             </Box>
           </Link>
         </VStack>

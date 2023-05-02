@@ -56,5 +56,29 @@
   "showrooms": "Showrooms",
   "appointments": "Appointments",
   "copyright1": "2023 Copyright",
-  "copyright2": "All Rights Reserved"
+  "copyright2": "All Rights Reserved",
+  "customize": "Customize",
+
+  "ofShop": {
+    "abaya": "Abaya",
+    "suits": "Suits",
+    "shirts": "Shirts",
+    "trousers": "Trousers",
+    "blazers": "Blazers",
+    "polo": "Polo",
+
+    "customizeText": "All of our garments are custom-made for each client. Select from over 5,000 fabrics and 1,562 complimentary style and design options to create a wardrobe that is truly customized to you."
+  },
+
+  "ofCollaborators": {},
+
+  "ofTailors": {
+    "title": "Our Tailors",
+    "subtitle": "See our hardworking tailors",
+    "text1": "Meet Our",
+    "text2": "Experienced",
+    "text3": "Tailors",
+    "name": " Mohammad Ismail",
+    "experienced": "Senior Tailor"
+  }
 }

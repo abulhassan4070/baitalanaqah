@@ -24,11 +24,14 @@ import instagram from "../../assets/img/tailor/instagram.png";
 import { HeaderText } from "widgets/header";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function TailorsPage() {
+  const { t } = useTranslation();
   return (
     <>
-      <Container maxW={"7xl"} p="12">
+      <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
         <Breadcrumb
           fontWeight="medium"
           fontSize="sm"
@@ -38,20 +41,20 @@ export default function TailorsPage() {
         >
           <BreadcrumbItem>
             <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">{t("home")}</NavLink>
             </BreadcrumbLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              Tailors
+              {t("tailors")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
         <HeaderText
-          title="Our Tailors"
-          subtitle="See our hardworking tailors"
+          title={t("ofTailors.title")}
+          subtitle={t("ofTailors.subtitle")}
         />
         <Center>
           <SimpleGrid
@@ -74,6 +77,7 @@ export default function TailorsPage() {
 }
 
 function Preface() {
+  const { t } = useTranslation();
   return (
     <>
       <Box
@@ -102,14 +106,13 @@ function Preface() {
               bgColor: "black",
             }}
           >
-            Our Tailors
+            {t("ofTailors.title")}
           </Text>
         </HStack>
         <Stack mt={"50px"}>
-          <Heading>Meet Our</Heading>
-          <Heading>Experienced</Heading>
-          <Heading>Tailors</Heading>
-
+          <Heading>{t("ofTailors.text1")}</Heading>
+          <Heading>{t("ofTailors.text2")}</Heading>
+          <Heading>{t("ofTailors.text3")}</Heading>
           <Box>
             <Box
               display={"inline-block"}
@@ -118,7 +121,7 @@ function Preface() {
               bg={"black"}
               color={"white"}
             >
-              Appointment
+              {t("appointments")}
             </Box>
           </Box>
         </Stack>
@@ -128,6 +131,7 @@ function Preface() {
 }
 
 function Tailor() {
+  const { t } = useTranslation();
   return (
     <Box
       maxW={"400px"}
@@ -150,9 +154,9 @@ function Tailor() {
       <Box p={6}>
         <Stack spacing={0} align={"center"} mb={5}>
           <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-            Mohammad Ismail
+            {t("ofTailors.name")}
           </Heading>
-          <Text color={"gray.500"}>Senior Tailor</Text>
+          <Text color={"gray.500"}>{t("ofTailors.experienced")}</Text>
         </Stack>
       </Box>
     </Box>
