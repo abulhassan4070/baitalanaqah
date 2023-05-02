@@ -1,6 +1,6 @@
 import NavigationHeader from "components/header";
 import NavigationFooter from "components/footer";
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import routes from "routes";
 
@@ -22,9 +22,11 @@ export default function Home() {
   };
   return (
     <>
-      <NavigationHeader />
-      <Routes>{getRoutes(routes)}</Routes>
-      <NavigationFooter />
+      <Suspense fallback="...loading">
+        <NavigationHeader />
+        <Routes>{getRoutes(routes)}</Routes>
+        <NavigationFooter />
+      </Suspense>
     </>
   );
 }

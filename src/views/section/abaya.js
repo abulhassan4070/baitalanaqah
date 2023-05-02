@@ -2,8 +2,11 @@ import { Box, Flex, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import abayaImage from "assets/img/abaya.jpg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function AbayaSection() {
+  const { t, i18n } = useTranslation();
+
   return (
     <>
       <SimpleGrid
@@ -19,6 +22,7 @@ export default function AbayaSection() {
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"center"}
+          dir={i18n.dir()}
         >
           <Heading
             lineHeight={1.1}
@@ -29,7 +33,7 @@ export default function AbayaSection() {
               class="section-title text-white"
               style={{ color: "white", fontSize: "1.5rem" }}
             >
-              Abaya
+              {t("abaya")}
             </h5>
             <Text
               as={"span"}
@@ -37,15 +41,13 @@ export default function AbayaSection() {
               lineHeight={0}
               color={"white"}
             >
-              Purchase ABAYA
+              {t("purchaseAbaya1")}
               <br />
-              with us exclusively
+              {t("purchaseAbaya2")}
             </Text>
           </Heading>
           <Text color={"gray.300"} mt={3}>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            sollicitudin, nisl eget ultricies tincidunt, lorem ipsum aliquam
-            libero, sit amet ultricies lorem ipsum dolor sit amet.
+            {t("lorem")}
           </Text>
           <Flex
             style={{
@@ -54,7 +56,7 @@ export default function AbayaSection() {
           >
             <Link to="/shop/abaya">
               <Box className="buttonStyle white outline" mt="10px">
-                Shop Now
+                {t("shopNow")}
               </Box>
             </Link>
           </Flex>

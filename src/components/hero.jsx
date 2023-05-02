@@ -7,8 +7,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import videoFile from "../assets/video/banner.mp4";
 import TrustBox from "widgets/trustpilot";
+import { useTranslation } from "react-i18next";
 
 function HeroSection() {
+  const { t } = useTranslation();
   return (
     <Stack position="relative" height="100vh">
       <video
@@ -61,7 +63,7 @@ function HeroSection() {
               }}
             >
               <Box textAlign="center">
-                <Text color="white">Fashion that tells your story.</Text>
+                <Text color="white">{t("aboutShort")}</Text>
                 <Text
                   as={"h1"}
                   color="white"
@@ -72,18 +74,15 @@ function HeroSection() {
                   }}
                   fontWeight="bold"
                 >
-                  BAIT AL ANAQAH
+                  {t("title")}
                 </Text>
                 <Text color="white" fontSize="lg">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Magni perspiciatis, enim fugit illo architecto minus laborum
-                  iure consequatur atque dolorum provident corrupti ipsum quas
-                  ducimus reiciendis nostrum illum. Similique, a.
+                  {t("lorem")}
                 </Text>
                 <Flex justifyContent="center">
                   <Link to="/shop">
                     <Box className="buttonStyle outline white" mt="10px">
-                      Discover More
+                      {t("discoverMore")}
                     </Box>
                   </Link>
                 </Flex>

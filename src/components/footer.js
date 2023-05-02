@@ -16,8 +16,11 @@ import logowithtext from "../assets/img/logowithtext.png";
 import { Icon } from "@iconify/react";
 import { paigeColoOpacity } from "variables/constants";
 import { paigeColor } from "variables/constants";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function NavigationFooter() {
+  const { t } = useTranslation();
   return (
     <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
       <Box
@@ -69,19 +72,23 @@ export default function NavigationFooter() {
                 />
               </a>
               <Center>
-                <p>Fashion that tells your story.</p>
+                <p>{t("aboutShort")}</p>
               </Center>
               <br />
             </div>
-            <Box pt={5} className="footer-contact text-center text-md-start">
-              <h4>Contact Us</h4>
+            <Box
+              pt={5}
+              className="footer-contact text-center text-md-start"
+              dir={i18n.dir()}
+            >
+              <h4>{t("contactUs")}</h4>
               <p>
-                Bait Al Anaqah,
-                <br /> Dubai UAE
+                {t("title")},
+                <br /> {t("dubai")} {t("UAE")}
                 <br />
-                <strong>Phone:</strong> +1 9999 9999 99
+                <strong>{t("phone")}:</strong> +1 9999 9999 99
                 <br />
-                <strong>Email:</strong> info@baitalanaqah.com
+                <strong>{t("email")}:</strong> info@baitalanaqah.com
                 <br />
               </p>
               <br />
@@ -118,57 +125,57 @@ export default function NavigationFooter() {
                 icon={<FaWhatsapp fontSize="1.25rem" />}
               />
             </Box>
-            <Box pt={5} className="footer-links">
-              <h4>Useful Links</h4>
+            <Box pt={5} className="footer-links" dir={i18n.dir()}>
+              <h4>{t("usefulLinks")}</h4>
               <ul>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Home</span>
+                  <span>{t("home")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Shop</span>
+                  <span>{t("shop")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Our Story</span>
+                  <span>{t("story")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Contact us</span>
+                  <span>{t("contactUs")}</span>
                 </li>
               </ul>
             </Box>
-            <Box pt={5} className="footer-links">
-              <h4>Our Services</h4>
+            <Box pt={5} className="footer-links" dir={i18n.dir()}>
+              <h4>{t("ourServices")}</h4>
               <ul>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Fabrics</span>
+                  <span>{t("fabrics")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Showrooms</span>
+                  <span>{t("showrooms")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Appointments</span>
+                  <span>{t("appointments")}</span>
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>Tailor</span>
+                  <span>{t("tailors")}</span>
                 </li>
               </ul>
             </Box>
           </SimpleGrid>
         </Container>
-        <div class="container ">
+        <div class="container " dir={i18n.dir()}>
           <div class="copyright">
-            &copy; 2023 Copyright
+            &copy; {t("copyright1")}
             <strong>
-              <span>Bait Al Anaqah. </span>
+              <span>{t("title")}. </span>
             </strong>
-            All Rights Reserved
+            {t("copyright2")}
           </div>
         </div>
       </div>

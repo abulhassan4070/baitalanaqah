@@ -15,8 +15,12 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import logotext from "../assets/img/logotext.png";
 import { Icon } from "@iconify/react";
+import { useTranslation } from "react-i18next";
+import { useContext } from "react";
+import { Context } from "../contexts/Wrapper";
 
 export default function NavigationHeader() {
+  const context = useContext(Context);
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -71,6 +75,12 @@ export default function NavigationHeader() {
           spacing={6}
         >
           <Box display={{ base: "none", md: "flex" }}>
+            <select value={context.locale} onChange={context.selectLanguage}>
+              <option value="en">English</option>
+              <option value="ar">اَلْعَرَبِيَّةُ</option>
+            </select>
+          </Box>
+          <Box display={{ base: "none", md: "flex" }}>
             <Link to={"/cart"}>
               <IconButton
                 as="a"
@@ -105,6 +115,7 @@ export default function NavigationHeader() {
 }
 
 const DesktopNav = () => {
+  const { t } = useTranslation();
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
@@ -154,7 +165,7 @@ const DesktopNav = () => {
                       cursor: "pointer",
                     }}
                   >
-                    {navItem.label}
+                    {t(navItem.label)}
                     <Icon icon="gridicons:dropdown" />
                   </Flex>
                 </PopoverTrigger>
@@ -185,7 +196,7 @@ const DesktopNav = () => {
                 activeClassName="active"
                 display={"flex"}
               >
-                {navItem.label}
+                {t(navItem.label)}
               </NavLink>
             )}
           </Box>
@@ -196,6 +207,7 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
+  const { t } = useTranslation();
   return (
     <Link
       to={href}
@@ -213,9 +225,9 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             fontWeight={500}
             className="hfont"
           >
-            {label}
+            {t(label)}
           </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
+          <Text fontSize={"sm"}>{t(subLabel)}</Text>
         </Box>
         <Flex
           transition={"all .3s ease"}
@@ -277,6 +289,7 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const { t } = useTranslation();
 
   return (
     <Stack
@@ -336,7 +349,7 @@ const MobileNavItem = ({ label, children, href }) => {
           {children &&
             children.map((child) => (
               <Link key={child.label} py={2} to={child.href}>
-                {child.label}
+                {t(child.label)}
               </Link>
             ))}
         </Stack>
@@ -347,32 +360,32 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "Shop",
+    label: "shop",
     href: "shop",
   },
   {
-    label: "Collaborations",
+    label: "collaborations",
     href: "collaborations",
   },
   {
     logo: true,
   },
   {
-    label: "Tailors",
+    label: "tailors",
     href: "tailors",
   },
   {
-    label: "More",
+    label: "more",
     href: "more",
     children: [
       {
-        label: "Contact",
-        subLabel: "Get in touch",
+        label: "contact",
+        subLabel: "contactSub",
         href: "contact",
       },
       {
-        label: "Our Story",
-        subLabel: "Learn more about us",
+        label: "story",
+        subLabel: "storySub",
         href: "about",
       },
       // {
@@ -386,8 +399,8 @@ const NAV_ITEMS = [
       //   href: "customize",
       // },
       {
-        label: "Blogs",
-        subLabel: "Gentleman's guide",
+        label: "blogs",
+        subLabel: "blogsSub",
         href: "blogs",
       },
     ],

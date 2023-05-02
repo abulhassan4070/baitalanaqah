@@ -1,16 +1,12 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Image,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import abayaImage from "assets/img/suits.jpg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function SuitsSection() {
+  const { t } = useTranslation();
   return (
     <SimpleGrid
       columns={{
@@ -35,6 +31,7 @@ export default function SuitsSection() {
         display={"flex"}
         flexDirection={"column"}
         justifyContent={"center"}
+        dir={i18n.dir()}
       >
         <Heading
           lineHeight={1.1}
@@ -45,7 +42,7 @@ export default function SuitsSection() {
             class="section-title text-white"
             style={{ color: "white", fontSize: "1.5rem" }}
           >
-            Suits
+            {t("suits")}
           </h5>
           <Text
             as={"span"}
@@ -53,15 +50,13 @@ export default function SuitsSection() {
             lineHeight={0}
             color={"white"}
           >
-            Purchase SUITS
+            {t("purchaseSuits1")}
             <br />
-            with us exclusively
+            {t("purchaseSuits2")}
           </Text>
         </Heading>
         <Text color={"gray.300"} mt={3}>
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          sollicitudin, nisl eget ultricies tincidunt, lorem ipsum aliquam
-          libero, sit amet ultricies lorem ipsum dolor sit amet.
+          {t("lorem")}
         </Text>
         <Flex
           style={{
@@ -70,7 +65,7 @@ export default function SuitsSection() {
         >
           <Link to="/shop/suits">
             <Box className="buttonStyle white outline" mt="10px">
-              Shop Now
+              {t("shopNow")}
             </Box>
           </Link>
         </Flex>

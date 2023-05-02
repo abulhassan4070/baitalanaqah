@@ -1,28 +1,31 @@
 import { Box, Container, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { HeaderText } from "widgets/header";
+import i18n from "i18nConfig";
 
 export default function CollaboratorsSection() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = React.useState(0);
   return (
-    <Box id="collaborator">
+    <Box id="collaborator" dir={i18n.dir()}>
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
         <HeaderText
-          title="Collaborators"
-          subtitle="Some of our partners and collaborators"
+          title={t("collaboratorsTitle")}
+          subtitle={t("collaboratorsSubtitle")}
         />
         <div class="partner-tabs-container">
           <div
             class={activeTab === 0 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(0)}
           >
-            PARTNERS
+            {t("partners")}
           </div>
           <div
             class={activeTab === 1 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(1)}
           >
-            CORPORATE
+            {t("corporate")}
           </div>
         </div>
         {activeTab === 0 ? (
@@ -73,7 +76,7 @@ export default function CollaboratorsSection() {
                 justifyContent: "center",
               }}
             >
-              <Text>And many more...</Text>
+              <Text>{t("andManyMore")}</Text>
             </div>
           </SimpleGrid>
         ) : (
@@ -124,7 +127,7 @@ export default function CollaboratorsSection() {
                 justifyContent: "center",
               }}
             >
-              <Text>And many more...</Text>
+              <Text>{t("andManyMore")}</Text>
             </div>
           </SimpleGrid>
         )}

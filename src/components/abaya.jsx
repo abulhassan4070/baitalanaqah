@@ -6,12 +6,15 @@ import { Image, SimpleGrid, Box, Flex } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { HeaderText } from "widgets/header";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function ListOfAbaya() {
+  const { t } = useTranslation();
   return (
     <Box id="abaya">
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
-        <HeaderText title="ABAYA" subtitle="Top selling abaya" />
+        <HeaderText title={t("abaya")} subtitle={t("topSellingAbaya")} />
         <br />
         <Swiper
           navigation={true}
@@ -60,7 +63,7 @@ export default function ListOfAbaya() {
                       />
                     </Box>
 
-                    <Box p={2}>
+                    <Box p={2} dir={i18n.dir()}>
                       <SimpleGrid
                         columns={{
                           base: 1,
@@ -79,7 +82,7 @@ export default function ListOfAbaya() {
                             fontWeight: "bold",
                           }}
                         >
-                          ABAYA
+                          {t("abaya")}
                         </Text>
                         <Flex justifyContent="flex-end">
                           <Icon
@@ -104,10 +107,7 @@ export default function ListOfAbaya() {
                           />
                         </Flex>
                       </SimpleGrid>
-                      <Text fontSize="12px">
-                        Erat ipsum justo amet duo et elitr dolor, est duoErat
-                        ipsum justo amet duo et elitr dolor, est duo
-                      </Text>
+                      <Text fontSize="12px">{t("topSellingAbayaText")}</Text>
                       <SimpleGrid
                         columns={{
                           base: 1,
@@ -119,10 +119,10 @@ export default function ListOfAbaya() {
                         }}
                       >
                         <Box className="buttonStyle small" mt="10px">
-                          Add to Cart
+                          {t("addToCart")}
                         </Box>
                         <Box className="buttonStyle small outline" mt="10px">
-                          Buy Now
+                          {t("buyNow")}
                         </Box>
                       </SimpleGrid>
                     </Box>

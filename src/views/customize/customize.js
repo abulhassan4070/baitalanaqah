@@ -128,7 +128,7 @@ export default function CustomizePage() {
               <Image
                 h={"full"}
                 w={"full"}
-                src={require("assets/img/advancedtech.webp")}
+                src={require("assets/img/customize/customize.jpeg")}
               />
             </Box>
           </VStack>

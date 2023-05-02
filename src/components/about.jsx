@@ -15,8 +15,10 @@ import {
   SimpleGrid,
   Link,
 } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 import { paigeColoOpacity } from "variables/constants";
 export default function AboutUsSection() {
+  const { t, i18n } = useTranslation();
   return (
     <Box bg={paigeColoOpacity["5"]} id="about">
       <Container maxW={"7xl"}>
@@ -27,24 +29,19 @@ export default function AboutUsSection() {
           py={{ base: 20, md: 28 }}
           direction={{ base: "column", md: "row" }}
         >
-          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+          <Stack flex={1} spacing={{ base: 5, md: 10 }} dir={i18n.dir()}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
-              <h5 class="section-title">Our Story</h5>
+              <h5 class="section-title">{t("ourStory")}</h5>
               <br />
               <Text as={"span"} position={"relative"}>
-                Bait Al Anaqah,
+                {t("title")},
               </Text>
             </Heading>
-            <Text color={"gray.500"}>
-              Welcome to Bait Al Anaqah, where we embody the spirit of luxury
-              and sophistication in everything we do. Our story began with a
-              passion for creating beautiful, high-quality apparel that exudes
-              elegance and style.
-            </Text>
+            <Text color={"gray.500"}>{t("aboutDesc")}</Text>
             <br />
             <SimpleGrid
               columns={{ base: 1, md: 2 }}
@@ -55,11 +52,11 @@ export default function AboutUsSection() {
             >
               <Flex alignItems={"center"}>
                 <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
-                <Text color={"gray.500"}>Award Winning</Text>
+                <Text color={"gray.500"}>{t("aboutText1")}</Text>
               </Flex>
               <Flex alignItems={"center"}>
                 <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
-                <Text color={"gray.500"}>Professional Staff</Text>
+                <Text color={"gray.500"}>{t("aboutText2")}</Text>
               </Flex>
             </SimpleGrid>
             <SimpleGrid
@@ -71,11 +68,11 @@ export default function AboutUsSection() {
             >
               <Flex alignItems={"center"}>
                 <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
-                <Text color={"gray.500"}>24/7 Opened</Text>
+                <Text color={"gray.500"}>{t("aboutText3")}</Text>
               </Flex>
               <Flex alignItems={"center"}>
                 <Icon color={"black"} w={5} h={5} me={2} as={CheckCircleIcon} />
-                <Text color={"gray.500"}>Fair Prices</Text>
+                <Text color={"gray.500"}>{t("aboutText4")}</Text>
               </Flex>
             </SimpleGrid>
             <Flex
@@ -83,10 +80,9 @@ export default function AboutUsSection() {
                 marginTop: "10px",
               }}
             >
-              
               <Link to="/about">
                 <Box className="buttonStyle outline" mt="10px">
-                  Read More ...
+                  {t("readMore")}
                 </Box>
               </Link>
             </Flex>

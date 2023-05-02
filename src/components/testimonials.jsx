@@ -7,16 +7,18 @@ import { Icon } from "@iconify/react";
 import { HeaderText } from "widgets/header";
 import { paigeColoOpacity } from "variables/constants";
 import { Box, Container } from "@chakra-ui/react";
+import { useTranslation } from "react-i18next";
 
 export default function TestimonialSection() {
+  const { t } = useTranslation();
   return (
     <Box id="abaya" bg={paigeColoOpacity["5"]}>
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
         <section id="testimonials" class="testimonials">
           <br />
           <HeaderText
-            title="Testimonials"
-            subtitle="What they are saying about us"
+            title={t("testimonialsTitle")}
+            subtitle={t("testimonialsSubtitle")}
           />
           <div class="testimonials-slider swiper">
             <Swiper
@@ -71,16 +73,11 @@ export default function TestimonialSection() {
                         color={"gold"}
                       />
                     </div>
-                    <p>
-                      Proin iaculis purus consequat sem cure digni ssim donec
-                      porttitora entum suscipit rhoncus. Accusantium quam,
-                      ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                      risus at semper.
-                    </p>
+                    <p>{t("testimonialsText")}</p>
                     <div class="profile mt-auto">
                       <img src={testimonial} class="testimonial-img" alt="" />
-                      <h3>Mohammed Ismail</h3>
-                      <h4>Client</h4>
+                      <h3>{t("testimonialsUser")}</h3>
+                      <h4>{t("testimonialsUsertype")}</h4>
                     </div>
                   </div>
                 </SwiperSlide>

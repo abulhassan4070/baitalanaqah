@@ -6,12 +6,14 @@ import { Image, SimpleGrid, Box, Flex } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { HeaderText } from "widgets/header";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ListOfSuits() {
+  const { t } = useTranslation();
   return (
     <Box id="about">
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
-        <HeaderText title="SUITS" subtitle="Top selling suits" />
+        <HeaderText title={t("suits")} subtitle={t("topSellingSuits")} />
         <br />
         <Swiper
           navigation={true}
@@ -79,7 +81,7 @@ export default function ListOfSuits() {
                             fontWeight: "bold",
                           }}
                         >
-                          SUITS
+                          {t("suits")}
                         </Text>
                         <Flex justifyContent="flex-end">
                           <Icon
@@ -104,10 +106,7 @@ export default function ListOfSuits() {
                           />
                         </Flex>
                       </SimpleGrid>
-                      <Text fontSize="12px">
-                        Erat ipsum justo amet duo et elitr dolor, est duoErat
-                        ipsum justo amet duo et elitr dolor, est duo
-                      </Text>
+                      <Text fontSize="12px">{t("topSellingSuitsText")}</Text>
                       <SimpleGrid
                         columns={{
                           base: 1,
@@ -119,10 +118,10 @@ export default function ListOfSuits() {
                         }}
                       >
                         <Box className="buttonStyle small" mt="10px">
-                          Add to Cart
+                          {t("addToCart")}
                         </Box>
                         <Box className="buttonStyle small outline" mt="10px">
-                          Buy Now
+                          {t("buyNow")}
                         </Box>
                       </SimpleGrid>
                     </Box>
