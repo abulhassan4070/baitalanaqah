@@ -16,15 +16,19 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import i18n from "i18nConfig";
+import { useTranslation } from "react-i18next";
 
 export default function RegistrationComponent() {
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <Flex
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
+      dir={i18n.dir()}
     >
       <Stack
         spacing={8}
@@ -36,7 +40,7 @@ export default function RegistrationComponent() {
       >
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Register
+            {t("ofReg.register")}
           </Heading>
         </Stack>
         <Box
@@ -51,25 +55,25 @@ export default function RegistrationComponent() {
             <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4}>
               <Box>
                 <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
+                  <FormLabel>{t("ofReg.first")}</FormLabel>
                   <Input type="text" />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
+                  <FormLabel>{t("ofReg.last")}</FormLabel>
                   <Input type="text" />
                 </FormControl>
               </Box>
             </SimpleGrid>
             <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <FormLabel>{t("ofReg.email")}</FormLabel>
+              <Input type="email" dir="ltr" />
             </FormControl>
             <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("ofReg.password")}</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input type={showPassword ? "text" : "password"} dir="ltr" />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -92,14 +96,14 @@ export default function RegistrationComponent() {
                   fontSize: "14px",
                 }}
               >
-                Register
+                {t("ofReg.register")}
               </Box>
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? &nbsp;{" "}
+                {t("ofReg.already")} &nbsp;{" "}
                 <Link to={"/login"} color={"black"}>
-                  Login
+                  {t("ofReg.login")}
                 </Link>
               </Text>
             </Stack>

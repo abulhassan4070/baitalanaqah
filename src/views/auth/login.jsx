@@ -10,14 +10,18 @@ import {
   useColorModeValue,
   Text,
 } from "@chakra-ui/react";
+import i18n from "i18nConfig";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function LoginCompoent() {
+  const { t } = useTranslation();
   return (
     <Flex
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
+      dir={i18n.dir()}
     >
       <Stack
         spacing={8}
@@ -29,7 +33,7 @@ export default function LoginCompoent() {
         width={"400px"}
       >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Login</Heading>
+          <Heading fontSize={"4xl"}>{t("ofLogin.login")}</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -41,11 +45,11 @@ export default function LoginCompoent() {
         >
           <Stack spacing={4}>
             <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
+              <FormLabel>{t("ofLogin.email")}</FormLabel>
               <Input type="email" />
             </FormControl>
             <FormControl id="password">
-              <FormLabel>Password</FormLabel>
+              <FormLabel>{t("ofLogin.password")}</FormLabel>
               <Input type="password" />
             </FormControl>
             <Stack spacing={10}>
@@ -54,7 +58,7 @@ export default function LoginCompoent() {
                 align={"start"}
                 justify={"space-between"}
               >
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox>{t("ofLogin.remember")}</Checkbox>
               </Stack>
               <Box
                 className="buttonStyle"
@@ -65,7 +69,7 @@ export default function LoginCompoent() {
                   fontSize: "14px",
                 }}
               >
-                Sign in
+                {t("ofLogin.signin")}
               </Box>
               <Link
                 to={"/forgot-password"}
@@ -76,12 +80,12 @@ export default function LoginCompoent() {
                   fontSize: "14px",
                 }}
               >
-                Forgot password?
+                {t("ofLogin.forgot")}
               </Link>
               <Text mt="0px">
-                Don't have an account? &nbsp;
+                {t("ofLogin.noAccount")} &nbsp;
                 <Link to={"/register"} color={"blue.400"}>
-                  Sign up
+                  {t("ofLogin.signup")}
                 </Link>
               </Text>
             </Stack>

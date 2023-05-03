@@ -16,6 +16,8 @@ import {
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 import blog from "../../assets/img/blog/blog.jpg";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 interface IBlogTags {
   tags: Array<string>;
@@ -66,8 +68,9 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
 };
 
 const BlogsList = () => {
+  const { t } = useTranslation();
   return (
-    <Container maxW={"7xl"} p="12">
+    <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -77,13 +80,13 @@ const BlogsList = () => {
       >
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            Blogs
+            {t("blogs")}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -128,20 +131,22 @@ const BlogsList = () => {
               justifyContent="center"
               marginTop={{ base: "3", sm: "0" }}
             >
-              <BlogTags tags={["Design", "Product"]} />
+              <BlogTags
+                tags={[
+                  t("ofBlogs.article.design"),
+                  t("ofBlogs.article.product"),
+                ]}
+              />
               <Heading marginTop="1">
                 <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                  Blog article title
+                  {t("ofBlogs.article.title")}
                 </Link>
               </Heading>
               <Text as="p" marginTop="2" fontSize="lg">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                {t("ofBlogs.article.text")}
               </Text>
               <BlogAuthor
-                name="Mohammed Ismail"
+                name={t("ofBlogs.article.name")}
                 date={new Date("2021-04-06T19:01:27Z")}
               />
             </Box>

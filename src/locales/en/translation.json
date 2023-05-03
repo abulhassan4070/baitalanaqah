@@ -4,7 +4,7 @@
   "tailors": "Tailors",
   "more": "More",
   "contact": "Contact",
-  "story": "OUR STORY",
+  "story": "Our Story",
   "blogs": "Blogs",
   "contactSub": "Get in touch",
   "storySub": "Learn more about us",
@@ -14,7 +14,7 @@
   "lorem": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni perspiciatis, enim fugit illo architecto minus laborum iure consequatur atque dolorum provident corrupti ipsum quas ducimus reiciendis nostrum illum. Similique, a.",
   "loremShort": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni perspiciatis, enim fugit ",
   "discoverMore": "Discover more",
-  "ourStory": "OUR STORY",
+  "ourStory": "Our Story",
   "aboutDesc": "Welcome to Bait Al Anaqah, where we embody the spirit of luxury and sophistication in everything we do. Our story began with a passion for creating beautiful, high-quality apparel that exudes elegance and style.",
   "aboutText1": "Award Winning",
   "aboutText2": "Professional Staff",
@@ -58,6 +58,7 @@
   "copyright1": "2023 Copyright",
   "copyright2": "All Rights Reserved",
   "customize": "Customize",
+  "cart": "Cart",
 
   "ofShop": {
     "abaya": "Abaya",
@@ -80,5 +81,102 @@
     "text3": "Tailors",
     "name": " Mohammad Ismail",
     "experienced": "Senior Tailor"
+  },
+
+  "ofContact": {
+    "title": "Contact Us",
+    "subtitle": "Information about our company",
+    "address": {
+      "title": "Address",
+      "text1": "Bait Al Anaqah",
+      "text2": "Dubai, UAE"
+    },
+    "callUs": { "title": "Call Us", "text": "+9710000000" },
+    "emailUs": { "title": "Email Us", "text": "info@baitalanaqah.com" },
+    "openHours": {
+      "title": "Open Hours",
+      "text1": "Monday - Friday",
+      "text2": "10.00AM - 4.00PM"
+    },
+    "contactForm": {
+      "title": "Contact Form",
+      "subtitle": "We are always ready to help you",
+      "name": "Your Name",
+      "email": "Email ID",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+
+  "ofAboutUs": {
+    "title": "Our Story",
+    "subtitle": "The story of our brand",
+    "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    "text1": "Welcome to Bait Al Anaqah, where we embody the spirit of luxury and sophistication in everything we do. Our story began with a passion for creating beautiful, high-quality apparel that exudes elegance and style.",
+    "item2": {
+      "part1": "Clothing Made",
+      "part2": "For You",
+      "text": "Say goodbye to mass-produced clothing and hello to clothing made by you, for you. We make sure you feel as good as you look wearing custom-tailored clothing true to your unique fit and style. Don’t let your clothing decide who you are; decide it for yourself."
+    },
+    "item3": {
+      "part1": "A Smarter",
+      "part2": "Choice",
+      "text": "We’re far from an ordinary clothing company. We only produce by order and keep no inventory, resulting in less waste and excessive production. We take pride in fully owning and operating our facilities, ensuring responsible and fair production."
+    },
+    "item4": {
+      "part1": "Advanced",
+      "part2": "Technology",
+      "text": "We like to describe ourselves as a tech company that does custom clothing. Using advanced technology and algorithms, we provide you with the fit of a lifetime."
+    },
+    "faq": {
+      "title": "FAQ",
+      "subtitle": "Frequently Asked Questions",
+      "qNo": "Question no.",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+  },
+
+  "ofBlogs": {
+    "article": {
+      "title": "Blog article title",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "name": "Mohammad Ismail",
+      "design": "Design",
+      "product": "Product"
+    }
+  },
+
+  "ofCart": {
+    "title": "Cart",
+    "text": "There are no items in your cart."
+  },
+
+  "ofLogin": {
+    "login": "Login",
+    "email": "Email address",
+    "password": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "signin": "Sign in",
+    "signup": "Sign up"
+  },
+
+  "ofForgot": {
+    "reset": "Reset Password",
+    "email": "Email address",
+    "request": "Request Reset"
+  },
+
+  "ofReg": {
+    "register": "Register",
+    "first": "First Name",
+    "last": "Last Name",
+    "email": "Email address",
+    "password": "Password",
+    "already": "Already a user?",
+    "login": "Login"
   }
 }

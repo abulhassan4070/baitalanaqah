@@ -10,9 +10,12 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 export default function CartPage() {
+  const { t } = useTranslation();
   return (
-    <Container maxW={"7xl"} p="12">
+    <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -22,13 +25,13 @@ export default function CartPage() {
       >
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            Cart
+            {t("cart")}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -37,7 +40,7 @@ export default function CartPage() {
         display="flex"
         justifyContent="center"
       >
-        <Text>There are no items in your cart.</Text>
+        <Text>{t("ofCart.text")}</Text>
       </Box>
     </Container>
   );

@@ -22,10 +22,13 @@ import { HeaderText } from "widgets/header";
 import clothing from "../../assets/img/clothing.webp";
 import technology from "../../assets/img/advancedtech.webp";
 import smartchoice from "../../assets/img/smartchoice.webp";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 export default function AboutPage() {
+  const { t } = useTranslation();
   return (
     <>
-      <Container maxW={"7xl"} p="12">
+      <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
         <Breadcrumb
           fontWeight="medium"
           fontSize="sm"
@@ -35,18 +38,21 @@ export default function AboutPage() {
         >
           <BreadcrumbItem>
             <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">{t("home")}</NavLink>
             </BreadcrumbLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              Our Story
+              {t("ourStory")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
-        <HeaderText title="Our Story" subtitle="The story of our brand" />
+        <HeaderText
+          title={t("ofAboutUs.title")}
+          subtitle={t("ofAboutUs.subtitle")}
+        />
         <div class="responsive-container-block Container bottomContainer">
           <div class="ultimateImg">
             <Image
@@ -54,9 +60,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1633655442432-620aa55d7ac1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80"
             />
             <div class="purpleBox">
-              <p class="purpleText">
-                Lorem ipsum dolor sit amet, consectetur adipiscing
-              </p>
+              <p class="purpleText">{t("ofAboutUs.lorem")}</p>
               <Flex class="stars">
                 <Icon
                   icon="material-symbols:star-rounded"
@@ -93,15 +97,10 @@ export default function AboutPage() {
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
               <Text as={"span"} position={"relative"}>
-                Bait Al Anaqah,
+                {t("title")},
               </Text>
             </Heading>
-            <Text color={"gray.500"}>
-              Welcome to Bait Al Anaqah, where we embody the spirit of luxury
-              and sophistication in everything we do. Our story began with a
-              passion for creating beautiful, high-quality apparel that exudes
-              elegance and style.
-            </Text>
+            <Text color={"gray.500"}>{t("ofAboutUs.text1")}</Text>
           </div>
         </div>
         <SimpleGrid className="section" columns={{ base: 1, md: 2 }}>
@@ -124,16 +123,11 @@ export default function AboutPage() {
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
               <Text as={"span"} position={"relative"}>
-                CLOTHING MADE <br />
-                FOR YOU
+                {t("ofAboutUs.item2.part1")} <br />
+                {t("ofAboutUs.item2.part2")}
               </Text>
             </Heading>
-            <p>
-              Say goodbye to mass-produced clothing and hello to clothing made
-              by you, for you. We make sure you feel as good as you look wearing
-              custom-tailored clothing true to your unique fit and style. Don’t
-              let your clothing decide who you are; decide it for yourself.
-            </p>
+            <p>{t("ofAboutUs.item2.text")}</p>
           </Box>
         </SimpleGrid>
         <SimpleGrid className="section" columns={{ base: 1, md: 2 }} style={{}}>
@@ -149,16 +143,11 @@ export default function AboutPage() {
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
               <Text as={"span"} position={"relative"}>
-                A smarter
-                <br /> choice
+                {t("ofAboutUs.item3.part1")}
+                <br /> {t("ofAboutUs.item3.part2")}
               </Text>
             </Heading>
-            <p>
-              We’re far from an ordinary clothing company. We only produce by
-              order and keep no inventory, resulting in less waste and excessive
-              production. We take pride in fully owning and operating our
-              facilities, ensuring responsible and fair production.
-            </p>
+            <p>{t("ofAboutUs.item3.text")}</p>
           </Box>
           <Box padding={"20px"}>
             <Box
@@ -193,21 +182,20 @@ export default function AboutPage() {
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
               <Text as={"span"} position={"relative"}>
-                Advanced
+                {t("ofAboutUs.item4.part1")}
                 <br />
-                technology
+                {t("ofAboutUs.item4.part2")}
               </Text>
             </Heading>
-            <p>
-              We like to describe ourselves as a tech company that does custom
-              clothing. Using advanced technology and algorithms, we provide you
-              with the fit of a lifetime.
-            </p>
+            <p>{t("ofAboutUs.item4.text")}</p>
           </Box>
         </SimpleGrid>
         <br />
         <br />
-        <HeaderText title="FAQ" subtitle="Frequently asked questions" />
+        <HeaderText
+          title={t("ofAboutUs.faq.title")}
+          subtitle={t("ofAboutUs.faq.subtitle")}
+        />
         <br />
         <Accordion defaultIndex={[0]} allowToggle>
           {[1, 2, 3, 4, 5, 6].map((item) => {
@@ -216,20 +204,15 @@ export default function AboutPage() {
                 <h2>
                   <AccordionButton>
                     <Box as="span" flex="1" textAlign="left">
-                      <h1>Question no. {item}</h1>
+                      <h1>
+                        {t("ofAboutUs.faq.qNo")} {item}
+                      </h1>
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. dolor sit
-                  amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
+                  {t("ofAboutUs.faq.text")}
                 </AccordionPanel>
               </AccordionItem>
             );

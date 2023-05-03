@@ -28,9 +28,12 @@ import {
   MdAccessTime,
 } from "react-icons/md";
 import { BsChat, BsPerson } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 export default function ContactPage() {
+  const { t } = useTranslation();
   return (
-    <Container maxW={"7xl"} p="12">
+    <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -40,49 +43,52 @@ export default function ContactPage() {
       >
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            Contact
+            {t("contact")}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
       <br />
-      <HeaderText title="Contact Us" subtitle="Information about our company" />
+      <HeaderText
+        title={t("ofContact.title")}
+        subtitle={t("ofContact.subtitle")}
+      />
       <SimpleGrid columns={{ base: 1, md: 2 }} gap={5} p={5}>
         <SimpleGrid columns={{ base: 2, md: 2 }} gap={5}>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdLocationPin} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
-              Address
+              {t("ofContact.address.title")}
             </Text>
-            <Text fontSize={12}>Bait Al Anaqah,</Text>
-            <Text fontSize={12}>Dubai, UAE</Text>
+            <Text fontSize={12}>{t("ofContact.address.text1")},</Text>
+            <Text fontSize={12}>{t("ofContact.address.text2")}</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdPhone} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
-              Call Us
+              {t("ofContact.callUs.title")}
             </Text>
             <Text fontSize={12}>+9710000000</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdEmail} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
-              Email Us
+              {t("ofContact.emailUs.title")}
             </Text>
-            <Text fontSize={12}>info@baitalanaqah.com</Text>
+            <Text fontSize={12}>{t("ofContact.emailUs.text")}</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdAccessTime} size="40px" />
             <Text fontWeight={"bold"} fontSize={18}>
-              Open Hours
+              {t("ofContact.openHours.title")}
             </Text>
-            <Text fontSize={12}>Monday - Friday</Text>
-            <Text fontSize={12}>10.00AM - 4.00PM</Text>
+            <Text fontSize={12}>{t("ofContact.openHours.text1")}</Text>
+            <Text fontSize={12}>{t("ofContact.openHours.text2")}</Text>
           </Stack>
         </SimpleGrid>
         <Box>
@@ -97,14 +103,14 @@ export default function ContactPage() {
       <br />
       <br />
       <HeaderText
-        title="Contact Form"
-        subtitle="We are always ready to help you"
+        title={t("ofContact.contactForm.title")}
+        subtitle={t("ofContact.contactForm.subtitle")}
       />
       <Box p={4} width={{ base: "100%", md: "100%" }}>
         <Box m={8} color="#0B0E3F">
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
             <FormControl id="name">
-              <FormLabel>Your Name</FormLabel>
+              <FormLabel>{t("ofContact.contactForm.name")}</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -114,7 +120,7 @@ export default function ContactPage() {
               </InputGroup>
             </FormControl>
             <FormControl id="name">
-              <FormLabel>Email Id</FormLabel>
+              <FormLabel>{t("ofContact.contactForm.email")}</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -127,7 +133,7 @@ export default function ContactPage() {
           <br />
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
             <FormControl id="phone">
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabel>{t("ofContact.contactForm.phone")}</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -137,7 +143,7 @@ export default function ContactPage() {
               </InputGroup>
             </FormControl>
             <FormControl id="subject">
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>{t("ofContact.contactForm.subject")}</FormLabel>
               <InputGroup borderColor="#E0E1E7">
                 <InputLeftElement
                   pointerEvents="none"
@@ -149,21 +155,21 @@ export default function ContactPage() {
           </SimpleGrid>
           <br />
           <FormControl id="name">
-            <FormLabel>Message</FormLabel>
+            <FormLabel>{t("ofContact.contactForm.message")}</FormLabel>
             <Textarea
               borderColor="gray.300"
               rows={5}
               _hover={{
                 borderRadius: "gray.300",
               }}
-              placeholder="message"
+              placeholder={t("ofContact.contactForm.message")}
             />
           </FormControl>
           <br />
 
           <FormControl id="name" float="right">
             <Box className="buttonStyle" color="white">
-              Send Message
+              {t("ofContact.contactForm.send")}
             </Box>
           </FormControl>
         </Box>

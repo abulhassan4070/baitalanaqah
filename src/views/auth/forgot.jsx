@@ -9,13 +9,17 @@ import {
   Box,
   FormLabel,
 } from "@chakra-ui/react";
+import i18n from "i18nConfig";
+import { useTranslation } from "react-i18next";
 
 export default function ForgotComponent(): JSX.Element {
+  const { t } = useTranslation();
   return (
     <Flex
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
+      dir={i18n.dir()}
     >
       <Stack
         spacing={8}
@@ -27,7 +31,7 @@ export default function ForgotComponent(): JSX.Element {
         width={"400px"}
       >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Reset password</Heading>
+          <Heading fontSize={"4xl"}>{t("ofForgot.reset")}</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -38,11 +42,12 @@ export default function ForgotComponent(): JSX.Element {
           maxWidth={"400px"}
         >
           <FormControl id="email">
-            <FormLabel>Email address</FormLabel>
+            <FormLabel>{t("ofForgot.email")}</FormLabel>
             <Input
               placeholder="your-email@example.com"
               _placeholder={{ color: "gray.500" }}
               type="email"
+              dir="ltr"
             />
           </FormControl>
           <br />
@@ -54,7 +59,7 @@ export default function ForgotComponent(): JSX.Element {
                 bg: "black",
               }}
             >
-              Request Reset
+              {t("ofForgot.request")}
             </Button>
           </Stack>
         </Box>
