@@ -63,6 +63,12 @@ export default function NavigationHeader() {
             />
           </Link>
         </Flex>
+        <Flex display={{ base: "flex", md: "flex" }}>
+          <select value={context.locale} onChange={context.selectLanguage}>
+            <option value="en">English</option>
+            <option value="ar">اَلْعَرَبِيَّةُ</option>
+          </select>
+        </Flex>
         <Flex flex={{ base: 1 }} justify={"center"}>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -74,12 +80,6 @@ export default function NavigationHeader() {
           direction={"row"}
           spacing={6}
         >
-          <Box display={{ base: "none", md: "flex" }}>
-            <select value={context.locale} onChange={context.selectLanguage}>
-              <option value="en">English</option>
-              <option value="ar">اَلْعَرَبِيَّةُ</option>
-            </select>
-          </Box>
           <Box display={{ base: "none", md: "flex" }}>
             <Link to={"/cart"}>
               <IconButton
