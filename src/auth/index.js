@@ -35,7 +35,7 @@ export default function Auth() {
       toast({
         title: 'Success',
         description: 'Login Successful',
-        status: 'error',
+        status: 'success',
         duration: 9000,
         isClosable: true,
       });
@@ -49,7 +49,7 @@ export default function Auth() {
       //     toast({
       //       title: 'Error',
       //       description: data.error.description,
-      //       status: 'error',
+      //       status: 'success',
       //       duration: 9000,
       //       isClosable: true,
       //     });
@@ -62,7 +62,7 @@ export default function Auth() {
       toast({
         title: 'Success',
         description: 'OTP Sent to your email/phone',
-        status: 'error',
+        status: 'success',
         duration: 9000,
         isClosable: true,
       });
@@ -71,7 +71,7 @@ export default function Auth() {
       //     toast({
       //       title: 'Error',
       //       description: data.error.description,
-      //       status: 'error',
+      //       status: 'success',
       //       duration: 9000,
       //       isClosable: true,
       //     });
