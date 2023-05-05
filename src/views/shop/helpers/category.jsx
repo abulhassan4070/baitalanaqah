@@ -16,14 +16,17 @@ import {
 import { Icon } from "@iconify/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 var name;
 
 export default function Category(props) {
   name = props.name;
+  const { t } = useTranslation();
 
   return (
-    <Container maxW={"7xl"} mt="20px" p={10} bg="white">
+    <Container maxW={"7xl"} mt="20px" p={10} bg="white" dir={i18n.dir()}>
       <Breadcrumb
         fontWeight="medium"
         fontSize="sm"
@@ -33,19 +36,21 @@ export default function Category(props) {
       >
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">{t("home")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem>
           <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-            <NavLink to="/shop">Shop</NavLink>
+            <NavLink to="/shop">{t("shop")}</NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            <NavLink to={"/shop/" + name}>{name.toUpperCase()}</NavLink>
+            <NavLink to={"/shop/" + name}>
+              {t("ofShop." + name).toUpperCase()}
+            </NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
@@ -78,6 +83,7 @@ function CategoryList() {
 }
 
 function CategoryItem() {
+  const { t } = useTranslation();
   return (
     <Box
       height="100%"
@@ -118,7 +124,7 @@ function CategoryItem() {
                 fontWeight: "bold",
               }}
             >
-              {name.toUpperCase()}
+              {t("ofShop." + name).toUpperCase()}
             </Text>
             <Flex justifyContent="flex-end">
               <Icon icon="material-symbols:star-rounded" color={"gold"} />
@@ -128,10 +134,7 @@ function CategoryItem() {
               <Icon icon="material-symbols:star-rounded" color={"gold"} />
             </Flex>
           </SimpleGrid>
-          <Text fontSize="12px">
-            Erat ipsum justo amet duo et elitr dolor, est duoErat ipsum justo
-            amet duo et elitr dolor, est duo
-          </Text>
+          <Text fontSize="12px">{t("category.text")}</Text>
           <SimpleGrid
             columns={{
               base: 1,
@@ -143,10 +146,10 @@ function CategoryItem() {
             }}
           >
             <Box className="buttonStyle small" mt="10px">
-              Add to Cart
+              {t("addToCart")}
             </Box>
             <Box className="buttonStyle small outline" mt="10px">
-              Buy Now
+              {t("buyNow")}
             </Box>
           </SimpleGrid>
         </Box>

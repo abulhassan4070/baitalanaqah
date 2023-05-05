@@ -132,7 +132,7 @@ export default function ShopCategories() {
         mt="40px"
         border={"1px"}
       >
-        <VStack mx="20px" justifyContent={"center"} gridArea="left">
+        <VStack mx="20px" justifyContent={"center"} gridArea="left" pb={4}>
           <Heading pt="20px">{t("customize")}</Heading>
           <Text textAlign={"center"}>{t("ofShop.customizeText")}</Text>
           <Link to="/customize">

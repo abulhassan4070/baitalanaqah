@@ -95,7 +95,7 @@ const BlogsList = () => {
           <Box
             marginTop={{ base: "1", sm: "5" }}
             display="flex"
-            flexDirection={{ base: "column", sm: "row" }}
+            flexDirection={{ base: "column", md: "row" }}
             justifyContent="space-between"
           >
             <Box
@@ -129,7 +129,7 @@ const BlogsList = () => {
               flex="1"
               flexDirection="column"
               justifyContent="center"
-              marginTop={{ base: "3", sm: "0" }}
+              marginTop={{ base: "3", md: "5" }}
             >
               <BlogTags
                 tags={[

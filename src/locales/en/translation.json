@@ -178,5 +178,9 @@
     "password": "Password",
     "already": "Already a user?",
     "login": "Login"
+  },
+
+  "category": {
+    "text": "Erat ipsum justo amet duo et elitr dolor, est duo. Erat ipsum justo amet duo et elitr dolor, est duo."
   }
 }
