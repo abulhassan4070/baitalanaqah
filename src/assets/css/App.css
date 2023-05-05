@@ -23,6 +23,9 @@
   src: url(../fonts/TrajanPro-Regular.ttf);
 }
 @import url("./button.css");
+.nomargin {
+  -webkit-margin-start: 0px !important;
+}
 body,
 html {
   font-family: "Zimra Regular", serif !important;
@@ -35,7 +38,7 @@ h4,
 h5,
 h6,
 .hfont {
-  font-family: "Trajan Pro Bold", serif !important;
+  font-family: "Zimra Bold", serif !important;
 }
 p {
   font-family: "Zimra Regular", serif !important;
@@ -228,7 +231,7 @@ option {
   font-weight: 700;
   letter-spacing: 1px;
   color: #000000;
-  font-family: "Trajan Pro", sans-serif;
+  font-family: "Zimra", sans-serif;
   margin-top: 3px;
 }
 
@@ -236,7 +239,7 @@ option {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Trajan Pro", sans-serif;
+  font-family: "Zimra", sans-serif;
 }
 
 .footer .footer-top .social-links a {
@@ -548,7 +551,6 @@ option {
   border-bottom-left-radius: 10px;
 }
 
-
 .allText {
   padding-top: 0px;
   padding-right: 0px;
@@ -611,7 +613,7 @@ option {
   flex-direction: column;
   align-items: flex-start;
   max-width: 430px;
-  background-color: #E9DDDA;
+  background-color: #e9ddda;
   padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
