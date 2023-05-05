@@ -1,12 +1,13 @@
 import React from "react";
 import {
+  Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import { MdSearch } from "react-icons/md";
 export function SearchBar(props) {
   const { variant, background, children, placeholder, borderRadius, ...rest } =
     props;
@@ -47,7 +48,7 @@ export function SearchBar(props) {
             _focus={{
               boxShadow: "none",
             }}
-            icon={<SearchIcon color={searchIconColor} w="15px" h="15px" />}
+            icon={<Icon as={MdSearch} color={searchIconColor} />}
           ></IconButton>
         }
       />

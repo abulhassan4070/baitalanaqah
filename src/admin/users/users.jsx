@@ -16,8 +16,9 @@ import { IoCash } from 'react-icons/io5';
 import { brandColor } from 'variables/constants';
 import IconBox from 'components/icons/IconBox';
 import { boxBg } from 'variables/constants';
+import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 
-export default function OrderHistory() {
+export default function UsersHistory() {
   const columns = [
     {
       name: 'S.No',
@@ -27,11 +28,6 @@ export default function OrderHistory() {
     {
       name: 'Name',
       selector: row => row.name,
-      sortable: true,
-    },
-    {
-      name: 'Product Name',
-      selector: row => row.product_name,
       sortable: true,
     },
     {
@@ -59,8 +55,8 @@ export default function OrderHistory() {
               icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
             />
           }
-          name="Today"
-          value="12"
+          name="Verified"
+          value="233"
         />
         <MiniStatistics
           startContent={
@@ -71,8 +67,8 @@ export default function OrderHistory() {
               icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
             />
           }
-          name="This Month"
-          value="12"
+          name="Unverified"
+          value="25"
         />
         <MiniStatistics
           startContent={
@@ -83,15 +79,16 @@ export default function OrderHistory() {
               icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
             />
           }
-          name="All Time"
-          value="831"
+          name="All Users"
+          value="258"
         />
       </SimpleGrid>
       <Card direction="column" w="100%" px="0px">
         <Flex px="25px" justify="space-between" mb="20px" align="center">
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
-            Order History
+            Users Details
           </Text>
+          <SearchBar id="walletSearch" />
         </Flex>
         <DataTable
           columns={columns}

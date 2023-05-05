@@ -3,9 +3,10 @@ import Blogs from 'admin/blogs/blogs';
 import ChangePassword from 'admin/dashboard/change-password';
 import MainDashboard from 'admin/dashboard/dashboard';
 import Profile from 'admin/dashboard/profile';
-import OrderHistory from 'admin/wallet/wallets';
-import { FaCartPlus, FaNewspaper } from 'react-icons/fa';
-import { IoBag } from 'react-icons/io5';
+import Tailors from 'admin/tailors/tailors';
+import OrderHistory from 'admin/orders/orders';
+import { FaCartPlus, FaNewspaper, FaUser } from 'react-icons/fa';
+import { IoBag, IoChatbox } from 'react-icons/io5';
 import {
   MdCategory,
   MdOutlineDashboard,
@@ -14,6 +15,11 @@ import {
   MdSupport,
   MdWork,
 } from 'react-icons/md';
+import Collaborations from 'admin/collaborations/collaborations';
+import AllCategories from 'admin/products/categories';
+import AllProducts from 'admin/products/products';
+import UsersHistory from 'admin/users/users';
+import Contact from 'admin/contact/contact';
 
 const sidebarRoutes = [
   {
@@ -40,12 +46,20 @@ const sidebarRoutes = [
     component: OrderHistory,
   },
   {
+    name: 'Users',
+    secondary: 'Management',
+    layout: '/admin',
+    path: '/users',
+    icon: <Icon as={FaUser} width="20px" height="20px" color="inherit" />,
+    component: UsersHistory,
+  },
+  {
     name: 'Products',
     secondary: 'Ecommerce',
     layout: '/admin',
     path: '/products',
     icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
-    component: OrderHistory,
+    component: AllProducts,
   },
   {
     name: 'Categories',
@@ -53,7 +67,7 @@ const sidebarRoutes = [
     layout: '/admin',
     path: '/categories',
     icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
-    component: OrderHistory,
+    component: AllCategories,
   },
   {
     name: 'Tailors',
@@ -61,7 +75,7 @@ const sidebarRoutes = [
     layout: '/admin',
     path: '/tailors',
     icon: <Icon as={MdWork} width="20px" height="20px" color="inherit" />,
-    component: Blogs,
+    component: Tailors,
   },
   {
     name: 'Collaborations',
@@ -69,7 +83,7 @@ const sidebarRoutes = [
     layout: '/admin',
     path: '/collaborations',
     icon: <Icon as={MdSupport} width="20px" height="20px" color="inherit" />,
-    component: Blogs,
+    component: Collaborations,
   },
   {
     name: 'Blogs',
@@ -78,6 +92,14 @@ const sidebarRoutes = [
     path: '/blogs',
     icon: <Icon as={FaNewspaper} width="20px" height="20px" color="inherit" />,
     component: Blogs,
+  },
+  {
+    name: 'Contacts',
+    secondary: 'Reports',
+    layout: '/admin',
+    path: '/contacts',
+    icon: <Icon as={IoChatbox} width="20px" height="20px" color="inherit" />,
+    component: Contact,
   },
   {
     name: 'Change Password',
