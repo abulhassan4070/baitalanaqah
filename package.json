@@ -17,6 +17,7 @@
     "react-icons": "^4.7.1",
     "react-scripts": "5.0.1",
     "react-apexcharts": "^1.4.0",
+    "react-data-table-component": "^7.5.3",
     "web-vitals": "^2.1.4",
     "react-custom-scrollbars-2": "^4.2.1"
   },

@@ -2,6 +2,8 @@ import { Icon } from '@chakra-ui/react';
 import ChangePassword from 'admin/dashboard/change-password';
 import MainDashboard from 'admin/dashboard/dashboard';
 import Profile from 'admin/dashboard/profile';
+import OrderHistory from 'admin/wallet/wallets';
+import { FaCartPlus } from 'react-icons/fa';
 import { MdOutlineDashboard, MdPerson, MdSettings } from 'react-icons/md';
 
 const sidebarRoutes = [
@@ -19,6 +21,14 @@ const sidebarRoutes = [
       />
     ),
     component: MainDashboard,
+  },
+  {
+    name: 'Orders',
+    secondary: 'management',
+    layout: '/admin',
+    path: '/orders',
+    icon: <Icon as={FaCartPlus} width="20px" height="20px" color="inherit" />,
+    component: OrderHistory,
   },
   {
     name: 'Change Password',
