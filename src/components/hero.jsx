@@ -57,12 +57,16 @@ function HeroSection() {
           className="mySwiper"
         >
           {[1, 2, 3, 4, 5].map((item) => (
-            <SwiperSlide
-              style={{
-                padding: "0 100px",
-              }}
-            >
-              <Box textAlign="center">
+            <SwiperSlide>
+              <Box
+                textAlign="center"
+                style={{
+                  padding: "0 10px",
+                  maxWidth: "1000px",
+                  width: "95%",
+                  margin: "0 auto",
+                }}
+              >
                 <Text color="white">{t("aboutShort")}</Text>
                 <Text
                   as={"h1"}
@@ -72,6 +76,7 @@ function HeroSection() {
                     md: "4xl",
                     lg: "7xl",
                   }}
+                  fontFamily={"Trajan Pro Bold!important"}
                   fontWeight="bold"
                 >
                   {t("title")}
