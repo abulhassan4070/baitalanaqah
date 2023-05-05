@@ -63,7 +63,7 @@ export default function NavigationHeader() {
             />
           </Link>
         </Flex>
-        <Flex display={{ base: "flex", md: "flex" }}>
+        <Flex display={"flex"}>
           <select
             value={context.locale}
             onChange={context.selectLanguage}
@@ -378,7 +378,7 @@ const MobileNavItem = ({ label, children, href }) => {
           fontWeight={600}
           color={useColorModeValue("gray.600", "gray.200")}
         >
-          {label}
+          {t(label)}
         </Text>
         {children && (
           <Icon

@@ -182,5 +182,51 @@
 
   "category": {
     "text": "Erat ipsum justo amet duo et elitr dolor, est duo. Erat ipsum justo amet duo et elitr dolor, est duo."
+  },
+
+  "products": {
+    "save": "Save",
+    "size": "Size",
+    "custom": "Custom Tailored",
+    "sizeChart": "Size Chart",
+    "whatsapp": {
+      "title": "Whatsapp",
+      "tooltip": "Message us on +971000000000 Between 10am-10pm and we will get back to you shortly."
+    },
+    "callUs": {
+      "title": "Call Us",
+      "tooltip": "Please contact our Customer Care team from 10am-10pm on phone number +971000000000, or email:sales@baitalanaqah.ae"
+    },
+    "item1": {
+      "title": "Shipping",
+      "text1": "We've got your back",
+      "text2": "IF YOU DON’T LOVE IT, YOU CAN SEND IT BACK. WE WILL GLADLY ACCEPT UNWORN, UNWASHED, UNALTERED OR UNUSED MERCHANDISE IN SELLABLE CONDITION WITHIN 14 DAYS OF PURCHASE FOR A CREDIT NOTE.",
+      "list1": "Free Shipping on orders above 500 AED",
+      "list2": "Free returns within 7 days (excludes custom orders & face masks)",
+      "list3": "Standard Delivery Charges applicable on orders below 500 AED"
+    },
+    "item2": {
+      "title": "Talk to a Designer",
+      "text1": "NAME",
+      "text2": "EMAIL",
+      "text3": "PHONE NUMBER",
+      "text4": "MESSAGE",
+      "text5": "SEND"
+    },
+    "item3": {
+      "text1": "NO REVIEWS",
+      "text2": "WRITE A REVIEW"
+    },
+    "share": "Share",
+    "tweet": "Tweet",
+    "pinit": "Pin It",
+    "design": {
+      "title": "Design Details",
+      "text1": "Colour : White",
+      "text2": "Fabric : Linen",
+      "text3": "Style : Broad Lapel Double Breasted",
+      "text4": "Design : Broad Stripe"
+    },
+    "also": "You may also like"
   }
 }

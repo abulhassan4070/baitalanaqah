@@ -38,6 +38,8 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function Product() {
   const refBottomImage = useRef(false);
@@ -81,10 +83,10 @@ export default function Product() {
 
   const categories = Object.keys(categ);
   const filteredCategories = categories.filter((c) => c !== nameofImage);
-
+  const { t } = useTranslation();
   return (
     <>
-      <Container maxW={"7xl"} mt="20px" p={4} bg="white">
+      <Container maxW={"7xl"} mt="20px" p={4} bg="white" dir={i18n.dir()}>
         <SimpleGrid
           gridTemplateColumns={{
             base: "1fr",
@@ -145,7 +147,7 @@ export default function Product() {
           <VStack gridArea={"right"}>
             <VStack w={"full"} border={"3px double black"} py={4}>
               <Heading pb={4} textTransform={"uppercase"}>
-                {nameofImage}
+                {t("ofShop." + nameofImage)}
               </Heading>
               <Heading fontSize={20} pb={4}>
                 320
@@ -155,12 +157,14 @@ export default function Product() {
                   {"\u20B9"} 10,046{" "}
                 </span>
                 <span>{"\u20B9"} 7,032 </span>
-                <span style={{ color: "red" }}>Save {"\u20B9"} 3,013</span>
+                <span style={{ color: "red" }}>
+                  {t("products.save")} {"\u20B9"} 3,013
+                </span>
               </Heading>
               <Box px="50px" w={"full"}>
                 <Divider />
               </Box>
-              <Text py={4}>Size</Text>
+              <Text py={4}>{t("products.size")}</Text>
               <Box pb={4}>
                 <Box
                   style={{
@@ -176,17 +180,17 @@ export default function Product() {
                 </Box>
               </Box>
               <Box textTransform={"uppercase"} className="buttonStyle">
-                Custom Tailored
+                {t("products.custom")}
               </Box>
               <HStack py={4}>
-                <FaRuler /> <Text>Size Chart</Text>
+                <FaRuler /> <Text>{t("products.sizeChart")}</Text>
               </HStack>
               <HStack pb={4}>
                 <Box textTransform={"uppercase"} className="buttonStyle">
-                  Add to Cart
+                  {t("addToCart")}
                 </Box>
                 <Box textTransform={"uppercase"} className="buttonStyle">
-                  Buy It Now
+                  {t("buyNow")}
                 </Box>
               </HStack>
             </VStack>
@@ -195,27 +199,31 @@ export default function Product() {
               <HStack pr={4} as={Link}>
                 <FaWhatsapp />
                 <Tooltip
-                  label="Message us on +971555825072 Between 10am-10pm and we will get back to you shortly."
+                  label={t("products.whatsapp.tooltip")}
                   bg="white"
                   color="black"
                   border={"1px solid black"}
                   px={2}
                   py={4}
                 >
-                  <Text textDecoration={"underline"}>Whatsapp</Text>
+                  <Text textDecoration={"underline"}>
+                    {t("products.whatsapp.title")}
+                  </Text>
                 </Tooltip>
               </HStack>
               <HStack as={Link}>
                 <FaPhoneAlt />
                 <Tooltip
-                  label="Please contact our Customer Care team from 10am-10pm on phone number +971564662950, or email:sales@vavci.ae"
+                  label={t("products.callUs.tooltip")}
                   bg="white"
                   color="black"
                   border={"1px solid black"}
                   px={2}
                   py={4}
                 >
-                  <Text textDecoration={"underline"}>Call Us</Text>
+                  <Text textDecoration={"underline"}>
+                    {t("products.callUs.title")}
+                  </Text>
                 </Tooltip>
               </HStack>
             </HStack>
@@ -233,7 +241,7 @@ export default function Product() {
                       textAlign="center"
                       textTransform={"uppercase"}
                     >
-                      Shipping
+                      {t("products.item1.title")}
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
@@ -244,28 +252,17 @@ export default function Product() {
                     fontWeight={"bold"}
                     textTransform={"uppercase"}
                   >
-                    We've got your back
+                    {t("products.item1.text1")}
                   </Text>
-                  <Text mt="20px">
-                    IF YOU DON’T LOVE IT, YOU CAN SEND IT BACK. WE WILL GLADLY
-                    ACCEPT UNWORN, UNWASHED, UNALTERED OR UNUSED MERCHANDISE IN
-                    SELLABLE CONDITION WITHIN 14 DAYS OF PURCHASE FOR A CREDIT
-                    NOTE.
-                  </Text>
+                  <Text mt="20px">{t("products.item1.text2")}</Text>
                   <UnorderedList
                     mt={"20px"}
                     listStyleType={"circle"}
                     pl={"20px"}
                   >
-                    <ListItem>Free Shipping on orders above 500 AED</ListItem>
-                    <ListItem>
-                      Free returns within 7 days (excludes custom orders & face
-                      masks)
-                    </ListItem>
-                    <ListItem>
-                      Standard Delivery Charges applicable on orders below 500
-                      AED
-                    </ListItem>
+                    <ListItem>{t("products.item1.list1")}</ListItem>
+                    <ListItem>{t("products.item1.list2")}</ListItem>
+                    <ListItem>{t("products.item1.list3")}</ListItem>
                   </UnorderedList>
                 </AccordionPanel>
               </AccordionItem>
@@ -282,7 +279,7 @@ export default function Product() {
                       textAlign="center"
                       textTransform={"uppercase"}
                     >
-                      Talk to a Designer
+                      {t("products.item2.title")}
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
@@ -295,23 +292,27 @@ export default function Product() {
                           <HStack>
                             <Box>
                               <FormControl id="name">
-                                <FormLabel>NAME</FormLabel>
+                                <FormLabel>
+                                  {t("products.item2.text1")}
+                                </FormLabel>
                                 <Input type="text" />
                               </FormControl>
                             </Box>
                             <Box>
                               <FormControl id="email">
-                                <FormLabel>EMAIL</FormLabel>
+                                <FormLabel>
+                                  {t("products.item2.text2")}
+                                </FormLabel>
                                 <Input type="text" />
                               </FormControl>
                             </Box>
                           </HStack>
                           <FormControl id="phone">
-                            <FormLabel>PHONE NUMBER</FormLabel>
+                            <FormLabel>{t("products.item2.text3")}</FormLabel>
                             <Input type="email" />
                           </FormControl>
                           <FormControl id="message">
-                            <FormLabel>MESSAGE</FormLabel>
+                            <FormLabel>{t("products.item2.text4")}</FormLabel>
                             <Textarea type="text" />
                           </FormControl>
                           <Stack
@@ -328,7 +329,7 @@ export default function Product() {
                                 bg: "blackAlpha.800",
                               }}
                             >
-                              SEND
+                              {t("products.item2.text5")}
                             </Button>
                           </Stack>
                         </Stack>
@@ -367,7 +368,7 @@ export default function Product() {
                         stroke={"gold"}
                         color={"white"}
                       />
-                      NO REVIEWS
+                      {t("products.item3.text1")}
                     </Box>
                     <AccordionIcon />
                   </AccordionButton>
@@ -387,7 +388,7 @@ export default function Product() {
                         bg: "blackAlpha.800",
                       }}
                     >
-                      WRITE A REVIEW
+                      {t("products.item3.text2")}
                     </Button>
                   </Stack>
                 </AccordionPanel>
@@ -407,7 +408,7 @@ export default function Product() {
                 >
                   _
                 </Box>
-                <Text>Share</Text>
+                <Text>{t("products.share")}</Text>
               </HStack>
               <HStack pr={4} className="tweet">
                 <FaTwitter />
@@ -422,7 +423,7 @@ export default function Product() {
                 >
                   _
                 </Box>
-                <Text>Tweet</Text>
+                <Text>{t("products.tweet")}</Text>
               </HStack>
               <HStack className="pin-it">
                 <FaPinterest />
@@ -437,25 +438,25 @@ export default function Product() {
                 >
                   _
                 </Box>
-                <Text>Pin it</Text>
+                <Text>{t("products.pinit")}</Text>
               </HStack>
             </HStack>
           </VStack>
         </SimpleGrid>
-        <Text className="text-inside-line" mt={50}>
+        <Text className="text-inside-line" mt={50} dir="ltr">
           <span style={{ margin: "0 10px", fontSize: "20px" }}>
-            Design Details
+            {t("products.design.title")}
           </span>
         </Text>
         <VStack fontSize={14} mt={4}>
-          <Text>Colour : White</Text>
-          <Text>Fabric : Linen</Text>
-          <Text>Style : Broad Lpel Double Breasted</Text>
-          <Text>Design : Broad Stripe</Text>
+          <Text>{t("products.design.text1")}</Text>
+          <Text>{t("products.design.text2")}</Text>
+          <Text>{t("products.design.text3")}</Text>
+          <Text>{t("products.design.text4")}</Text>
         </VStack>
         <Center my={16}>
           <Heading fontSize={20} textTransform={"uppercase"}>
-            You may also like
+            {t("products.also")}
           </Heading>
         </Center>
         <SimpleGrid
@@ -487,7 +488,7 @@ export default function Product() {
                 </Box>
                 <Center>
                   <h3 style={{ color: "black", fontSize: "20px" }}>
-                    {category}
+                    {t("ofShop." + category).toUpperCase()}
                   </h3>
                 </Center>
                 <br />
