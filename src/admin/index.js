@@ -16,14 +16,11 @@ import { SidebarContext } from 'contexts/SidebarContext';
 import React, { useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routes from 'routes.js';
-import { getAdminDashData } from 'variables/functions';
-
 export default function Dashboard(props) {
   const { ...rest } = props;
   const [fixed] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [user, setUserDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const getActiveRoute = routes => {
     let activeRoute = 'Default Brand Text';
     for (let i = 0; i < routes.length; i++) {
@@ -96,20 +93,13 @@ export default function Dashboard(props) {
   const getRoutes = routes => {
     return routes.map((prop, key) => {
       if (prop.layout === '/admin') {
-        if (
-          user.permissions.includes(
-            prop.layout.replace('/admin', '') + prop.path
-          ) ||
-          user.type === 'Super admin'
-        ) {
-          return (
-            <Route
-              path={prop.layout + prop.path}
-              component={prop.component}
-              key={key}
-            />
-          );
-        }
+        return (
+          <Route
+            path={prop.layout + prop.path}
+            component={prop.component}
+            key={key}
+          />
+        );
       }
       if (prop.collapse) {
         return getRoutes(prop.items);
@@ -121,45 +111,12 @@ export default function Dashboard(props) {
       }
     });
   };
-  React.useEffect(() => {
-    var permission = [];
-    for (let index = 0; index < routes.length; index++) {
-      permission.push({
-        name: routes[index].name,
-        type: routes[index].secondary,
-        path: routes[index].layout + routes[index].path,
-      });
-    }
-    console.log(permission);
-    var username = localStorage.getItem('username');
-    var token = localStorage.getItem('token');
-    if (username === null || token === null) {
-      localStorage.clear();
-      window.location.href = '/auth';
-    } else {
-      getAdminDashData(username, token, 'getAdminDetails').then(data => {
-        if (data.error.code === '#200') {
-          data.data.token = token;
-          if (data.data.permissions === '') {
-            data.data.permissions = [];
-          } else {
-            data.data.permissions = data.data.permissions.split(',');
-          }
-          setUserDetails(data.data);
-          setLoading(false);
-        } else {
-          localStorage.clear();
-          window.location.href = '/auth';
-        }
-      });
-    }
-  }, []);
   const { onOpen } = useDisclosure();
 
   return (
     <Box>
       {!loading ? (
-        <AdminContext.Provider value={{ user, setUserDetails, setLoading }}>
+        <AdminContext.Provider value={{ setLoading }}>
           <SidebarContext.Provider
             value={{
               toggleSidebar,
@@ -185,7 +142,7 @@ export default function Dashboard(props) {
                 <Box>
                   <NavbarAdmin
                     onOpen={onOpen}
-                    logoText={'Mahabhojanam'}
+                    logoText={'Bait Al Anaqah'}
                     brandText={getActiveRoute(routes)}
                     secondary={getActiveNavbar(routes)}
                     message={getActiveNavbarText(routes)}

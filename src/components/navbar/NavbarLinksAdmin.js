@@ -9,7 +9,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { AdminContext } from "contexts/AdminContext";
 import PropTypes from "prop-types";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -22,7 +21,6 @@ export default function NavbarLinksAdmin(props) {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
-  const admin = React.useContext(AdminContext);
   return (
     <Flex
       alignItems="center"
@@ -33,14 +31,14 @@ export default function NavbarLinksAdmin(props) {
       boxShadow={shadow}
     >
       <Text w="100%" fontSize="sm" fontWeight="700" color={textColor}>
-        👋&nbsp; Hey, {admin.user.name} &nbsp;
+        👋&nbsp; Hey, Admin &nbsp;
       </Text>
       <Menu>
         <MenuButton p="0px">
           <Avatar
             _hover={{ cursor: "pointer" }}
             color="white"
-            name={admin.user.name}
+            name="Bait Al Anaqah"
             bg="#11047A"
             size="sm"
             w="40px"
@@ -67,7 +65,7 @@ export default function NavbarLinksAdmin(props) {
               fontWeight="700"
               color={textColor}
             >
-              {admin.user.name}
+              Admin
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

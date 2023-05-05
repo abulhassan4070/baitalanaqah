@@ -17,7 +17,6 @@ import {
 } from '@chakra-ui/react';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import { RiEyeCloseLine } from 'react-icons/ri';
-import { getOtpFromServer, getLoginFromServer } from 'variables/functions';
 import { Redirect } from 'react-router-dom';
 import loginbanner from 'assets/img/login.jpg';
 export default function Auth() {
@@ -31,35 +30,53 @@ export default function Auth() {
   function submitForm(e) {
     e.preventDefault();
     if (otpSent) {
-      getLoginFromServer(username, password, otp).then(data => {
-        if (data.error.code === '#200') {
-          localStorage.setItem('token', data.data.token);
-          localStorage.setItem('username', data.data.username);
-          setLogin(true);
-        } else {
-          toast({
-            title: 'Error',
-            description: data.error.description,
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-          });
-        }
+      // getLoginFromServer(username, password, otp).then(data => {
+      //   if (data.error.code === '#200') {
+      toast({
+        title: 'Success',
+        description: 'Login Successful',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
       });
+      localStorage.setItem('token', '123456789');
+      localStorage.setItem('username', 'admin');
+      setLogin(true);
+      //     localStorage.setItem('token', data.data.token);
+      //     localStorage.setItem('username', data.data.username);
+      //     setLogin(true);
+      //   } else {
+      //     toast({
+      //       title: 'Error',
+      //       description: data.error.description,
+      //       status: 'error',
+      //       duration: 9000,
+      //       isClosable: true,
+      //     });
+      //   }
+      // });
     } else {
-      getOtpFromServer(username, password).then(data => {
-        if (data.error.code === '#200') {
-          setOtpSent(true);
-        } else {
-          toast({
-            title: 'Error',
-            description: data.error.description,
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-          });
-        }
+      // getOtpFromServer(username, password).then(data => {
+      //   if (data.error.code === '#200') {
+
+      toast({
+        title: 'Success',
+        description: 'OTP Sent to your email/phone',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
       });
+      setOtpSent(true);
+      //   } else {
+      //     toast({
+      //       title: 'Error',
+      //       description: data.error.description,
+      //       status: 'error',
+      //       duration: 9000,
+      //       isClosable: true,
+      //     });
+      //   }
+      // });
     }
   }
   const renderRedirect = () => {
@@ -123,6 +140,7 @@ export default function Auth() {
                       onChange={e => setOtp(e.target.value)}
                     />
                   </FormControl>
+                  <br />
                 </>
               )}
               <Stack spacing={6}>

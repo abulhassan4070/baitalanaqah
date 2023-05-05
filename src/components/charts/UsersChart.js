@@ -1,59 +1,53 @@
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import Card from "components/card/Card.js";
-import PieChart from "components/charts/PieChart";
-import { pieChartOptions } from "variables/charts";
-import { VSeparator } from "components/separator/Separator";
-import React from "react";
-import { getAdminDashData } from "variables/functions";
-import { AdminContext } from "contexts/AdminContext";
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import Card from 'components/card/Card.js';
+import PieChart from 'components/charts/PieChart';
+import { pieChartOptions } from 'variables/charts';
+import { VSeparator } from 'components/separator/Separator';
+import React from 'react';
 
 export default function UserChart(props) {
-  const admin = React.useContext(AdminContext);
   const [data, setData] = React.useState({
-    freeusers: 0,
-    paidusers: 0,
+    unverifiedusers: 0,
+    verifiedusers: 0,
     totalusers: 0,
-    deliverypartners: 0,
-    deliveryboys: 0,
-    vendors: 0,
+    tailors: 0,
+    showrooms: 0,
+    orders: 0,
   });
+
   React.useEffect(() => {
-    console.log(admin);
-    getAdminDashData(
-      admin.user.username,
-      admin.user.token,
-      "getDashboardDetails"
-    ).then((data) => {
-      if (data.error.code === "#200") {
-        setData(data.data);
-      } else {
-        console.log(data.error);
-      }
+    setData({
+      unverifiedusers: 28,
+      verifiedusers: 872,
+      totalusers: 900,
+      tailors: 13,
+      showrooms: 3,
+      orders: 329,
     });
-  }, [admin]);
+  }, []);
   const { ...rest } = props;
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = useColorModeValue('secondaryGray.900', 'white');
   return (
     <Card p="20px" align="center" direction="column" w="100%" {...rest}>
       <Flex
-        px={{ base: "0px", "2xl": "10px" }}
+        px={{ base: '0px', '2xl': '10px' }}
         justifyContent="space-between"
         alignItems="center"
         w="100%"
         mb="8px"
       >
         <Text color={textColor} fontSize="md" fontWeight="600" mt="4px">
-          User Activation Status
+          User Report
         </Text>
       </Flex>
-      {data.paidusers > 0 && (
+      {data.unverifiedusers > 0 && (
         <PieChart
           h="100%"
           w="100%"
-          chartData={[data.paidusers, data.freeusers]}
+          chartData={[data.verifiedusers, data.unverifiedusers]}
           chartOptions={pieChartOptions(
-            ["#4318FF", "#6AD2FF"],
-            ["Paid Users", "Free Users"]
+            ['#4318FF', '#6AD2FF'],
+            ['Unverified Users', 'Verified Users']
           )}
         />
       )}
@@ -67,14 +61,14 @@ export default function UserChart(props) {
               fontWeight="700"
               mb="5px"
             >
-              Paid Users
+              Verified Users
             </Text>
           </Flex>
           <Text fontSize="lg" color={textColor} fontWeight="700">
-            {((data.paidusers / data.totalusers) * 100).toFixed(2)}%
+            {((data.verifiedusers / data.totalusers) * 100).toFixed(2)}%
           </Text>
         </Flex>
-        <VSeparator mx={{ base: "60px", xl: "60px", "2xl": "60px" }} />
+        <VSeparator mx={{ base: '60px', xl: '60px', '2xl': '60px' }} />
         <Flex direction="column" py="5px">
           <Flex align="center">
             <Box h="8px" w="8px" bg="#6AD2FF" borderRadius="50%" me="4px" />
@@ -84,11 +78,11 @@ export default function UserChart(props) {
               fontWeight="700"
               mb="5px"
             >
-              Free Users
+              Unverified Users
             </Text>
           </Flex>
           <Text fontSize="lg" color={textColor} fontWeight="700">
-            {((data.freeusers / data.totalusers) * 100).toFixed(2)}%
+            {((data.unverifiedusers / data.totalusers) * 100).toFixed(2)}%
           </Text>
         </Flex>
       </Card>
