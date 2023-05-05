@@ -35,6 +35,8 @@ import { HeaderText } from "widgets/header";
 import { useRef, useState } from "react";
 import "../../assets/css/customize.css";
 import { MdRefresh } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import i18n from "i18nConfig";
 
 export default function CustomizePage() {
   // This ref will be connected to the overlay div
@@ -70,9 +72,11 @@ export default function CustomizePage() {
     setTabIndex(tabIndex + i);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
-      <Container maxW={"7xl"} p="12">
+      <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
         <Breadcrumb
           fontWeight="medium"
           fontSize="sm"
@@ -82,36 +86,51 @@ export default function CustomizePage() {
         >
           <BreadcrumbItem>
             <BreadcrumbLink color="gray.500" style={{ textDecoration: "none" }}>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/">{t("home")}</NavLink>
             </BreadcrumbLink>
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              Customize
+              {t("customize")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
-        <HeaderText title="Customize" subtitle="Customizing suits" />
+        <HeaderText title={t("custom.title")} subtitle={t("custom.subtitle")} />
       </Container>
       <Container maxW={"container.xl"} p={0}>
-        <Flex h={"100vh"} p={0}>
+        <SimpleGrid
+          gridTemplateColumns={{
+            base: "1fr",
+            md: "1fr 1fr",
+          }}
+          gridTemplateRows={{
+            base: "auto",
+            md: "auto",
+          }}
+          gridTemplateAreas={{
+            base: `'left' 'right'`,
+            md: `'left right'`,
+          }}
+          spacing={0}
+        >
           <VStack
             w="full"
             h="full"
             alignItems={"flex-start"}
             border={"1px solid black"}
+            gridArea={"left"}
           >
             <Box position={"relative"} w={"full"} h={"full"}>
               <Box position={"absolute"} top={10} left={10}>
                 <Select variant={"unstyled"} fontSize={20}>
-                  <option value="option1">Abaya</option>
-                  <option value="option2">Suits</option>
-                  <option value="option3">Shirts</option>
-                  <option value="option4">Jackets</option>
-                  <option value="option5">Blazers</option>
-                  <option value="option6">Trousers</option>
+                  <option value="option1">{t("ofShop.abaya")}</option>
+                  <option value="option2">{t("ofShop.suits")}</option>
+                  <option value="option3">{t("ofShop.shirts")}</option>
+                  <option value="option4">{t("ofShop.trousers")}</option>
+                  <option value="option5">{t("ofShop.blazers")}</option>
+                  <option value="option6">{t("ofShop.polo")}</option>
                 </Select>
               </Box>
               <Box
@@ -138,11 +157,13 @@ export default function CustomizePage() {
             alignItems={"flex-start"}
             border={"1px solid black"}
             className="container"
+            gridArea={"right"}
+            dir={i18n.dir()}
           >
             <div ref={overlayRef} className="overlay">
               <Button onClick={closeSearch}>{"<"}</Button>
               <div className="text" onClick={closeSearch}>
-                Hello World
+                {t("custom.close")}
               </div>
             </div>
             <Tabs
@@ -154,18 +175,16 @@ export default function CustomizePage() {
               onChange={handleTabsChange}
             >
               <TabList>
-                <Tab>Fabric</Tab>
-                <Tab>Lining</Tab>
-                <Tab>Jacket</Tab>
-                <Tab>Trousers</Tab>
-                <Tab>Summary</Tab>
+                <Tab>{t("custom.tab1.title")}</Tab>
+                <Tab>{t("custom.tab2.title")}</Tab>
+                <Tab>{t("custom.tab3.title")}</Tab>
+                <Tab>{t("custom.tab4.title")}</Tab>
+                <Tab>{t("custom.tab5.title")}</Tab>
               </TabList>
 
               <TabPanels
                 style={{
-                  position: "sticky",
-                  height: "400px",
-                  top: "calc(100% - 400px)",
+                  height: "500px",
                   overflowY: "auto",
                 }}
                 sx={{
@@ -176,9 +195,9 @@ export default function CustomizePage() {
               >
                 <TabPanel>
                   <Heading fontSize={16} py={4}>
-                    Select your Fabric
+                    {t("custom.tab1.subtitle")}
                   </Heading>
-                  <Button>Filters</Button>
+                  <Button>{t("filters")}</Button>
                   <SimpleGrid columns={2} spacing={2} py={4}>
                     <Box
                       bgImg={require("assets/img/customize/fabric/1.jpeg")}
@@ -224,9 +243,9 @@ export default function CustomizePage() {
                 </TabPanel>
                 <TabPanel>
                   <Heading fontSize={16} py={4}>
-                    Select your Lining
+                    {t("custom.tab2.subtitle")}
                   </Heading>
-                  <Button>Filters</Button>
+                  <Button>{t("filters")}</Button>
                   <SimpleGrid columns={2} spacing={2} py={4}>
                     <Box
                       bgImg={require("assets/img/customize/lining/1.jpeg")}
@@ -272,7 +291,7 @@ export default function CustomizePage() {
                 </TabPanel>
                 <TabPanel>
                   <Heading fontSize={16} py={4}>
-                    Select your Jacket
+                    {t("custom.tab3.subtitle")}
                   </Heading>
                   <Accordion allowToggle defaultIndex={[0]}>
                     <AccordionItem bg={"gray.200"} mb={8}>
@@ -280,10 +299,10 @@ export default function CustomizePage() {
                         <AccordionButton p={4}>
                           <Flex w="full">
                             <Box as="span" flex="1" textAlign="left">
-                              Style
+                              {t("custom.tab3.label1")}
                             </Box>
                             <Box as="span" flex="1" textAlign="right">
-                              2 Button
+                              {t("custom.tab3.text1")}
                             </Box>
                             <AccordionIcon />
                           </Flex>
@@ -296,18 +315,18 @@ export default function CustomizePage() {
                       >
                         <Flex bg={"gray.100"} p={4} onClick={openSearch}>
                           <Box as="span" flex="1" textAlign="left">
-                            Canvas
+                            {t("custom.tab3.label1-1")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Half
+                            {t("custom.tab3.text1-1")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Closure
+                            {t("custom.tab3.label1-2")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            2 Button
+                            {t("custom.tab3.text1-2")}
                           </Box>
                         </Flex>
                       </AccordionPanel>
@@ -318,10 +337,10 @@ export default function CustomizePage() {
                         <AccordionButton p={4}>
                           <Flex w="full">
                             <Box as="span" flex="1" textAlign="left">
-                              Lapel
+                              {t("custom.tab3.label2")}
                             </Box>
                             <Box as="span" flex="1" textAlign="right">
-                              Notch 9 cm / 3 1/2 in (Standard)
+                              {t("custom.tab3.text2")}
                             </Box>
                             <AccordionIcon />
                           </Flex>
@@ -334,26 +353,26 @@ export default function CustomizePage() {
                       >
                         <Flex bg={"gray.100"} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Lapel
+                            {t("custom.tab3.label2-1")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Notch 9 cm / 3 1/2 in (Standard)
+                            {t("custom.tab3.text2-1")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Lapel Buttonhole
+                            {t("custom.tab3.label2-2")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Left
+                            {t("custom.tab3.text2-2")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Lapel Buttonhole Style
+                            {t("custom.tab3.label2-3")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Normal
+                            {t("custom.tab3.text2-3")}
                           </Box>
                         </Flex>
                       </AccordionPanel>
@@ -362,7 +381,7 @@ export default function CustomizePage() {
                 </TabPanel>
                 <TabPanel>
                   <Heading fontSize={16} py={4}>
-                    Select your Trousers
+                    {t("custom.tab4.subtitle")}
                   </Heading>
                   <Accordion allowToggle defaultIndex={[0]}>
                     <AccordionItem bg={"gray.200"} mb={8}>
@@ -370,7 +389,7 @@ export default function CustomizePage() {
                         <AccordionButton p={4}>
                           <Flex w="full">
                             <Box as="span" flex="1" textAlign="left">
-                              Style
+                              {t("custom.tab4.label1")}
                             </Box>
                             <Box as="span" flex="1" textAlign="right"></Box>
                             <AccordionIcon />
@@ -384,18 +403,18 @@ export default function CustomizePage() {
                       >
                         <Flex bg={"gray.100"} p={4} onClick={openSearch}>
                           <Box as="span" flex="1" textAlign="left">
-                            Pleat Quantity
+                            {t("custom.tab4.label1-1")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            1 Pleat
+                            {t("custom.tab4.text1-1")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Pant Crease
+                            {t("custom.tab4.label1-2")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Without Crease
+                            {t("custom.tab4.text1-2")}
                           </Box>
                         </Flex>
                       </AccordionPanel>
@@ -406,10 +425,10 @@ export default function CustomizePage() {
                         <AccordionButton p={4}>
                           <Flex w="full">
                             <Box as="span" flex="1" textAlign="left">
-                              Waistband
+                              {t("custom.tab4.label2")}
                             </Box>
                             <Box as="span" flex="1" textAlign="right">
-                              Belt Loops
+                              {t("custom.tab4.text2")}
                             </Box>
                             <AccordionIcon />
                           </Flex>
@@ -422,34 +441,34 @@ export default function CustomizePage() {
                       >
                         <Flex bg={"gray.100"} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Waistband Closure
+                            {t("custom.tab4.label2-1")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Extension With Button and Hook
+                            {t("custom.tab4.text2-1")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Waistband Style
+                            {t("custom.tab4.label2-2")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Belt Loops
+                            {t("custom.tab4.text2-2")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Suspender Buttons
+                            {t("custom.tab4.label2-3")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            Suspender Buttons
+                            {t("custom.tab4.text2-3")}
                           </Box>
                         </Flex>
                         <Flex bg={"gray.100"} mt={4} p={4}>
                           <Box as="span" flex="1" textAlign="left">
-                            Waistband V-split
+                            {t("custom.tab4.label2-4")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            No waistband V-split
+                            {t("custom.tab4.text2-4")}
                           </Box>
                         </Flex>
                       </AccordionPanel>
@@ -458,12 +477,12 @@ export default function CustomizePage() {
                 </TabPanel>
                 <TabPanel>
                   <Heading fontSize={20} py={4}>
-                    Your Summary
+                    {t("custom.tab5.subtitle")}
                   </Heading>
                   <Heading fontSize={16} py={4}>
-                    FABRIC
+                    {t("custom.tab5.label1")}
                   </Heading>
-                  <Text fontSize={18}>Fabric</Text>
+                  <Text fontSize={18}>{t("custom.tab5.label1Sub")}</Text>
                   <Flex
                     fontSize={14}
                     mt={4}
@@ -472,10 +491,10 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      FABRIC
+                      {t("custom.tab5.label1-1")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      Super 150's Wool Blue Sharkskin
+                      {t("custom.tab5.text1-1")}
                     </Box>
                   </Flex>
                   <Flex
@@ -487,16 +506,16 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      FABRIC ID
+                      {t("custom.tab5.label1-2")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      TGES219
+                      {t("custom.tab5.text1-2")}
                     </Box>
                   </Flex>
                   <Heading fontSize={16} py={4} mt={4}>
-                    LINING
+                    {t("custom.tab5.label2")}
                   </Heading>
-                  <Text fontSize={18}>Lining</Text>
+                  <Text fontSize={18}>{t("custom.tab5.label2Sub")}</Text>
                   <Flex
                     fontSize={14}
                     mt={4}
@@ -505,10 +524,10 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      LINING
+                      {t("custom.tab5.label2-1")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      Silver Solid
+                      {t("custom.tab5.text2-1")}
                     </Box>
                   </Flex>
                   <Flex
@@ -520,16 +539,16 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      LINING ID
+                      {t("custom.tab5.label2-2")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      TR148
+                      {t("custom.tab5.text2-2")}
                     </Box>
                   </Flex>
                   <Heading fontSize={16} py={4} mt={4}>
-                    JACKET
+                    {t("custom.tab5.label3")}
                   </Heading>
-                  <Text fontSize={18}>Style</Text>
+                  <Text fontSize={18}>{t("custom.tab5.label3Sub")}</Text>
                   <Flex
                     fontSize={14}
                     mt={4}
@@ -538,10 +557,10 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      CANVAS
+                      {t("custom.tab5.label3-1")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      Half
+                      {t("custom.tab5.text3-1")}
                     </Box>
                   </Flex>
                   <Flex
@@ -553,26 +572,16 @@ export default function CustomizePage() {
                     borderColor={"gray.200"}
                   >
                     <Box as="span" flex="1" textAlign="left" color={"gray.500"}>
-                      CLOSURE
+                      {t("custom.tab5.label3-2")}
                     </Box>
                     <Box as="span" flex="1" textAlign="right">
-                      2 Button
+                      {t("custom.tab5.text3-2")}
                     </Box>
                   </Flex>
                 </TabPanel>
               </TabPanels>
             </Tabs>
-            <VStack
-              pt={2}
-              width={"full"}
-              style={{
-                position: "sticky",
-                height: "120px",
-                top: "calc(100% - 120px)",
-              }}
-              px={4}
-              borderTop={"1px solid black"}
-            >
+            <VStack py={2} width={"full"} px={4} borderTop={"1px solid black"}>
               <HStack width={"full"}>
                 <HStack
                   as={Button}
@@ -585,7 +594,7 @@ export default function CustomizePage() {
                   }
                 >
                   <ArrowBackIcon />
-                  <span>PREV</span>
+                  <span>{t("custom.prev")}</span>
                 </HStack>
                 <Spacer />
                 <HStack
@@ -598,23 +607,23 @@ export default function CustomizePage() {
                       : {}
                   }
                 >
-                  <span>NEXT</span>
+                  <span>{t("custom.next")}</span>
                   <ArrowForwardIcon />
                 </HStack>
               </HStack>
               <HStack width={"full"}>
                 <HStack float={"left"}>
-                  <span className="buttonStyle">$1,495</span>
-                  <span className="buttonStyle">Shipping info</span>
+                  <span className="buttonStyle">{t("custom.total")}</span>
+                  <span className="buttonStyle">{t("custom.shipInfo")}</span>
                 </HStack>
                 <Spacer />
                 <HStack float={"right"} className="buttonStyle">
-                  <span>ADD TO BAG</span>
+                  <span>{t("addToCart")}</span>
                 </HStack>
               </HStack>
             </VStack>
           </VStack>
-        </Flex>
+        </SimpleGrid>
       </Container>
     </>
   );

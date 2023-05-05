@@ -59,6 +59,7 @@
   "copyright2": "All Rights Reserved",
   "customize": "Customize",
   "cart": "Cart",
+  "filters": "Filters",
 
   "ofShop": {
     "abaya": "Abaya",
@@ -228,5 +229,80 @@
       "text4": "Design : Broad Stripe"
     },
     "also": "You may also like"
+  },
+
+  "custom": {
+    "title": "Customize",
+    "subtitle": "Customizing Suits",
+    "close": "Close",
+    "tab1": {
+      "title": "Fabric",
+      "subtitle": "Select your Fabric"
+    },
+    "tab2": { "title": "Lining", "subtitle": "Select your Lining" },
+    "tab3": {
+      "title": "Jacket",
+      "subtitle": "Select your Jacket",
+      "label1": "Style",
+      "text1": "2 Button",
+      "label1-1": "Canvas",
+      "text1-1": "Half",
+      "label1-2": "Closure",
+      "text1-2": "2 Button",
+      "label2": "Lapel",
+      "text2": "Notch 9 cm / 3 1/2 in (Standard)",
+      "label2-1": "Lapel",
+      "text2-1": "Notch 9 cm / 3 1/2 in (Standard)",
+      "label2-2": "Lapel Buttonhole",
+      "text2-2": "Left",
+      "label2-3": "Lapel Buttonhole Style",
+      "text2-3": "Normal"
+    },
+    "tab4": {
+      "title": "Trousers",
+      "subtitle": "Select your Trousers",
+      "label1": "Style",
+      "text1": "",
+      "label1-1": "Pleat Quantity",
+      "text1-1": "1 Pleat",
+      "label1-2": "Pants Crease",
+      "text1-2": "Without Crease",
+      "label2": "Waistband",
+      "text2": "Belt Loops",
+      "label2-1": "Waistband Closure",
+      "text2-1": "Extension With Button and Hook",
+      "label2-2": "Waistband Style",
+      "text2-2": "Belt Loops",
+      "label2-3": "Suspender Buttons",
+      "text2-3": "Suspender Buttons",
+      "label2-4": "Waistband V-split",
+      "text2-4": "No Waistband V-split"
+    },
+    "tab5": {
+      "title": "Summary",
+      "subtitle": "Your Summary",
+      "label1": "FABRIC",
+      "label1Sub": "Fabric",
+      "label1-1": "FABRIC",
+      "text1-1": "Super 150's Wool Blue Sharkskin",
+      "label1-2": "FABRIC ID",
+      "text1-2": "TGES219",
+      "label2": "LINING",
+      "label2Sub": "Lining",
+      "label2-1": "LINING",
+      "text2-1": "Silver Solid",
+      "label2-2": "LINING ID",
+      "text2-2": "TR148",
+      "label3": "JACKET",
+      "label3Sub": "Style",
+      "label3-1": "CANVAS",
+      "text3-1": "Half",
+      "label3-2": "CLOSURE",
+      "text3-2": "2 Button"
+    },
+    "prev": "PREV",
+    "next": "NEXT",
+    "total": "$1,495",
+    "shipInfo": "Shipping Info"
   }
 }
