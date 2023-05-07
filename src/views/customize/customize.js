@@ -76,7 +76,7 @@ export default function CustomizePage() {
             <Image
               width={"80%"}
               margin={"0 auto"}
-              src={require("assets/customization/img-01.png")}
+              src={require("assets/customization/lapel-1.png")}
               alt="[+]"
             />
           </figure>
@@ -89,7 +89,7 @@ export default function CustomizePage() {
             <Image
               width={"80%"}
               margin={"0 auto"}
-              src={require("assets/customization/img-01-1.png")}
+              src={require("assets/customization/pocket-1.png")}
               alt="[+]"
             />
           </figure>
@@ -102,7 +102,7 @@ export default function CustomizePage() {
             <Image
               width={"80%"}
               margin={"0 auto"}
-              src={require("assets/customization/img-01-2.png")}
+              src={require("assets/customization/button-1.png")}
               alt="[+]"
             />
           </figure>
