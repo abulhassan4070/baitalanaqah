@@ -997,3 +997,6 @@ option {
     font-size: 15px;
   }
 }
+.tg-suitpart {
+  position: absolute;
+}

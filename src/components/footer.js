@@ -21,7 +21,9 @@ import i18n from "i18nConfig";
 
 export default function NavigationFooter() {
   const { t } = useTranslation();
-  return (
+  // get url
+  const url = window.location.href;
+  return url.includes("customize") ? null : (
     <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
       <Box
         position="fixed"
