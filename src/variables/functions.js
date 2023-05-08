@@ -102,3 +102,7 @@ export function deleteOffer(username, token, id) {
     return data.data;
   });
 }
+
+export function stringContains(string, substring) {
+  return string.indexOf(substring) > -1;
+}

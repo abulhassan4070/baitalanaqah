@@ -23,7 +23,9 @@ export default function NavigationFooter() {
   const { t } = useTranslation();
   // get url
   const url = window.location.href;
-  return url.includes("customize") ? null : (
+  return url.indexOf("customize") > -1 ? (
+    <></>
+  ) : (
     <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
       <Box
         position="fixed"
