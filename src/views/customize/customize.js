@@ -19,6 +19,8 @@ import {
   AccordionPanel,
   Text,
   Image,
+  Icon,
+  TabIndicator,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import "../../assets/css/customize.css";
@@ -524,17 +526,38 @@ export default function CustomizePage() {
         </Box>
         <Box dir={i18n.dir()} borderLeft={"1px solid gray"}>
           <Tabs
-            isFitted
             w={"full"}
             h={"max-content"}
             isLazy
             index={tabIndex}
+            _activeLink={{
+              bg: "gray.200",
+            }}
+            variant="soft-rounded"
             onChange={handleTabsChange}
           >
-            <TabList>
+            {" "}
+            <TabIndicator
+              mt="-1.5px"
+              height="2px"
+              bg="black"
+              borderRadius="1px"
+            />
+            <TabList
+              p={4}
+              borderBottom={"1px solid gray"}
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
               <Tab>{t("custom.tab1.title")}</Tab>
+              <Icon as={ArrowForwardIcon} />
               <Tab>{t("custom.tab2.title")}</Tab>
+              <Icon as={ArrowForwardIcon} />
               <Tab>{t("custom.tab3.title")}</Tab>
+              <Icon as={ArrowForwardIcon} />
               <Tab>{t("custom.tab5.title")}</Tab>
             </TabList>
             <TabPanels
@@ -562,18 +585,32 @@ export default function CustomizePage() {
                   spacing={2}
                   py={4}
                 >
-                  <Box
-                    bgImg={fabrics[0].image}
-                    height={"200px"}
-                    bgSize={"cover"}
-                  ></Box>
                   {fabrics.map((fabric, index) => (
-                    <Box
-                      bgImg={fabric.image}
-                      height={"200px"}
-                      bgSize={"cover"}
-                      key={index}
-                    ></Box>
+                    <Box height={"200px"} bgSize={"cover"} key={index}>
+                      <Image
+                        src={fabric.image}
+                        alt="[+]"
+                        height={"calc(100% - 50px)"}
+                        width={"100%"}
+                      />
+                      <Flex
+                        bg={"gray.100"}
+                        p={2}
+                        borderTop={"1px dashed black"}
+                      >
+                        <Text
+                          fontSize={14}
+                          flex="1"
+                          textAlign="left"
+                          noOfLines={1}
+                        >
+                          {fabric.name}
+                        </Text>
+                        <Box as="span" flex="1" textAlign="right">
+                          {fabric.price}
+                        </Box>
+                      </Flex>
+                    </Box>
                   ))}
                 </SimpleGrid>
               </TabPanel>
@@ -591,12 +628,31 @@ export default function CustomizePage() {
                   py={4}
                 >
                   {lining.map((fabric, index) => (
-                    <Box
-                      bgImg={fabric.image}
-                      height={"200px"}
-                      bgSize={"cover"}
-                      key={index}
-                    ></Box>
+                    <Box height={"200px"} bgSize={"cover"} key={index}>
+                      <Image
+                        src={fabric.image}
+                        alt="[+]"
+                        height={"calc(100% - 50px)"}
+                        width={"100%"}
+                      />
+                      <Flex
+                        bg={"gray.100"}
+                        p={2}
+                        borderTop={"1px dashed black"}
+                      >
+                        <Text
+                          fontSize={14}
+                          flex="1"
+                          textAlign="left"
+                          noOfLines={1}
+                        >
+                          {fabric.name}
+                        </Text>
+                        <Box as="span" flex="1" textAlign="right">
+                          {fabric.price}
+                        </Box>
+                      </Flex>
+                    </Box>
                   ))}
                 </SimpleGrid>
               </TabPanel>
@@ -805,7 +861,7 @@ export default function CustomizePage() {
               </TabPanel>
             </TabPanels>
           </Tabs>
-          <HStack width={"full"} p={4}>
+          <HStack width={"full"} p={2}>
             <HStack
               as={Button}
               float={"left"}
@@ -830,11 +886,9 @@ export default function CustomizePage() {
               <ArrowForwardIcon />
             </HStack>
           </HStack>
-          <HStack width={"full"}>
-            <Spacer />
-            <HStack float={"right"} className="buttonStyle">
-              <span>{t("addToCart")}</span>
-            </HStack>
+          <HStack float={"right"} className="buttonStyle" mx={2}>
+            <span>{t("addToCart")}</span>
+            <ArrowForwardIcon />
           </HStack>
         </Box>
       </SimpleGrid>
