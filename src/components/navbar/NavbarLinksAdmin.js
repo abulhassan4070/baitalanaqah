@@ -8,18 +8,19 @@ import {
   MenuList,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react";
-import PropTypes from "prop-types";
-import React from "react";
-import { NavLink } from "react-router-dom";
+} from '@chakra-ui/react';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { getLogoutAPI } from 'variables/functions';
 
 export default function NavbarLinksAdmin(props) {
-  let menuBg = useColorModeValue("white", "navy.800");
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-  const borderColor = useColorModeValue("#E6ECFA", "rgba(135, 140, 189, 0.3)");
+  let menuBg = useColorModeValue('white', 'navy.800');
+  const textColor = useColorModeValue('secondaryGray.900', 'white');
+  const borderColor = useColorModeValue('#E6ECFA', 'rgba(135, 140, 189, 0.3)');
   const shadow = useColorModeValue(
-    "14px 17px 40px 4px rgba(112, 144, 176, 0.18)",
-    "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
+    '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
+    '14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
   );
   return (
     <Flex
@@ -36,7 +37,7 @@ export default function NavbarLinksAdmin(props) {
       <Menu>
         <MenuButton p="0px">
           <Avatar
-            _hover={{ cursor: "pointer" }}
+            _hover={{ cursor: 'pointer' }}
             color="white"
             name="Bait Al Anaqah"
             bg="#11047A"
@@ -70,8 +71,8 @@ export default function NavbarLinksAdmin(props) {
           </Flex>
           <Flex flexDirection="column" p="10px">
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
@@ -80,8 +81,8 @@ export default function NavbarLinksAdmin(props) {
               </NavLink>
             </MenuItem>
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
@@ -90,8 +91,8 @@ export default function NavbarLinksAdmin(props) {
               </NavLink>
             </MenuItem>
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               borderRadius="8px"
               px="14px"
             >
@@ -100,16 +101,17 @@ export default function NavbarLinksAdmin(props) {
               </NavLink>
             </MenuItem>
             <MenuItem
-              _hover={{ bg: "none" }}
-              _focus={{ bg: "none" }}
+              _hover={{ bg: 'none' }}
+              _focus={{ bg: 'none' }}
               color="red.400"
               borderRadius="8px"
               px="14px"
               onClick={() => {
-                localStorage.removeItem("admin");
-                localStorage.removeItem("token");
-                localStorage.removeItem("username");
-                window.location.href = "/auth";
+                getLogoutAPI().then(data => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('userdata');
+                  window.location.href = '/auth';
+                });
               }}
             >
               <Text fontSize="sm">Log out</Text>

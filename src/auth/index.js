@@ -6,77 +6,82 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Icon,
   Image,
   Input,
-  InputGroup,
-  InputRightElement,
+  Radio,
+  RadioGroup,
   SimpleGrid,
   Stack,
   useToast,
 } from '@chakra-ui/react';
-import { MdOutlineRemoveRedEye } from 'react-icons/md';
-import { RiEyeCloseLine } from 'react-icons/ri';
 import { Redirect } from 'react-router-dom';
 import loginbanner from 'assets/img/login.jpg';
+import { getLoginFromServer, getOtpFromServer } from 'variables/functions';
 export default function Auth() {
-  const [show, setShow] = React.useState(false);
   const [otp, setOtp] = React.useState('');
   const [login, setLogin] = React.useState(false);
   const [otpSent, setOtpSent] = React.useState(false);
   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [loginType, setLoginType] = React.useState('email');
   const toast = useToast();
   function submitForm(e) {
     e.preventDefault();
     if (otpSent) {
-      // getLoginFromServer(username, password, otp).then(data => {
-      //   if (data.error.code === '#200') {
-      toast({
-        title: 'Success',
-        description: 'Login Successful',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
+      getLoginFromServer(username, otp).then(data => {
+        var jsonData = data.data;
+        console.log(jsonData);
+        if (jsonData === undefined) {
+          toast({
+            title: 'Error',
+            description: "OTP doesn't match",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          });
+        } else {
+          if (jsonData.role === '2') {
+            toast({
+              title: 'Success',
+              description: 'Login Successful',
+              status: 'success',
+              duration: 9000,
+              isClosable: true,
+            });
+            localStorage.setItem('token', jsonData.token);
+            localStorage.setItem('userdata', JSON.stringify(jsonData));
+            setLogin(true);
+          } else {
+            toast({
+              title: 'Error',
+              description: 'You dont have access to this panel',
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            });
+          }
+        }
       });
-      localStorage.setItem('token', '123456789');
-      localStorage.setItem('username', 'admin');
-      setLogin(true);
-      //     localStorage.setItem('token', data.data.token);
-      //     localStorage.setItem('username', data.data.username);
-      //     setLogin(true);
-      //   } else {
-      //     toast({
-      //       title: 'Error',
-      //       description: data.error.description,
-      //       status: 'success',
-      //       duration: 9000,
-      //       isClosable: true,
-      //     });
-      //   }
-      // });
     } else {
-      // getOtpFromServer(username, password).then(data => {
-      //   if (data.error.code === '#200') {
-
-      toast({
-        title: 'Success',
-        description: 'OTP Sent to your email/phone',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
+      getOtpFromServer(username, loginType).then(data => {
+        if (data.data === '"Success"' || data.data === 'Success') {
+          toast({
+            title: 'Success',
+            description: 'OTP Sent to your ' + loginType,
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+          setOtpSent(true);
+        } else {
+          toast({
+            title: 'Error',
+            description: 'This ' + loginType + " doesn't exist",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          });
+        }
       });
-      setOtpSent(true);
-      //   } else {
-      //     toast({
-      //       title: 'Error',
-      //       description: data.error.description,
-      //       status: 'success',
-      //       duration: 9000,
-      //       isClosable: true,
-      //     });
-      //   }
-      // });
     }
   }
   const renderRedirect = () => {
@@ -92,41 +97,39 @@ export default function Auth() {
         <Flex p={8} flex={1} align={'center'} justify={'center'}>
           <Stack spacing={4} w={'full'} maxW={'md'}>
             <Heading fontSize={'2xl'}>Bait Al Anaqah Admin Panel</Heading>
+            <FormLabel>Login with </FormLabel>
+            <RadioGroup defaultValue={loginType} onChange={()=>{
+              setOtpSent(false);
+              setLoginType(loginType === 'email' ? 'mobile' : 'email');
+            }}>
+              <Stack spacing={5} direction="row">
+                <Radio colorScheme="blue" value="email">
+                  Email
+                </Radio>
+                <Radio colorScheme="blue" value="mobile">
+                  Phone Number
+                </Radio>
+              </Stack>
+            </RadioGroup>
             <form onSubmit={submitForm}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
+              {loginType === 'email' ? (
                 <Input
                   isRequired={true}
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="email address"
                   value={username}
                   onChange={e => setUsername(e.target.value)}
                 />
-              </FormControl>
+              ) : (
+                <Input
+                  isRequired={true}
+                  type="number"
+                  placeholder="phone number with country code"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                />
+              )}
               <br />
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <InputGroup size="md">
-                  <Input
-                    isRequired={true}
-                    placeholder="Enter your password"
-                    type={show ? 'text' : 'password'}
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                  />
-                  <InputRightElement
-                    display="flex"
-                    alignItems="center"
-                    mt="4px"
-                  >
-                    <Icon
-                      _hover={{ cursor: 'pointer' }}
-                      onClick={() => setShow(!show)}
-                      as={show ? RiEyeCloseLine : MdOutlineRemoveRedEye}
-                    />
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
               <br />
               {otpSent && (
                 <>
