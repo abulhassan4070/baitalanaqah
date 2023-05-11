@@ -2,7 +2,6 @@ import React from "react";
 import {
   Box,
   Heading,
-  Link,
   Image,
   Text,
   HStack,
@@ -14,7 +13,7 @@ import {
   BreadcrumbLink,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import blog from "../../assets/img/blog/blog.jpg";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
@@ -111,7 +110,11 @@ const BlogsList = () => {
                 marginLeft={{ base: "0", sm: "5%" }}
                 marginTop="5%"
               >
-                <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
+                <Link
+                  to={`/blogs/blog?id=${item}`}
+                  textDecoration="none"
+                  _hover={{ textDecoration: "none" }}
+                >
                   <Image
                     borderRadius="lg"
                     src={blog}

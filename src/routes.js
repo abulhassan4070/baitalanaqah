@@ -15,6 +15,7 @@ import ShopCategories from "views/shop/helpers/categories";
 import ShopPage from "views/shop/shop";
 import Category from "views/shop/helpers/category";
 import Product from "views/products/helpers/product";
+import BlogView from "views/blog/BlogView";
 
 const sidebarRoutes = [
   {
@@ -44,6 +45,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/blogs",
     component: BlogPage,
+  },
+  {
+    name: "Home",
+    secondary: "Blog",
+    layout: "",
+    path: "/blogs/blog",
+    component: BlogView,
   },
   {
     name: "Home",

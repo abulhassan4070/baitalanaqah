@@ -1798,7 +1798,7 @@ export default function CustomizePage() {
                             {t("custom.tab3.label1")}
                           </Box>
                           <Box as="span" flex="1" textAlign="right">
-                            {t("custom.tab3.text1")}
+                            {t("")}
                           </Box>
                           <AccordionIcon />
                         </Flex>
@@ -2049,7 +2049,7 @@ export default function CustomizePage() {
               float={"right"}
               onClick={() => handleTabsClick(1)}
               style={
-                tabIndex === 3 ? { pointerEvents: "none", opacity: "0.4" } : {}
+                tabIndex === 4 ? { pointerEvents: "none", opacity: "0.4" } : {}
               }
             >
               <span>{t("custom.next")}</span>
