@@ -20,6 +20,7 @@ import AllCategories from 'admin/products/categories';
 import AllProducts from 'admin/products/products';
 import UsersHistory from 'admin/users/users';
 import Contact from 'admin/contact/contact';
+import CreateCategory from 'admin/products/createcategory';
 
 const sidebarRoutes = [
   {
@@ -68,6 +69,14 @@ const sidebarRoutes = [
     path: '/categories',
     icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
     component: AllCategories,
+  },
+  {
+    name: 'Add Category',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/addcategory',
+    icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
+    component: CreateCategory,
   },
   {
     name: 'Tailors',

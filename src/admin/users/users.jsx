@@ -1,11 +1,4 @@
-import {
-  Flex,
-  Text,
-  Box,
-  Button,
-  Icon,
-  SimpleGrid,
-} from '@chakra-ui/react';
+import { Flex, Text, Box, Button, Icon, SimpleGrid } from '@chakra-ui/react';
 import React from 'react';
 
 import Card from 'components/card/Card';
@@ -13,12 +6,21 @@ import DataTable from 'react-data-table-component';
 import { MdViewAgenda } from 'react-icons/md';
 import MiniStatistics from 'components/card/MiniStatistics';
 import { IoCash } from 'react-icons/io5';
-import { brandColor } from 'variables/constants';
+import { apiUrl, brandColor } from 'variables/constants';
 import IconBox from 'components/icons/IconBox';
 import { boxBg } from 'variables/constants';
 import { SearchBar } from 'components/navbar/searchBar/SearchBar';
+import axios from 'axios';
 
 export default function UsersHistory() {
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [search, setSearch] = React.useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [totalRows, setTotalRows] = React.useState(0);
+  const [perPage, setPerPage] = React.useState(10);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const columns = [
     {
       name: 'S.No',
@@ -39,6 +41,103 @@ export default function UsersHistory() {
     },
   ];
 
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+  const handlePerRowsChange = async (newPerPage, page) => {
+    setPerPage(newPerPage);
+  };
+
+  const fetchUserDetails = async () => {
+    setLoading(true);
+
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: apiUrl() + 'getDataTableForUserList',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJc3N1ZXIgb2YgdGhlIEpXVCIsImF1ZCI6IkF1ZGllbmNlIHRoYXQgdGhlIEpXVCIsInN1YiI6IlN1YmplY3Qgb2YgdGhlIEpXVCIsImlhdCI6MTY4MzgxMzI2NCwiZXhwIjoxNzE1MzczMjY0LCJlbWFpbCI6Iml0QGJhaXRhbGFuYXFhaC5jb20ifQ.X7Oti8UqOaHgvqVMvmR91ujq4ORjSnAHNoZlcNv3Xz0',
+      },
+      data: JSON.stringify({
+        page: currentPage,
+        start: '0',
+        length: perPage,
+        columns: [
+          {
+            data: 'userId',
+            name: '',
+            searchable: true,
+            orderable: true,
+            search: {
+              value: '',
+              regex: false,
+            },
+          },
+          {
+            data: 'fullName',
+            name: '',
+            searchable: true,
+            orderable: true,
+            search: {
+              value: '',
+              regex: false,
+            },
+          },
+          {
+            data: 'email',
+            name: '',
+            searchable: true,
+            orderable: true,
+            search: {
+              value: '',
+              regex: false,
+            },
+          },
+          {
+            data: 'mobile',
+            name: '',
+            searchable: true,
+            orderable: true,
+            search: {
+              value: '',
+              regex: false,
+            },
+          },
+        ],
+        order: [
+          {
+            column: 0,
+            dir: 'asc',
+          },
+        ],
+        search: {
+          value: search,
+          regex: false,
+        },
+      }),
+    };
+
+    axios
+      .request(config)
+      .then(response => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    setLoading(false);
+  };
+
+  const onclickable = async string => {
+    setSearch(string);
+  };
+  React.useEffect(() => {
+    fetchUserDetails();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, perPage, search]);
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
       <SimpleGrid
@@ -88,12 +187,18 @@ export default function UsersHistory() {
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
             Users Details
           </Text>
-          <SearchBar id="walletSearch" />
+          <SearchBar id="walletSearch" onclickable={onclickable} />
         </Flex>
         <DataTable
           columns={columns}
-          data={[]}
+          data={data}
+          progressPending={loading}
           pagination
+          paginationServer
+          paginationTotalRows={totalRows}
+          paginationDefaultPage={currentPage}
+          onChangeRowsPerPage={handlePerRowsChange}
+          onChangePage={handlePageChange}
           paginationRowsPerPageOptions={[10, 50, 100, 500]}
         />
       </Card>

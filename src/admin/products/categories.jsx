@@ -1,17 +1,30 @@
-import {
-  Flex,
-  Text,
-  Box,
-  Button,
-  Icon,
-} from '@chakra-ui/react';
+import { Flex, Text, Box, Button, Icon } from '@chakra-ui/react';
 import React from 'react';
 
 import Card from 'components/card/Card';
 import DataTable from 'react-data-table-component';
-import { MdViewAgenda } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
+import { apiUrl } from 'variables/constants';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-export default function AllCategories() {
+export default function UsersHistory() {
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const fetchUserDetails = async () => {
+    setLoading(true);
+
+    const response = await axios.get(`${apiUrl()}getProductCategories`);
+    setData(response.data);
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    fetchUserDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // [{"categoryId":"3","categoryName":"Jackets"},{"categoryId":"2","categoryName":"Jackets"},{"categoryId":"1","categoryName":"Suits"}]
   const columns = [
     {
       name: 'S.No',
@@ -19,20 +32,25 @@ export default function AllCategories() {
       selector: (row, index) => index + 1,
     },
     {
-      name: 'Name',
-      selector: row => row.name,
+      name: 'ID',
+      selector: row => row.categoryId,
       sortable: true,
     },
     {
-      name: 'Product Name',
-      selector: row => row.product_name,
+      name: 'Name',
+      selector: row => row.categoryName,
       sortable: true,
     },
     {
       cell: row => (
-        <Button colorScheme="blue" mr="2">
-          <Icon as={MdViewAgenda} />
-        </Button>
+        <>
+          <Button colorScheme="blue" mr="2">
+            <Icon as={MdEdit} />
+          </Button>
+          <Button colorScheme="red" mr="2">
+            <Icon as={MdDelete} />
+          </Button>
+        </>
       ),
     },
   ];
@@ -44,10 +62,16 @@ export default function AllCategories() {
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
             Categories List
           </Text>
+          <Link to={'/admin/addcategory'}>
+            <Button colorScheme="blue" mr="2">
+              Add New
+            </Button>
+          </Link>
         </Flex>
         <DataTable
           columns={columns}
-          data={[]}
+          data={data}
+          progressPending={loading}
           pagination
           paginationRowsPerPageOptions={[10, 50, 100, 500]}
         />
