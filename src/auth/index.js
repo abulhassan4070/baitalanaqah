@@ -98,10 +98,13 @@ export default function Auth() {
           <Stack spacing={4} w={'full'} maxW={'md'}>
             <Heading fontSize={'2xl'}>Bait Al Anaqah Admin Panel</Heading>
             <FormLabel>Login with </FormLabel>
-            <RadioGroup defaultValue={loginType} onChange={()=>{
-              setOtpSent(false);
-              setLoginType(loginType === 'email' ? 'mobile' : 'email');
-            }}>
+            <RadioGroup
+              defaultValue={loginType}
+              onChange={() => {
+                setOtpSent(false);
+                setLoginType(loginType === 'email' ? 'mobile' : 'email');
+              }}
+            >
               <Stack spacing={5} direction="row">
                 <Radio colorScheme="blue" value="email">
                   Email
@@ -154,7 +157,14 @@ export default function Auth() {
             </form>
           </Stack>
         </Flex>
-        <Flex flex={1} height={'100vh'} width={'50vw'}>
+        <Flex
+          flex={1}
+          height={'100vh'}
+          width={{
+            base: '100vw',
+            md: '50vw',
+          }}
+        >
           <Image
             alt={'Login Image'}
             objectFit={'cover'}

@@ -29,7 +29,23 @@ export default function UsersHistory() {
     },
     {
       name: 'Name',
-      selector: row => row.name,
+      selector: row => row.fullName,
+      sortable: true,
+    },
+
+    {
+      name: 'email',
+      selector: row => row.email,
+      sortable: true,
+    },
+    {
+      name: 'mobile',
+      selector: row => row.mobile,
+      sortable: true,
+    },
+    {
+      name: 'created at',
+      selector: row => row.dateCreated.split(' ')[0],
       sortable: true,
     },
     {
@@ -58,7 +74,7 @@ export default function UsersHistory() {
       headers: {
         'Content-Type': 'application/json',
         Authorization:
-          'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJc3N1ZXIgb2YgdGhlIEpXVCIsImF1ZCI6IkF1ZGllbmNlIHRoYXQgdGhlIEpXVCIsInN1YiI6IlN1YmplY3Qgb2YgdGhlIEpXVCIsImlhdCI6MTY4MzgxMzI2NCwiZXhwIjoxNzE1MzczMjY0LCJlbWFpbCI6Iml0QGJhaXRhbGFuYXFhaC5jb20ifQ.X7Oti8UqOaHgvqVMvmR91ujq4ORjSnAHNoZlcNv3Xz0',
+          'Bearer ' + localStorage.getItem('token'),
       },
       data: JSON.stringify({
         page: currentPage,
@@ -122,7 +138,12 @@ export default function UsersHistory() {
     axios
       .request(config)
       .then(response => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
+        var jsonData = response.data.data;
+        var totalRecords = response.data.recordsTotal;
+        setData(jsonData);
+        setTotalRows(totalRecords);
+        setLoading(false);
       })
       .catch(error => {
         console.log(error);
