@@ -24,7 +24,6 @@ export default function UsersHistory() {
     fetchUserDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // [{"categoryId":"3","categoryName":"Jackets"},{"categoryId":"2","categoryName":"Jackets"},{"categoryId":"1","categoryName":"Suits"}]
   const columns = [
     {
       name: 'S.No',

@@ -39,7 +39,7 @@ export default function Auth() {
             isClosable: true,
           });
         } else {
-          if (jsonData.role === '2') {
+          if (jsonData.role === '1' || jsonData.role === '2') {
             toast({
               title: 'Success',
               description: 'Login Successful',

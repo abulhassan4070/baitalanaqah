@@ -3,7 +3,6 @@ import Blogs from 'admin/blogs/blogs';
 import ChangePassword from 'admin/dashboard/change-password';
 import MainDashboard from 'admin/dashboard/dashboard';
 import Profile from 'admin/dashboard/profile';
-import Tailors from 'admin/tailors/tailors';
 import OrderHistory from 'admin/orders/orders';
 import { FaCartPlus, FaNewspaper, FaUser } from 'react-icons/fa';
 import { IoBag, IoChatbox } from 'react-icons/io5';
@@ -12,10 +11,7 @@ import {
   MdOutlineDashboard,
   MdPerson,
   MdSettings,
-  MdSupport,
-  MdWork,
 } from 'react-icons/md';
-import Collaborations from 'admin/collaborations/collaborations';
 import AllCategories from 'admin/products/categories';
 import AllProducts from 'admin/products/products';
 import UsersHistory from 'admin/users/users';
@@ -77,23 +73,24 @@ const sidebarRoutes = [
     path: '/addcategory',
     icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
     component: CreateCategory,
+    isHide: true,
   },
-  {
-    name: 'Tailors',
-    secondary: 'Management',
-    layout: '/admin',
-    path: '/tailors',
-    icon: <Icon as={MdWork} width="20px" height="20px" color="inherit" />,
-    component: Tailors,
-  },
-  {
-    name: 'Collaborations',
-    secondary: 'Views',
-    layout: '/admin',
-    path: '/collaborations',
-    icon: <Icon as={MdSupport} width="20px" height="20px" color="inherit" />,
-    component: Collaborations,
-  },
+  // {
+  //   name: 'Tailors',
+  //   secondary: 'Management',
+  //   layout: '/admin',
+  //   path: '/tailors',
+  //   icon: <Icon as={MdWork} width="20px" height="20px" color="inherit" />,
+  //   component: Tailors,
+  // },
+  // {
+  //   name: 'Collaborations',
+  //   secondary: 'Views',
+  //   layout: '/admin',
+  //   path: '/collaborations',
+  //   icon: <Icon as={MdSupport} width="20px" height="20px" color="inherit" />,
+  //   component: Collaborations,
+  // },
   {
     name: 'Blogs',
     secondary: 'Views',

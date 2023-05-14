@@ -1,16 +1,12 @@
-import { Flex, Text, Box, Button, Icon, SimpleGrid } from '@chakra-ui/react';
+import { Flex, Text, Box, Button, Icon,  } from '@chakra-ui/react';
 import React from 'react';
 
 import Card from 'components/card/Card';
 import DataTable from 'react-data-table-component';
 import { MdViewAgenda } from 'react-icons/md';
-import MiniStatistics from 'components/card/MiniStatistics';
-import { IoCash } from 'react-icons/io5';
-import { apiUrl, brandColor } from 'variables/constants';
-import IconBox from 'components/icons/IconBox';
-import { boxBg } from 'variables/constants';
 import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import axios from 'axios';
+import { apiUrl } from 'variables/constants';
 
 export default function UsersHistory() {
   // eslint-disable-next-line no-unused-vars
@@ -161,48 +157,6 @@ export default function UsersHistory() {
   }, [currentPage, perPage, search]);
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
-      <SimpleGrid
-        columns={{ base: 1, md: 2, lg: 3, '2xl': 6 }}
-        gap="20px"
-        mb="20px"
-      >
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
-            />
-          }
-          name="Verified"
-          value="233"
-        />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
-            />
-          }
-          name="Unverified"
-          value="25"
-        />
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w="56px"
-              h="56px"
-              bg={boxBg}
-              icon={<Icon w="32px" h="32px" as={IoCash} color={brandColor} />}
-            />
-          }
-          name="All Users"
-          value="258"
-        />
-      </SimpleGrid>
       <Card direction="column" w="100%" px="0px">
         <Flex px="25px" justify="space-between" mb="20px" align="center">
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
