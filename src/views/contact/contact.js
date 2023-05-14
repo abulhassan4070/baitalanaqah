@@ -19,7 +19,6 @@ import {
 
 import { NavLink } from "react-router-dom";
 import { paigeColor } from "variables/constants";
-import { getNewContactFromServer } from "variables/functions";
 import { HeaderText } from "widgets/header";
 
 import {
@@ -33,6 +32,8 @@ import { BsChat, BsPerson } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
 import { useState } from "react";
+import { apiUrl } from "variables/constants";
+import axios from "axios";
 export default function ContactPage() {
   const { t } = useTranslation();
   const toast = useToast();
@@ -45,54 +46,100 @@ export default function ContactPage() {
     var validEmailRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (emailId.length === 0) {
-      alert("Email should not be blank");
+      toast({
+        description: "Email should not be blank",
+        title: "Sorry",
+        status: "error",
+        isClosable: true,
+      });
       return;
     } else {
       if (!emailId.match(validEmailRegex)) {
-        alert("Email should be a valid one");
+        toast({
+          description: "Email should be a valid one",
+          title: "Sorry",
+          status: "error",
+          isClosable: true,
+        });
         return;
       }
     }
     if (contactName.length === 0) {
-      alert("Name should not be blank");
+      toast({
+        description: "Name should not be blank",
+        title: "Sorry",
+        status: "error",
+        isClosable: true,
+      });
       return;
     }
     if (subject.length === 0) {
-      alert("Subject should not be blank");
+      toast({
+        description: "Subject should not be blank",
+        title: "Sorry",
+        status: "error",
+        isClosable: true,
+      });
       return;
     }
     if (message.length === 0) {
-      alert("Message should not be blank");
+      toast({
+        description: "Message should not be blank",
+        title: "Sorry",
+        status: "error",
+        isClosable: true,
+      });
       return;
     }
-    /*
-    alert(
-      `name = ${contactName}\nemail = ${emailId}\nsubject = ${subject}\nmessage = ${message} `
-    );
-    */
-    getNewContactFromServer(contactName, emailId, subject, message).then(
-      (data) => {
-        var jsonData = data.data;
-        console.log(jsonData);
-        if (jsonData === undefined) {
-          toast({
-            title: "Error",
-            description: "Not added the contact",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
-        } else {
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: apiUrl() + "contactForm",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {
+        contactName: contactName,
+        emailId: emailId,
+        subject: subject,
+        message: message,
+      },
+    };
+    axios
+      .request(config)
+      .then((response) => {
+        if (response.status === 200) {
           toast({
             title: "Success",
-            description: "Successfully added the contact",
+            description: "Your message has been sent successfully",
             status: "success",
             duration: 9000,
             isClosable: true,
           });
+          setContactName("");
+          setEmailId("");
+          setMessage("");
+          setSubject("");
+        } else {
+          toast({
+            title: "Error",
+            description: "Your message has not been sent",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
         }
-      }
-    );
+      })
+      .catch((error) => {
+        toast({
+          title: "Error",
+          description: "Your message has not been sent",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        console.log(error);
+      });
   };
   return (
     <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
@@ -182,6 +229,7 @@ export default function ContactPage() {
                   <Input
                     type="text"
                     size="md"
+                    placeholder="Please enter your name"
                     value={contactName}
                     onChange={(event) =>
                       setContactName(event.currentTarget.value)
@@ -198,6 +246,7 @@ export default function ContactPage() {
                   />
                   <Input
                     type="email"
+                    placeholder="Please enter your email"
                     size="md"
                     value={emailId}
                     onChange={(event) => setEmailId(event.currentTarget.value)}
@@ -207,16 +256,6 @@ export default function ContactPage() {
             </SimpleGrid>
             <br />
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
-              <FormControl id="phone">
-                <FormLabel>{t("ofContact.contactForm.phone")}</FormLabel>
-                <InputGroup borderColor="#E0E1E7">
-                  <InputLeftElement
-                    pointerEvents="none"
-                    children={<MdPhone color="gray.800" />}
-                  />
-                  <Input type="tel" size="md" />
-                </InputGroup>
-              </FormControl>
               <FormControl id="subject">
                 <FormLabel>{t("ofContact.contactForm.subject")}</FormLabel>
                 <InputGroup borderColor="#E0E1E7">
@@ -228,6 +267,7 @@ export default function ContactPage() {
                     type="text"
                     size="md"
                     value={subject}
+                    placeholder="Please enter your subject"
                     onChange={(event) => setSubject(event.currentTarget.value)}
                   />
                 </InputGroup>
@@ -242,7 +282,7 @@ export default function ContactPage() {
                 _hover={{
                   borderRadius: "gray.300",
                 }}
-                placeholder={t("ofContact.contactForm.message")}
+                placeholder="Please enter your message"
                 value={message}
                 onChange={(event) => setMessage(event.currentTarget.value)}
               />

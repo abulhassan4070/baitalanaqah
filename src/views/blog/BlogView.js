@@ -7,17 +7,55 @@ import {
   Container,
   Heading,
   Image,
-  SimpleGrid,
   Text,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { BlogAuthor } from "./blog";
+import axios from "axios";
+import { apiUrl } from "variables/constants";
 
 function BlogView() {
+  const [data, setData] = React.useState({
+    blogTitle: "",
+  });
+  const toast = useToast();
   const { t } = useTranslation();
+  const location = useLocation();
+  React.useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    let config = {
+      method: "get",
+      url: apiUrl() + "getBlogById/" + id,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .request(config)
+      .then((response) => {
+        if (response.status === 200) {
+          setData(response.data);
+        } else {
+          toast({
+            title: "Error",
+            description: "Something went wrong",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Container maxW={"7xl"} p="12">
       <Breadcrumb
@@ -41,64 +79,35 @@ function BlogView() {
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            {t("blog")}
+            {data.blogTitle}
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
 
       <Center>
-        <VStack
-          width={{ base: "100%", md: "75%" }}
-          marginLeft={{ base: "0", md: "5%" }}
-          marginTop="5%"
-        >
-          <Heading paddingBottom="10">{t("ofBlogs.article.title")}</Heading>
-          <Image
-            borderRadius="lg"
-            src={require("../../assets/img/blog/blog.jpg")}
-            alt="blog"
-            objectFit="contain"
-          />
-          <Text as="p" paddingTop={10} fontSize="lg">
-            {t("ofBlogs.article.text")}
-          </Text>
-          <BlogAuthor
-            name={t("ofBlogs.article.name")}
-            date={new Date("2021-04-06T19:01:27Z")}
-          />
-          <Heading pt="60px">You may also like</Heading>
-          <SimpleGrid
-            gridTemplateColumns={{
-              base: "1fr",
-              md: "1fr 1fr 1fr",
-            }}
-            gridTemplateRows={{
-              base: "auto",
-              md: "auto",
-            }}
-            spacing={4}
-            pt="40px"
+        {data.blogImage && (
+          <VStack
+            width={{ base: "100%", md: "75%" }}
+            marginLeft={{ base: "0", md: "5%" }}
+            marginTop="5%"
           >
+            <Heading paddingBottom="10">{data.blogTitle}</Heading>
             <Image
               borderRadius="lg"
-              src={require("../../assets/img/blog/blog.jpg")}
+              src={data.blogImage}
               alt="blog"
               objectFit="contain"
             />
-            <Image
-              borderRadius="lg"
-              src={require("../../assets/img/blog/blog.jpg")}
-              alt="blog"
-              objectFit="contain"
+            <Text as="p" paddingTop={10} fontSize="lg">
+              {data.blogContent}
+            </Text>
+            <BlogAuthor
+              name={data.fullName}
+              date={new Date(data.dateCreated)}
             />
-            <Image
-              borderRadius="lg"
-              src={require("../../assets/img/blog/blog.jpg")}
-              alt="blog"
-              objectFit="contain"
-            />
-          </SimpleGrid>
-        </VStack>
+            <Heading pt="60px">You may also like</Heading>
+          </VStack>
+        )}
       </Center>
     </Container>
   );
