@@ -14,10 +14,12 @@ import {
   InputGroup,
   InputLeftElement,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 
 import { NavLink } from "react-router-dom";
 import { paigeColor } from "variables/constants";
+import { getNewContactFromServer } from "variables/functions";
 import { HeaderText } from "widgets/header";
 
 import {
@@ -30,8 +32,68 @@ import {
 import { BsChat, BsPerson } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
+import { useState } from "react";
 export default function ContactPage() {
   const { t } = useTranslation();
+  const toast = useToast();
+  const [contactName, setContactName] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [message, setMessage] = useState("");
+  const [subject, setSubject] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    var validEmailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (emailId.length === 0) {
+      alert("Email should not be blank");
+      return;
+    } else {
+      if (!emailId.match(validEmailRegex)) {
+        alert("Email should be a valid one");
+        return;
+      }
+    }
+    if (contactName.length === 0) {
+      alert("Name should not be blank");
+      return;
+    }
+    if (subject.length === 0) {
+      alert("Subject should not be blank");
+      return;
+    }
+    if (message.length === 0) {
+      alert("Message should not be blank");
+      return;
+    }
+    /*
+    alert(
+      `name = ${contactName}\nemail = ${emailId}\nsubject = ${subject}\nmessage = ${message} `
+    );
+    */
+    getNewContactFromServer(contactName, emailId, subject, message).then(
+      (data) => {
+        var jsonData = data.data;
+        console.log(jsonData);
+        if (jsonData === undefined) {
+          toast({
+            title: "Error",
+            description: "Not added the contact",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "Success",
+            description: "Successfully added the contact",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
+      }
+    );
+  };
   return (
     <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
       <Breadcrumb
@@ -108,70 +170,91 @@ export default function ContactPage() {
       />
       <Box p={4} width={{ base: "100%", md: "100%" }}>
         <Box m={8} color="#0B0E3F">
-          <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
+          <form>
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
+              <FormControl id="name">
+                <FormLabel>{t("ofContact.contactForm.name")}</FormLabel>
+                <InputGroup borderColor="#E0E1E7">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<BsPerson color="gray.800" />}
+                  />
+                  <Input
+                    type="text"
+                    size="md"
+                    value={contactName}
+                    onChange={(event) =>
+                      setContactName(event.currentTarget.value)
+                    }
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl id="name">
+                <FormLabel>{t("ofContact.contactForm.email")}</FormLabel>
+                <InputGroup borderColor="#E0E1E7">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<MdOutlineEmail color="gray.800" />}
+                  />
+                  <Input
+                    type="email"
+                    size="md"
+                    value={emailId}
+                    onChange={(event) => setEmailId(event.currentTarget.value)}
+                  />
+                </InputGroup>
+              </FormControl>
+            </SimpleGrid>
+            <br />
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
+              <FormControl id="phone">
+                <FormLabel>{t("ofContact.contactForm.phone")}</FormLabel>
+                <InputGroup borderColor="#E0E1E7">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<MdPhone color="gray.800" />}
+                  />
+                  <Input type="tel" size="md" />
+                </InputGroup>
+              </FormControl>
+              <FormControl id="subject">
+                <FormLabel>{t("ofContact.contactForm.subject")}</FormLabel>
+                <InputGroup borderColor="#E0E1E7">
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<BsChat color="gray.800" />}
+                  />
+                  <Input
+                    type="text"
+                    size="md"
+                    value={subject}
+                    onChange={(event) => setSubject(event.currentTarget.value)}
+                  />
+                </InputGroup>
+              </FormControl>
+            </SimpleGrid>
+            <br />
             <FormControl id="name">
-              <FormLabel>{t("ofContact.contactForm.name")}</FormLabel>
-              <InputGroup borderColor="#E0E1E7">
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<BsPerson color="gray.800" />}
-                />
-                <Input type="text" size="md" />
-              </InputGroup>
+              <FormLabel>{t("ofContact.contactForm.message")}</FormLabel>
+              <Textarea
+                borderColor="gray.300"
+                rows={5}
+                _hover={{
+                  borderRadius: "gray.300",
+                }}
+                placeholder={t("ofContact.contactForm.message")}
+                value={message}
+                onChange={(event) => setMessage(event.currentTarget.value)}
+              />
             </FormControl>
-            <FormControl id="name">
-              <FormLabel>{t("ofContact.contactForm.email")}</FormLabel>
-              <InputGroup borderColor="#E0E1E7">
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<MdOutlineEmail color="gray.800" />}
-                />
-                <Input type="text" size="md" />
-              </InputGroup>
-            </FormControl>
-          </SimpleGrid>
-          <br />
-          <SimpleGrid columns={{ base: 1, md: 2 }} gap={5}>
-            <FormControl id="phone">
-              <FormLabel>{t("ofContact.contactForm.phone")}</FormLabel>
-              <InputGroup borderColor="#E0E1E7">
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<MdPhone color="gray.800" />}
-                />
-                <Input type="text" size="md" />
-              </InputGroup>
-            </FormControl>
-            <FormControl id="subject">
-              <FormLabel>{t("ofContact.contactForm.subject")}</FormLabel>
-              <InputGroup borderColor="#E0E1E7">
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<BsChat color="gray.800" />}
-                />
-                <Input type="text" size="md" />
-              </InputGroup>
-            </FormControl>
-          </SimpleGrid>
-          <br />
-          <FormControl id="name">
-            <FormLabel>{t("ofContact.contactForm.message")}</FormLabel>
-            <Textarea
-              borderColor="gray.300"
-              rows={5}
-              _hover={{
-                borderRadius: "gray.300",
-              }}
-              placeholder={t("ofContact.contactForm.message")}
-            />
-          </FormControl>
-          <br />
+            <br />
 
-          <FormControl id="name" float="right">
-            <Box className="buttonStyle" color="white">
-              {t("ofContact.contactForm.send")}
-            </Box>
-          </FormControl>
+            <FormControl id="name" float="right">
+              <Box className="buttonStyle" color="white" onClick={handleSubmit}>
+                {t("ofContact.contactForm.send")}
+              </Box>
+            </FormControl>
+          </form>
         </Box>
       </Box>
     </Container>
