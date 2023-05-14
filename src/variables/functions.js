@@ -52,47 +52,27 @@ export function getLoginFromServer(username, otp) {
     });
 }
 
-export function getAdminDashData(username, token, mode, extradata = null) {
-  var formData = new FormData();
-  formData.append('action', 'dashboard');
-  formData.append('username', username);
-  formData.append('token', token);
-  formData.append('mode', mode);
-  if (extradata) {
-    var keys = Object.keys(extradata);
-    for (var i = 0; i < keys.length; i++) {
-      formData.append(keys[i], extradata[keys[i]]);
-    }
-  }
-  return axios.post(apiUrl(), formData).then(data => {
-    console.log(data);
-    return data.data;
-  });
-}
-
-export function setAdminDashData(username, token, mode, data) {
-  var formData = new FormData();
-  formData.append('action', 'dashboard');
-  formData.append('username', username);
-  formData.append('token', token);
-  formData.append('mode', mode);
-  formData.append('data', JSON.stringify(data));
-  return axios.post(apiUrl(), formData).then(data => {
-    console.log(data);
-    return data.data;
-  });
-}
-
 export function uploadImage(imagefile) {
-  var filename = imagefile.name;
+  // authorization
+  var headers = {
+    Authorization: localStorage.getItem('token'),
+    'Content-Type': 'multipart/form-data',
+
+  };
+  console.log(imagefile);
   var formData = new FormData();
-  formData.append('action', 'uploadImage');
-  formData.append('filename', filename);
-  formData.append('image', imagefile);
-  return axios.post(apiUrl(), formData).then(data => {
-    console.log(data);
-    return data.data.data.image;
-  });
+  formData.append('files[]', imagefile);
+
+  return axios
+    .post(apiUrl() + 'uploadProductImages', formData, { headers: headers })
+    .then(data => {
+      console.log(data);
+      return data;
+    })
+    .catch(err => {
+      console.log(err.response);
+      return err.response;
+    });
 }
 export function uploadPdf(imagefile) {
   var filename = imagefile.name;

@@ -71,7 +71,7 @@ export default function Blogs() {
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
             Categories List
           </Text>
-          <Link to={'/admin/addcategory'}>
+          <Link to={'/admin/addblog'}>
             <Button colorScheme="blue" mr="2">
               Add New
             </Button>

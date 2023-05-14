@@ -5,14 +5,13 @@ import Card from 'components/card/Card';
 import DataTable from 'react-data-table-component';
 import { MdViewAgenda } from 'react-icons/md';
 import { apiUrl } from 'variables/constants';
-import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function AllProducts() {
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [search, setSearch] = React.useState('');
   // eslint-disable-next-line no-unused-vars
   const [totalRows, setTotalRows] = React.useState(0);
   const [perPage, setPerPage] = React.useState(10);
@@ -124,7 +123,7 @@ export default function AllProducts() {
           },
         ],
         search: {
-          value: search,
+          value: '',
           regex: false,
         },
       }),
@@ -147,13 +146,10 @@ export default function AllProducts() {
     setLoading(false);
   };
 
-  const onclickable = async string => {
-    setSearch(string);
-  };
   React.useEffect(() => {
     fetchUserDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, perPage, search]);
+  }, [currentPage, perPage]);
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
       <Card direction="column" w="100%" px="0px">
@@ -161,7 +157,11 @@ export default function AllProducts() {
           <Text fontSize="22px" fontWeight="700" lineHeight="100%">
             Product Details
           </Text>
-          <SearchBar id="walletSearch" onclickable={onclickable} />
+          <Link to={'/admin/addproduct'}>
+            <Button colorScheme="blue" mr="2">
+              Add New
+            </Button>
+          </Link>
         </Flex>
         <DataTable
           columns={columns}

@@ -17,6 +17,8 @@ import AllProducts from 'admin/products/products';
 import UsersHistory from 'admin/users/users';
 import Contact from 'admin/contact/contact';
 import CreateCategory from 'admin/products/createcategory';
+import CreateProduct from 'admin/products/createproduct';
+import CreateBlog from 'admin/blogs/createblog';
 
 const sidebarRoutes = [
   {
@@ -59,6 +61,15 @@ const sidebarRoutes = [
     component: AllProducts,
   },
   {
+    name: 'Add Product',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/addproducts',
+    icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
+    component: CreateProduct,
+    isHide: true,
+  },
+  {
     name: 'Categories',
     secondary: 'Ecommerce',
     layout: '/admin',
@@ -98,6 +109,15 @@ const sidebarRoutes = [
     path: '/blogs',
     icon: <Icon as={FaNewspaper} width="20px" height="20px" color="inherit" />,
     component: Blogs,
+  },
+  {
+    name: 'Add Blog',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/addblog',
+    icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
+    component: CreateBlog,
+    isHide: true,
   },
   {
     name: 'Contacts',
