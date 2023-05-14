@@ -4,32 +4,116 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  InputRightElement,
   Stack,
-  Button,
   Heading,
   Text,
-  useColorModeValue,
-  SimpleGrid,
+  useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import React from "react";
 import i18n from "i18nConfig";
 import { useTranslation } from "react-i18next";
+import { getOtpFromForRegisterServer } from "variables/functions";
+import { Link, useNavigate } from "react-router-dom";
+import { getRegisterFromServer } from "variables/functions";
 
 export default function RegistrationComponent() {
-  const [showPassword, setShowPassword] = useState(false);
-  const { t } = useTranslation();
+  const navigate = useNavigate();
 
+  const { t } = useTranslation();
+  const [otp, setOtp] = React.useState("");
+  const [otpSent, setOtpSent] = React.useState(false);
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const toast = useToast();
+  React.useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      navigate("/profile", { replace: true });
+    }
+  }, [navigate]);
+
+  function submitForm(e) {
+    e.preventDefault();
+    if (otpSent) {
+      getRegisterFromServer(phone, otp).then((data) => {
+        var jsonData = data.data;
+        console.log(jsonData);
+        if (jsonData === undefined) {
+          toast({
+            title: "Error",
+            description: "OTP doesn't match",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "Success",
+            description: "Login Successful",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          localStorage.setItem("token", jsonData.token);
+          localStorage.setItem("userdata", JSON.stringify(jsonData));
+          navigate("/profile", { replace: true });
+        }
+      });
+    } else {
+      if (name === "") {
+        toast({
+          title: "Error",
+          description: "Please Enter Name",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+      if (email === "") {
+        toast({
+          title: "Error",
+          description: "Please Enter Email",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+      if (phone === "") {
+        toast({
+          title: "Error",
+          description: "Please Enter Phone Number",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        return;
+      }
+      getOtpFromForRegisterServer(email, phone, name).then((data) => {
+        if (data.data === '"Success"' || data.data === "Success") {
+          toast({
+            title: "Success",
+            description: "OTP Sent to your mobile number",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+          setOtpSent(true);
+        } else {
+          toast({
+            title: "Error",
+            description: "Something went wrong",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+        }
+      });
+    }
+  }
   return (
-    <Flex
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-      dir={i18n.dir()}
-    >
+    <Flex align={"center"} justify={"center"} dir={i18n.dir()}>
       <Stack
         spacing={8}
         mx={"auto"}
@@ -45,47 +129,56 @@ export default function RegistrationComponent() {
         </Stack>
         <Box
           rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
           maxWidth={"100%"}
           width={"400px"}
         >
           <Stack spacing={4}>
-            <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={4}>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>{t("ofReg.first")}</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>{t("ofReg.last")}</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </SimpleGrid>
+            <FormControl id="name" isRequired>
+              <FormLabel>Full Name</FormLabel>
+              <Input
+                isRequired={true}
+                type="text"
+                placeholder="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </FormControl>
             <FormControl id="email" isRequired>
-              <FormLabel>{t("ofReg.email")}</FormLabel>
-              <Input type="email" dir="ltr" />
+              <FormLabel>{t("ofReg.email")}</FormLabel>{" "}
+              <Input
+                isRequired={true}
+                type="email"
+                placeholder="email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>{t("ofReg.password")}</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? "text" : "password"} dir="ltr" />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
-                  >
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+            <FormControl id="phone" isRequired>
+              <FormLabel>Phone Number</FormLabel>
+              <Input
+                isRequired={true}
+                type="number"
+                placeholder="phone number with country code"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </FormControl>
+            {otpSent && (
+              <>
+                <FormControl id="otp">
+                  <FormLabel>OTP</FormLabel>
+                  <Input
+                    type="number"
+                    isRequired={true}
+                    placeholder="Enter OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </FormControl>
+              </>
+            )}
             <Stack spacing={10} pt={2}>
               <Box
                 className="buttonStyle"
@@ -95,6 +188,7 @@ export default function RegistrationComponent() {
                   marginTop: "10px",
                   fontSize: "14px",
                 }}
+                onClick={(e) => submitForm(e)}
               >
                 {t("ofReg.register")}
               </Box>

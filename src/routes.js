@@ -4,8 +4,6 @@ import HomePage from "views/home/pages/home";
 import ShowroomPage from "views/home/pages/showrooms";
 import TailorsPage from "views/tailors/tailor";
 import ContactPage from "views/home/pages/contact";
-import LoginPage from "views/auth/loginpage";
-import RegisterPage from "views/auth/registerpage";
 import ForgotPage from "views/auth/forgotpage";
 import AboutPage from "views/about/about";
 import CollaborationsPage from "views/collaborations/collaborations";
@@ -17,6 +15,8 @@ import Category from "views/shop/helpers/category";
 import Product from "views/products/helpers/product";
 import BlogView from "views/blog/BlogView";
 import Profile from "views/auth/profile";
+import RegistrationComponent from "views/auth/register";
+import LoginCompoent from "views/auth/login";
 
 const sidebarRoutes = [
   {
@@ -59,14 +59,14 @@ const sidebarRoutes = [
     secondary: "Login",
     layout: "",
     path: "/login",
-    component: LoginPage,
+    component: LoginCompoent,
   },
   {
     name: "Home",
     secondary: "Register",
     layout: "",
     path: "/register",
-    component: RegisterPage,
+    component: RegistrationComponent,
   },
   {
     name: "Home",
