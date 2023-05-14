@@ -16,6 +16,7 @@ import ShopPage from "views/shop/shop";
 import Category from "views/shop/helpers/category";
 import Product from "views/products/helpers/product";
 import BlogView from "views/blog/BlogView";
+import Profile from "views/auth/profile";
 
 const sidebarRoutes = [
   {
@@ -73,6 +74,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/forgot-password",
     component: ForgotPage,
+  },
+  {
+    name: "Home",
+    secondary: "Profile",
+    layout: "",
+    path: "/profile",
+    component: Profile,
   },
   {
     name: "Home",
