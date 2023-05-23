@@ -1,27 +1,30 @@
-import React from 'react';
 import {
-  Box,
-  Button,
-  Container,
   Flex,
+  Text,
+  Box,
+  useToast,
+  Button,
   FormLabel,
   SimpleGrid,
-  Text,
+  Container,
   Textarea,
-  useToast,
 } from '@chakra-ui/react';
+import React from 'react';
+
 import Card from 'components/card/Card';
 import InputField from 'components/fields/InputField';
-import { uploadImage } from 'variables/functions';
 import axios from 'axios';
 import { apiUrl } from 'variables/constants';
+import { uploadImage } from 'variables/functions';
 
-export default function CreateBlog(props) {
+export default function EditBlog() {
   const [blogname, setblogname] = React.useState('');
   const [blogdescription, setblogDescription] = React.useState('');
   const [blogimages, setblogImages] = React.useState('');
   const [blogCategory, setblogCategory] = React.useState('');
   const toast = useToast();
+  const urlParams = new URLSearchParams(window.location.search);
+  const blogId = urlParams.get('id');
   function submitForm(e) {
     e.preventDefault();
     if (
@@ -51,7 +54,7 @@ export default function CreateBlog(props) {
         blogImage: blogimages,
       };
       axios
-        .post(`${apiUrl()}createBlog`, jsonData, {
+        .put(`${apiUrl()}updateBlogByBlogId/${blogId}`, jsonData, {
           headers: headers,
         })
         .then(res => {
@@ -59,19 +62,15 @@ export default function CreateBlog(props) {
           if (res.status === 200) {
             toast({
               title: 'Success',
-              description: 'Blog Created Successfully',
+              description: 'Blog updated Successfully',
               status: 'success',
               duration: 5000,
               isClosable: true,
             });
-            setblogname('');
-            setblogDescription('');
-            setblogCategory('');
-            setblogImages('');
           } else {
             toast({
               title: 'Error',
-              description: 'Something went wrong',
+              description: 'Blog Not updated',
               status: 'error',
               duration: 5000,
               isClosable: true,
@@ -81,8 +80,21 @@ export default function CreateBlog(props) {
     }
   }
 
+  React.useEffect(() => {
+    var categories = JSON.parse(localStorage.getItem('blogs'));
+    for (var i = 0; i < categories.length; i++) {
+      if (categories[i].blogId === blogId) {
+        setblogname(categories[i].blogTitle);
+        setblogDescription(categories[i].blogContent);
+        setblogCategory(categories[i].blogType);
+        setblogImages(categories[i].blogImage);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <Box pt={props.pt ? props.pt : { base: '130px', md: '80px', xl: '80px' }}>
+    <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
       <Card w="100%" px="10px">
         <form onSubmit={submitForm}>
           <InputField
@@ -183,7 +195,7 @@ export default function CreateBlog(props) {
               multiple={false}
               onChange={e => {
                 uploadImage(e.target.files[0]).then(res => {
-                  setblogImages([...blogimages, res.data[0].productImageUrl]);
+                  setblogImages(res.data[0].productImageUrl);
                 });
               }}
             />
@@ -197,7 +209,7 @@ export default function CreateBlog(props) {
             h="50"
             mt="24px"
           >
-            Add Blog
+            Update Blog
           </Button>
         </form>
       </Card>

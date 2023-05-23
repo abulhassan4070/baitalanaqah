@@ -12,13 +12,16 @@ import {
   MdPerson,
   MdSettings,
 } from 'react-icons/md';
-import AllCategories from 'admin/products/categories';
+import AllCategories from 'admin/category/categories';
 import AllProducts from 'admin/products/products';
 import UsersHistory from 'admin/users/users';
 import Contact from 'admin/contact/contact';
-import CreateCategory from 'admin/products/createcategory';
+import CreateCategory from 'admin/category/createcategory';
 import CreateProduct from 'admin/products/createproduct';
 import CreateBlog from 'admin/blogs/createblog';
+import EditCategory from 'admin/category/editcategory';
+import EditBlog from 'admin/blogs/editblog';
+import EditProduct from 'admin/products/editproduct';
 
 const sidebarRoutes = [
   {
@@ -64,9 +67,18 @@ const sidebarRoutes = [
     name: 'Add Product',
     secondary: 'Ecommerce',
     layout: '/admin',
-    path: '/addproducts',
+    path: '/addproduct',
     icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
     component: CreateProduct,
+    isHide: true,
+  },
+  {
+    name: 'Edit Product',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/editproduct',
+    icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
+    component: EditProduct,
     isHide: true,
   },
   {
@@ -86,22 +98,15 @@ const sidebarRoutes = [
     component: CreateCategory,
     isHide: true,
   },
-  // {
-  //   name: 'Tailors',
-  //   secondary: 'Management',
-  //   layout: '/admin',
-  //   path: '/tailors',
-  //   icon: <Icon as={MdWork} width="20px" height="20px" color="inherit" />,
-  //   component: Tailors,
-  // },
-  // {
-  //   name: 'Collaborations',
-  //   secondary: 'Views',
-  //   layout: '/admin',
-  //   path: '/collaborations',
-  //   icon: <Icon as={MdSupport} width="20px" height="20px" color="inherit" />,
-  //   component: Collaborations,
-  // },
+  {
+    name: 'Edit Category',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/editcategory',
+    icon: <Icon as={MdCategory} width="20px" height="20px" color="inherit" />,
+    component: EditCategory,
+    isHide: true,
+  },
   {
     name: 'Blogs',
     secondary: 'Views',
@@ -117,6 +122,15 @@ const sidebarRoutes = [
     path: '/addblog',
     icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
     component: CreateBlog,
+    isHide: true,
+  },
+  {
+    name: 'Edit Blog',
+    secondary: 'Ecommerce',
+    layout: '/admin',
+    path: '/editblog',
+    icon: <Icon as={IoBag} width="20px" height="20px" color="inherit" />,
+    component: EditBlog,
     isHide: true,
   },
   {

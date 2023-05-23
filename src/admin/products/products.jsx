@@ -3,7 +3,7 @@ import React from 'react';
 
 import Card from 'components/card/Card';
 import DataTable from 'react-data-table-component';
-import { MdViewAgenda } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 import { apiUrl } from 'variables/constants';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -23,8 +23,8 @@ export default function AllProducts() {
       selector: (row, index) => index + 1,
     },
     {
-      name: 'ID',
-      selector: row => row.productId,
+      name: 'category name',
+      selector: row => row.categoryName,
       sortable: true,
     },
     {
@@ -55,9 +55,28 @@ export default function AllProducts() {
     },
     {
       cell: row => (
-        <Button colorScheme="blue" mr="2">
-          <Icon as={MdViewAgenda} />
-        </Button>
+        <>
+          <Link to={`/admin/editproduct?id=${row.productId}`}>
+            <Button colorScheme="blue" mr="2" onClick={() => {
+              localStorage.setItem('editproduct', JSON.stringify(row));
+            }}>
+              <Icon as={MdEdit} />
+            </Button>
+          </Link>
+          <Button
+            colorScheme="red"
+            mr="2"
+            onClick={() => {
+              axios
+                .get(`${apiUrl()}deleteProductByCategoryId/${row.productId}`)
+                .then(res => {
+                  fetchUserDetails();
+                });
+            }}
+          >
+            <Icon as={MdDelete} />
+          </Button>
+        </>
       ),
     },
   ];

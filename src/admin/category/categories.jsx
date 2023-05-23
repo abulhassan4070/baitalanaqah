@@ -16,13 +16,13 @@ export default function UsersHistory() {
     setLoading(true);
 
     const response = await axios.get(`${apiUrl()}getProductCategories`);
+    localStorage.setItem('categories', JSON.stringify(response.data));
     setData(response.data);
     setLoading(false);
   };
 
   React.useEffect(() => {
     fetchUserDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const columns = [
     {
@@ -43,10 +43,22 @@ export default function UsersHistory() {
     {
       cell: row => (
         <>
-          <Button colorScheme="blue" mr="2">
-            <Icon as={MdEdit} />
-          </Button>
-          <Button colorScheme="red" mr="2">
+          <Link to={`/admin/editcategory?id=${row.categoryId}`}>
+            <Button colorScheme="blue" mr="2">
+              <Icon as={MdEdit} />
+            </Button>
+          </Link>
+          <Button
+            colorScheme="red"
+            mr="2"
+            onClick={() => {
+              axios
+                .get(`${apiUrl()}deleteCategoryByCategoryId/${row.categoryId}`)
+                .then(res => {
+                  fetchUserDetails();
+                });
+            }}
+          >
             <Icon as={MdDelete} />
           </Button>
         </>

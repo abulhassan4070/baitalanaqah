@@ -17,7 +17,7 @@ import { uploadImage } from 'variables/functions';
 import axios from 'axios';
 import { apiUrl } from 'variables/constants';
 
-export default function CreateProduct(props) {
+export default function EditProduct(props) {
   const [productname, setproductname] = React.useState('');
   const [productdescription, setproductDescription] = React.useState('');
   const [productimages, setproductImages] = React.useState([]);
@@ -26,6 +26,9 @@ export default function CreateProduct(props) {
   const [productSizes, setProductSizes] = React.useState([]);
   const [productPrice, setProductPrice] = React.useState('');
   const toast = useToast();
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
+
   var productSizesArray = [
     {
       sizeId: 'S',
@@ -43,6 +46,22 @@ export default function CreateProduct(props) {
   const fetchUserDetails = async () => {
     const response = await axios.get(`${apiUrl()}getProductCategories`);
     setTotalCategories(response.data);
+    const response2 = await axios.get(`${apiUrl()}getProductById/${productId}`);
+    setproductname(response2.data.productName);
+    setproductDescription(response2.data.productDescription);
+    for (var i = 0; i < response.data.length; i++) {
+      if (response.data[i].categoryId === response2.data.categoryId) {
+        setProductCategory(response.data[i].categoryId);
+      }
+    }
+    setProductPrice(response2.data.productPrice);
+    if (typeof response2.data.productSizes === 'string') {
+      setProductSizes(JSON.parse(response2.data.productSizes));
+    } else {
+      setProductSizes(response2.data.productSizes);
+    }
+    console.log(productSizes);
+    setproductImages(response2.data.productImages);
   };
 
   React.useEffect(() => {
@@ -52,7 +71,14 @@ export default function CreateProduct(props) {
 
   function submitForm(e) {
     e.preventDefault();
-    if (productname === '' || productdescription === '' || productPrice === '' || productCategory === '' || productSizes.length === 0 || productimages.length === 0) {
+    if (
+      productname === '' ||
+      productdescription === '' ||
+      productPrice === '' ||
+      productCategory === '' ||
+      productSizes.length === 0 ||
+      productimages.length === 0
+    ) {
       toast({
         title: 'Error',
         description: 'Please fill all the fields',
@@ -74,7 +100,7 @@ export default function CreateProduct(props) {
         productSizes: productSizes,
       };
       axios
-        .post(`${apiUrl()}createProduct`, jsonData, {
+        .post(`${apiUrl()}updateProductsByCategoryId/${productId}`, jsonData, {
           headers: headers,
         })
         .then(res => {
@@ -82,7 +108,7 @@ export default function CreateProduct(props) {
           if (res.status === 200) {
             toast({
               title: 'Success',
-              description: 'Product Created Successfully',
+              description: 'Product Updated Successfully',
               status: 'success',
               duration: 5000,
               isClosable: true,
@@ -187,7 +213,7 @@ export default function CreateProduct(props) {
                   type="checkbox"
                   id={size.sizeId}
                   name={size.sizeId}
-                  value={size.sizeId}
+                  value={productSizes.includes(size.sizeId)}
                   onChange={e => {
                     if (e.target.checked) {
                       setProductSizes([...productSizes, size.sizeId]);

@@ -19,6 +19,7 @@ import DataTable from 'react-data-table-component';
 import { apiUrl } from 'variables/constants';
 import axios from 'axios';
 import { IoMdEye } from 'react-icons/io';
+import { MdDelete } from 'react-icons/md';
 
 export default function ContactForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,21 +55,36 @@ export default function ContactForm() {
     },
     {
       cell: row => (
-        <Button
-          colorScheme="blue"
-          mr="2"
-          onClick={() => {
-            setErrorDescription({
-              name: row.contactName,
-              email: row.emailId,
-              subject: row.subject,
-              message: row.message,
-            });
-            onOpen();
-          }}
-        >
-          <Icon as={IoMdEye} />
-        </Button>
+        <>
+          <Button
+            colorScheme="blue"
+            mr="2"
+            onClick={() => {
+              setErrorDescription({
+                name: row.contactName,
+                email: row.emailId,
+                subject: row.subject,
+                message: row.message,
+              });
+              onOpen();
+            }}
+          >
+            <Icon as={IoMdEye} />
+          </Button>
+          <Button
+            colorScheme="red"
+            mr="2"
+            onClick={() => {
+              axios
+                .post(`${apiUrl()}deleteContactFormById/${row.contactId}`)
+                .then(res => {
+                  fetchUserDetails();
+                });
+            }}
+          >
+            <Icon as={MdDelete} />
+          </Button>
+        </>
       ),
     },
   ];

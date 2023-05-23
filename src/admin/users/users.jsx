@@ -1,9 +1,8 @@
-import { Flex, Text, Box, Button, Icon,  } from '@chakra-ui/react';
+import { Flex, Text, Box } from '@chakra-ui/react';
 import React from 'react';
 
 import Card from 'components/card/Card';
 import DataTable from 'react-data-table-component';
-import { MdViewAgenda } from 'react-icons/md';
 import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import axios from 'axios';
 import { apiUrl } from 'variables/constants';
@@ -44,13 +43,6 @@ export default function UsersHistory() {
       selector: row => row.dateCreated.split(' ')[0],
       sortable: true,
     },
-    {
-      cell: row => (
-        <Button colorScheme="blue" mr="2">
-          <Icon as={MdViewAgenda} />
-        </Button>
-      ),
-    },
   ];
 
   const handlePageChange = page => {
@@ -69,8 +61,7 @@ export default function UsersHistory() {
       url: apiUrl() + 'getDataTableForUserList',
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
-          'Bearer ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
       data: JSON.stringify({
         page: currentPage,
@@ -153,7 +144,7 @@ export default function UsersHistory() {
   };
   React.useEffect(() => {
     fetchUserDetails();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, perPage, search]);
   return (
     <Box pt={{ base: '130px', md: '80px', xl: '80px' }}>

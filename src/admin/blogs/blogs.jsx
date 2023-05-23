@@ -17,6 +17,7 @@ export default function Blogs() {
 
     const response = await axios.get(`${apiUrl()}getAllBlogs`);
     setData(response.data);
+    localStorage.setItem('blogs', JSON.stringify(response.data));
     setLoading(false);
   };
 
@@ -53,10 +54,22 @@ export default function Blogs() {
     {
       cell: row => (
         <>
-          <Button colorScheme="blue" mr="2">
-            <Icon as={MdEdit} />
-          </Button>
-          <Button colorScheme="red" mr="2">
+          <Link to={`/admin/editblog?id=${row.blogId}`}>
+            <Button colorScheme="blue" mr="2">
+              <Icon as={MdEdit} />
+            </Button>
+          </Link>
+          <Button
+            colorScheme="red"
+            mr="2"
+            onClick={() => {
+              axios
+                .get(`${apiUrl()}deleteBlogByBlogId/${row.blogId}`)
+                .then(res => {
+                  fetchUserDetails();
+                });
+            }}
+          >
             <Icon as={MdDelete} />
           </Button>
         </>
