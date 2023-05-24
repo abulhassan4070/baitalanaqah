@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 export default function AllProducts() {
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   // eslint-disable-next-line no-unused-vars
   const [totalRows, setTotalRows] = React.useState(0);
   const [perPage, setPerPage] = React.useState(10);
@@ -185,8 +185,8 @@ export default function AllProducts() {
         <DataTable
           columns={columns}
           data={data}
-          progressPending={loading}
           pagination
+          progressPending={loading}
           paginationServer
           paginationTotalRows={totalRows}
           paginationDefaultPage={currentPage}

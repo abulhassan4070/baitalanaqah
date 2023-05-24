@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 export default function UsersHistory() {
   const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const fetchUserDetails = async () => {
     setLoading(true);

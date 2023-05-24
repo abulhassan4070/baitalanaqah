@@ -10,7 +10,7 @@ import { apiUrl } from 'variables/constants';
 export default function UsersHistory() {
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [search, setSearch] = React.useState('');
   // eslint-disable-next-line no-unused-vars
   const [totalRows, setTotalRows] = React.useState(0);
