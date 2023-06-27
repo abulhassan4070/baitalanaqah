@@ -48,7 +48,7 @@ export default function Auth() {
             });
           } else {
             var jsonData = data.data;
-            if (jsonData.role === '1' || jsonData.role === '2') {
+            // if (jsonData.role === '1' || jsonData.role === '2') {
               toast({
                 title: 'Success',
                 description: 'Login Successful',
@@ -59,15 +59,15 @@ export default function Auth() {
               localStorage.setItem('token', jsonData.token);
               localStorage.setItem('userdata', JSON.stringify(jsonData));
               setLogin(true);
-            } else {  
-              toast({
-                title: 'Error',
-                description: 'You dont have access to this panel',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-              });
-            }
+            // } else {  
+            //   toast({
+            //     title: 'Error',
+            //     description: 'You dont have access to this panel',
+            //     status: 'error',
+            //     duration: 9000,
+            //     isClosable: true,
+            //   });
+            // }
           }
         })
         .catch(err => {

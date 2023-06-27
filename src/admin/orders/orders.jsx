@@ -185,6 +185,11 @@ export default function OrderHistory() {
     axios
       .request(config)
       .then(response => {
+        if (response === "Access denied") {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/auth';
+        }
         // console.log(JSON.stringify(response.data));
         var jsonData = response.data.data;
         var totalRecords = response.data.recordsTotal;
