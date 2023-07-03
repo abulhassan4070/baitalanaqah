@@ -57,7 +57,6 @@ export function uploadImage(imagefile) {
   var headers = {
     Authorization: localStorage.getItem('token'),
     'Content-Type': 'multipart/form-data',
-
   };
   console.log(imagefile);
   var formData = new FormData();
@@ -118,4 +117,41 @@ export function urlEncode(data) {
       str.push(encodeURIComponent(p) + '=' + encodeURIComponent(data[p]));
     }
   return str.join('&');
+}
+
+export async function sendRequestWithToken(data, url, method) {
+  var headers = {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + localStorage.getItem('token'),
+  };
+  if (method.toLowerCase() === 'post') {
+    var formData = new FormData();
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+    formData.append('token', localStorage.getItem('token'));
+    var res = await axios.request({
+      url: url,
+      method: 'post',
+      headers: headers,
+      data: formData,
+    });
+    return res;
+  } else {
+    var res2 = await axios.request({
+      url: url,
+      method: 'get',
+      headers: headers,
+    });
+    return res2;
+  }
+}
+
+export function simpleToaster(message, type, toast) {
+  toast({
+    title: message,
+    status: type,
+    duration: 3000,
+    isClosable: true,
+  });
 }

@@ -12,10 +12,9 @@ import React from 'react';
 
 import Card from 'components/card/Card';
 import InputField from 'components/fields/InputField';
-import axios from 'axios';
 import { apiUrl } from 'variables/constants';
 import { Redirect } from 'react-router-dom';
-import { uploadImage } from 'variables/functions';
+import { sendRequestWithToken, uploadImage } from 'variables/functions';
 
 export default function CreateCategory() {
   const [categoryName, setCategoryName] = React.useState('');
@@ -120,39 +119,35 @@ export default function CreateCategory() {
                 isClosable: true,
               });
             } else {
-              var headers = {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + localStorage.getItem('token'),
-              };
               var jsonData = {
                 categoryName: categoryName,
                 categoryImage: blogimages,
               };
-              axios
-                .post(`${apiUrl()}createCategory`, jsonData, {
-                  headers: headers,
-                })
-                .then(res => {
-                  console.log(res);
-                  if (res.status === 200) {
-                    setReload(true);
-                    toast({
-                      title: 'Success',
-                      description: 'Category Created Successfully',
-                      status: 'success',
-                      duration: 5000,
-                      isClosable: true,
-                    });
-                  } else {
-                    toast({
-                      title: 'Error',
-                      description: 'Category Not Created',
-                      status: 'error',
-                      duration: 5000,
-                      isClosable: true,
-                    });
-                  }
-                });
+              sendRequestWithToken(
+                jsonData,
+                `${apiUrl()}createCategory`,
+                'POST'
+              ).then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                  setReload(true);
+                  toast({
+                    title: 'Success',
+                    description: 'Category Created Successfully',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                  });
+                } else {
+                  toast({
+                    title: 'Error',
+                    description: 'Category Not Created',
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                  });
+                }
+              });
             }
           }}
         >

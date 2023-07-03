@@ -3,141 +3,64 @@ import {
   Button,
   Center,
   Flex,
-  FormControl,
   FormLabel,
   Heading,
   Image,
-  Input,
-  Radio,
-  RadioGroup,
   SimpleGrid,
   Stack,
   useToast,
 } from '@chakra-ui/react';
 import { Redirect } from 'react-router-dom';
 import loginbanner from 'assets/img/login.jpg';
-import { getLoginFromServer, getOtpFromServer } from 'variables/functions';
 import axios from 'axios';
 import { apiUrl } from 'variables/constants';
+import InputField from 'components/InputField';
 export default function Auth() {
-  const [otp, setOtp] = React.useState('');
   const [login, setLogin] = React.useState(false);
-  const [otpSent, setOtpSent] = React.useState(false);
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [loginType, setLoginType] = React.useState('email');
   const toast = useToast();
   function submitForm(e) {
     e.preventDefault();
-    if (loginType === 'email') {
-      var jsonValue = {
-        email: username,
-        password:  password,
-      };
-      return axios
-        .post(apiUrl() + 'loginEmail', jsonValue)
-        .then(data => {
-          console.log(data);
-          if (data === undefined) {
-            toast({
-              title: 'Error',
-              description: "OTP doesn't match",
-              status: 'error',
-              duration: 9000,
-              isClosable: true,
-            });
-          } else {
-            var jsonData = data.data;
-            // if (jsonData.role === '1' || jsonData.role === '2') {
-              toast({
-                title: 'Success',
-                description: 'Login Successful',
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-              });
-              localStorage.setItem('token', jsonData.token);
-              localStorage.setItem('userdata', JSON.stringify(jsonData));
-              setLogin(true);
-            // } else {  
-            //   toast({
-            //     title: 'Error',
-            //     description: 'You dont have access to this panel',
-            //     status: 'error',
-            //     duration: 9000,
-            //     isClosable: true,
-            //   });
-            // }
-          }
-        })
-        .catch(err => {
+    var jsonValue = {
+      email: username,
+      password: password,
+    };
+    return axios
+      .post(apiUrl() + 'loginEmail', jsonValue)
+      .then(data => {
+        console.log(data);
+        if (data === undefined) {
           toast({
             title: 'Error',
-            description: "Email & Password doesn't match",
+            description: "OTP doesn't match",
             status: 'error',
             duration: 9000,
             isClosable: true,
           });
-        });
-    } else {
-      if (otpSent) {
-        getLoginFromServer(username, otp).then(data => {
+        } else {
           var jsonData = data.data;
-          console.log(jsonData);
-          if (jsonData === undefined) {
-            toast({
-              title: 'Error',
-              description: "OTP doesn't match",
-              status: 'error',
-              duration: 9000,
-              isClosable: true,
-            });
-          } else {
-            if (jsonData.role === '1' || jsonData.role === '2') {
-              toast({
-                title: 'Success',
-                description: 'Login Successful',
-                status: 'success',
-                duration: 9000,
-                isClosable: true,
-              });
-              localStorage.setItem('token', jsonData.token);
-              localStorage.setItem('userdata', JSON.stringify(jsonData));
-              setLogin(true);
-            } else {
-              toast({
-                title: 'Error',
-                description: 'You dont have access to this panel',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-              });
-            }
-          }
+          toast({
+            title: 'Success',
+            description: 'Login Successful',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+          });
+          localStorage.setItem('token', jsonData.token);
+          localStorage.setItem('userdata', JSON.stringify(jsonData));
+          setLogin(true);
+        }
+      })
+      .catch(err => {
+        toast({
+          title: 'Error',
+          description: "Email & Password doesn't match",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
         });
-      } else {
-        getOtpFromServer(username, loginType).then(data => {
-          if (data.data === '"Success"' || data.data === 'Success') {
-            toast({
-              title: 'Success',
-              description: 'OTP Sent to your ' + loginType,
-              status: 'success',
-              duration: 9000,
-              isClosable: true,
-            });
-            setOtpSent(true);
-          } else {
-            toast({
-              title: 'Error',
-              description: 'This ' + loginType + " doesn't exist",
-              status: 'error',
-              duration: 9000,
-              isClosable: true,
-            });
-          }
-        });
-      }
-    }
+      });
   }
   const renderRedirect = () => {
     if (login) {
@@ -152,69 +75,25 @@ export default function Auth() {
         <Flex p={8} flex={1} align={'center'} justify={'center'}>
           <Stack spacing={4} w={'full'} maxW={'md'}>
             <Heading fontSize={'2xl'}>Bait Al Anaqah Admin Panel</Heading>
-            <FormLabel>Login with </FormLabel>
-            <RadioGroup
-              defaultValue={loginType}
-              onChange={() => {
-                setOtpSent(false);
-                setLoginType(loginType === 'email' ? 'mobile' : 'email');
-              }}
-            >
-              <Stack spacing={5} direction="row">
-                <Radio colorScheme="blue" value="email">
-                  Email
-                </Radio>
-                <Radio colorScheme="blue" value="mobile">
-                  Phone Number
-                </Radio>
-              </Stack>
-            </RadioGroup>
+            <FormLabel>Login with Email </FormLabel>
             <form onSubmit={submitForm}>
-              {loginType === 'email' ? (
-                <>
-                  <Input
-                    isRequired={true}
-                    type="email"
-                    placeholder="email address"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                  />
-                  <br />
-                  <br />
-                  <Input
-                    isRequired={true}
-                    type="password"
-                    placeholder="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                  />
-                </>
-              ) : (
-                <Input
-                  isRequired={true}
-                  type="number"
-                  placeholder="phone number with country code"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                />
-              )}
-              <br />
-              <br />
-              {otpSent && (
-                <>
-                  <FormControl id="otp">
-                    <FormLabel>OTP</FormLabel>
-                    <Input
-                      type="number"
-                      isRequired={true}
-                      placeholder="Enter OTP"
-                      value={otp}
-                      onChange={e => setOtp(e.target.value)}
-                    />
-                  </FormControl>
-                  <br />
-                </>
-              )}
+              <InputField
+                id="email"
+                isRequired={true}
+                type="email"
+                label="Email"
+                placeholder="email address"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+              <InputField
+                isRequired={true}
+                type="password"
+                placeholder="password"
+                value={password}
+                label="Password"
+                onChange={e => setPassword(e.target.value)}
+              />
               <Stack spacing={6}>
                 <Button colorScheme={'blue'} variant={'solid'} type="submit">
                   Sign in

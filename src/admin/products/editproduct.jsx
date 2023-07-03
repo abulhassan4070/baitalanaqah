@@ -151,6 +151,7 @@ export default function EditProduct(props) {
             onChange={e => {
               setProductCategory(e.target.value);
             }}
+            defaultValue={productCategory}
             required
           >
             {totalCategories.map(category => (

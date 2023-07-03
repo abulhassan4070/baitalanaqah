@@ -7,6 +7,7 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 import { apiUrl } from 'variables/constants';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { sendRequestWithToken } from 'variables/functions';
 
 export default function Blogs() {
   const [data, setData] = React.useState([]);
@@ -63,11 +64,13 @@ export default function Blogs() {
             colorScheme="red"
             mr="2"
             onClick={() => {
-              axios
-                .get(`${apiUrl()}deleteBlogByBlogId/${row.blogId}`)
-                .then(res => {
-                  fetchUserDetails();
-                });
+              sendRequestWithToken(
+                {},
+                `${apiUrl()}deleteBlogByBlogId/${row.blogId}`,
+                'GET'
+              ).then(res => {
+                fetchUserDetails();
+              });
             }}
           >
             <Icon as={MdDelete} />

@@ -3,7 +3,7 @@ import MiniStatistics from 'components/card/MiniStatistics';
 import IconBox from 'components/icons/IconBox';
 import React from 'react';
 import { FaCartPlus, FaPlayCircle, FaUsers } from 'react-icons/fa';
-import {  MdWork } from 'react-icons/md';
+import { MdWork } from 'react-icons/md';
 import { boxBg } from 'variables/constants';
 import { brandColor } from 'variables/constants';
 export default function Statistics() {
@@ -18,12 +18,12 @@ export default function Statistics() {
 
   React.useEffect(() => {
     setData({
-      unverifiedusers: 28,
-      verifiedusers: 872,
-      totalusers: 900,
-      tailors: 13,
-      showrooms: 3,
-      orders: 329,
+      unverifiedusers: 0,
+      verifiedusers: 0,
+      totalusers: 0,
+      tailors: 0,
+      showrooms: 0,
+      orders: 0,
     });
   }, []);
   return (
@@ -72,14 +72,7 @@ export default function Statistics() {
           <IconBox
             w="56px"
             h="56px"
-            icon={
-              <Icon
-                w="32px"
-                h="32px"
-                as={MdWork}
-                color={brandColor}
-              />
-            }
+            icon={<Icon w="32px" h="32px" as={MdWork} color={brandColor} />}
           />
         }
         name="Tailors"
@@ -92,12 +85,7 @@ export default function Statistics() {
             h="56px"
             bg={boxBg}
             icon={
-              <Icon
-                w="32px"
-                h="32px"
-                as={FaPlayCircle}
-                color={brandColor}
-              />
+              <Icon w="32px" h="32px" as={FaPlayCircle} color={brandColor} />
             }
           />
         }
@@ -109,9 +97,7 @@ export default function Statistics() {
           <IconBox
             w="56px"
             h="56px"
-            icon={
-              <Icon w="32px" h="32px" as={FaCartPlus} color={brandColor} />
-            }
+            icon={<Icon w="32px" h="32px" as={FaCartPlus} color={brandColor} />}
           />
         }
         name="Orders"

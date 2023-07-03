@@ -7,6 +7,7 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 import { apiUrl } from 'variables/constants';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { sendRequestWithToken } from 'variables/functions';
 
 export default function UsersHistory() {
   const [data, setData] = React.useState([]);
@@ -52,11 +53,13 @@ export default function UsersHistory() {
             colorScheme="red"
             mr="2"
             onClick={() => {
-              axios
-                .get(`${apiUrl()}deleteCategoryByCategoryId/${row.categoryId}`)
-                .then(res => {
-                  fetchUserDetails();
-                });
+              sendRequestWithToken(
+                {},
+                `${apiUrl()}deleteCategoryByCategoryId/${row.categoryId}`,
+                'GET'
+              ).then(res => {
+                fetchUserDetails();
+              });
             }}
           >
             <Icon as={MdDelete} />

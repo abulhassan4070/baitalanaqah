@@ -23,33 +23,54 @@ export default function OrderHistory() {
       selector: (row, index) => index + 1,
     },
     {
-      name: 'category name',
-      selector: row => row.categoryName,
+      name: 'Products Count',
+      selector: row => row.products.length,
       sortable: true,
     },
     {
-      name: 'product name',
-      selector: row => row.categoryName,
+      name: 'Product Names',
+      selector: row => (
+        <>
+          {row.products.map((product, index) => {
+            return (
+              <div key={index}>
+                {product.product.productName} x {product.qty}
+              </div>
+            );
+          })}
+        </>
+      ),
       sortable: true,
     },
 
     {
-      name: 'category name',
-      selector: row => row.categoryName,
+      name: 'Category Name',
+      selector: row => (
+        <>
+          {row.products.map((product, index) => {
+            return (
+              <div key={index}>{product.product.category.categoryName}</div>
+            );
+          })}
+        </>
+      ),
       sortable: true,
     },
     {
-      name: 'price',
-      selector: row => row.productPrice,
+      name: 'Price',
+      selector: row => (
+        <>
+          {row.products.map((product, index) => {
+            return (
+              <div key={index}>{product.product.subTotal * product.qty}</div>
+            );
+          })}
+        </>
+      ),
       sortable: true,
     },
     {
-      name: 'status',
-      selector: row => row.productStatus,
-      sortable: true,
-    },
-    {
-      name: 'created at',
+      name: 'Created at',
       selector: row => row.dateCreated.split(' ')[0],
       sortable: true,
     },
@@ -98,7 +119,7 @@ export default function OrderHistory() {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: apiUrl() + 'getDataTableForProductList',
+      url: apiUrl() + 'getDataTableForOrderList',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -185,7 +206,7 @@ export default function OrderHistory() {
     axios
       .request(config)
       .then(response => {
-        if (response === "Access denied") {
+        if (response === 'Access denied') {
           localStorage.removeItem('token');
           localStorage.removeItem('username');
           window.location.href = '/auth';
