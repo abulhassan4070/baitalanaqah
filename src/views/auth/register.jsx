@@ -12,9 +12,9 @@ import {
 import React from "react";
 import i18n from "i18nConfig";
 import { useTranslation } from "react-i18next";
-import { getOtpFromForRegisterServer } from "variables/functions";
 import { Link, useNavigate } from "react-router-dom";
-import { getRegisterFromServer } from "variables/functions";
+import { apiUrl } from "variables/constants";
+import { sendRequestWithToken } from "variables/functions";
 
 export default function RegistrationComponent() {
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ export default function RegistrationComponent() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const toast = useToast();
   React.useEffect(() => {
     if (localStorage.getItem("token") !== null) {
@@ -35,30 +36,49 @@ export default function RegistrationComponent() {
   function submitForm(e) {
     e.preventDefault();
     if (otpSent) {
-      getRegisterFromServer(phone, otp).then((data) => {
-        var jsonData = data.data;
-        console.log(jsonData);
-        if (jsonData === undefined) {
+      sendRequestWithToken(
+        {
+          value: phone,
+          otp: otp,
+        },
+        `${apiUrl()}registerOtpVerify`,
+        "POST",
+        ""
+      )
+        .then((data) => {
+          var jsonData = data.data;
+          console.log(jsonData);
+          if (jsonData === undefined) {
+            toast({
+              title: "Error",
+              description: "OTP doesn't match",
+              status: "error",
+              duration: 9000,
+              isClosable: true,
+            });
+          } else {
+            toast({
+              title: "Success",
+              description: "Login Successful",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            localStorage.setItem("token", jsonData.token);
+            localStorage.setItem("userdata", JSON.stringify(jsonData));
+            navigate("/profile", { replace: true });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           toast({
             title: "Error",
-            description: "OTP doesn't match",
+            description: error.response.data.messages.error,
             status: "error",
             duration: 9000,
             isClosable: true,
           });
-        } else {
-          toast({
-            title: "Success",
-            description: "Login Successful",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          });
-          localStorage.setItem("token", jsonData.token);
-          localStorage.setItem("userdata", JSON.stringify(jsonData));
-          navigate("/profile", { replace: true });
-        }
-      });
+        });
     } else {
       if (name === "") {
         toast({
@@ -90,26 +110,47 @@ export default function RegistrationComponent() {
         });
         return;
       }
-      getOtpFromForRegisterServer(email, phone, name).then((data) => {
-        if (data.data === '"Success"' || data.data === "Success") {
-          toast({
-            title: "Success",
-            description: "OTP Sent to your mobile number",
-            status: "success",
-            duration: 9000,
-            isClosable: true,
-          });
-          setOtpSent(true);
-        } else {
+      sendRequestWithToken(
+        {
+          fullName: name,
+          email: email,
+          mobile: phone,
+          password: password,
+        },
+        `${apiUrl()}register`,
+        "POST",
+        ""
+      )
+        .then((data) => {
+          if (data.data.status === 200) {
+            toast({
+              title: "Success",
+              description: "OTP Sent to your mobile number",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+            setOtpSent(true);
+          } else {
+            toast({
+              title: "Error",
+              description: "Something went wrong",
+              status: "error",
+              duration: 9000,
+              isClosable: true,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           toast({
             title: "Error",
-            description: "Something went wrong",
+            description: error.response.data.messages.error,
             status: "error",
             duration: 9000,
             isClosable: true,
           });
-        }
-      });
+        });
     }
   }
   return (
@@ -163,6 +204,16 @@ export default function RegistrationComponent() {
                 placeholder="phone number with country code"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
+                isRequired={true}
+                type="password"
+                placeholder="Please enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
             {otpSent && (

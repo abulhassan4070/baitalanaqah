@@ -110,3 +110,31 @@ export function getRegisterFromServer(username, otp) {
       return err;
     });
 }
+
+export async function sendRequestWithToken(data, url, method, token) {
+  var headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + token,
+  };
+  if (method.toLowerCase() === "post") {
+    var formData = new FormData();
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+    formData.append("token", token);
+    var res = await axios.request({
+      url: url,
+      method: "post",
+      headers: headers,
+      data: formData,
+    });
+    return res;
+  } else {
+    var res2 = await axios.request({
+      url: url,
+      method: "get",
+      headers: headers,
+    });
+    return res2;
+  }
+}
