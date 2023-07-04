@@ -18,13 +18,13 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
-
-var name;
+import axios from "axios";
+import { apiUrl } from "variables/constants";
 
 export default function Category(props) {
-  name = props.name;
+  var url = window.location.href;
+  var id = url.substring(url.lastIndexOf("/") + 1);
   const { t } = useTranslation();
-
   return (
     <Container maxW={"7xl"} mt="20px" p={10} bg="white" dir={i18n.dir()}>
       <Breadcrumb
@@ -48,19 +48,41 @@ export default function Category(props) {
 
         <BreadcrumbItem isCurrentPage>
           <BreadcrumbLink style={{ textDecoration: "none" }}>
-            <NavLink to={"/shop/" + name}>
-              {t("ofShop." + name).toUpperCase()}
+            <NavLink to={"/shop/" + id}>
+              <LoadTitle id={id} />
             </NavLink>
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
       <br />
-      <CategoryList />
+      <CategoryList id={id} />
     </Container>
   );
 }
 
-function CategoryList() {
+function LoadTitle(props) {
+  var categories = localStorage.getItem("categories");
+  categories = JSON.parse(categories);
+  for (var i = 0; i < categories.length; i++) {
+    console.log(categories[i].categoryId);
+    console.log(props.id);
+    if (categories[i].categoryId === props.id) {
+      return <Text>{categories[i].categoryName}</Text>;
+    }
+  }
+}
+
+function CategoryList(props) {
+  const [products, setProducts] = React.useState([]);
+  React.useEffect(() => {
+    axios
+      .get(`${apiUrl()}getAllProductsByCategories/${props.id}`)
+      .then((response) => {
+        localStorage.setItem("categoriesdata" + props.id, response.data);
+        console.log(response.data);
+        setProducts(response.data);
+      });
+  }, [props.id]);
   return (
     <>
       <Center>
@@ -70,19 +92,16 @@ function CategoryList() {
           columns={{ base: 1, md: 2, lg: 3 }}
           spacing={12}
         >
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
-          <CategoryItem />
+          {products.map((product) => (
+            <CategoryItem key={product.productId} product={product} />
+          ))}
         </SimpleGrid>
       </Center>
     </>
   );
 }
 
-function CategoryItem() {
+function CategoryItem(props) {
   const { t } = useTranslation();
   return (
     <Box
@@ -94,64 +113,40 @@ function CategoryItem() {
       }}
     >
       <VStack>
-        <Link to={`/products/${name}`} state={{ name: name }}>
+        <Link
+          to={`/products/${props.product.productId}`}
+          state={{ name: props.product.productName }}
+        >
           <Box height="100%" width="100%">
             <Image
-              src={require(`../../../assets/img/shop/${name}.jpeg`)}
+              src={props.product.productImages[0].productImageUrl}
               height="100%"
               width="100%"
               objectFit="cover"
             />
           </Box>
         </Link>
-
-        <Box p={2}>
-          <SimpleGrid
-            columns={{
-              base: 2,
-              md: 2,
-            }}
-            spacing={{
-              base: 0,
-              md: 2,
-            }}
-            justifyContent={"space-between"}
-          >
-            <Text
-              style={{
-                color: "black",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
-            >
-              {t("ofShop." + name).toUpperCase()}
-            </Text>
-            <Flex justifyContent="flex-end">
-              <Icon icon="material-symbols:star-rounded" color={"gold"} />
-              <Icon icon="material-symbols:star-rounded" color={"gold"} />
-              <Icon icon="material-symbols:star-rounded" color={"gold"} />
-              <Icon icon="material-symbols:star-rounded" color={"gold"} />
-              <Icon icon="material-symbols:star-rounded" color={"gold"} />
-            </Flex>
-          </SimpleGrid>
-          <Text fontSize="12px">{t("category.text")}</Text>
-          <SimpleGrid
-            columns={{
-              base: 1,
-              md: 2,
-            }}
-            spacing={{
-              base: 0,
-              md: 2,
+        <Box p={2} width="100%">
+          <Text
+            style={{
+              color: "black",
+              fontSize: "20px",
+              fontWeight: "bold",
             }}
           >
-            <Box className="buttonStyle small" mt="10px">
-              {t("addToCart")}
-            </Box>
-            <Box className="buttonStyle small outline" mt="10px">
-              {t("buyNow")}
-            </Box>
-          </SimpleGrid>
+            {props.product.productName}
+          </Text>
+          <Flex justifyContent="flex-start">
+            <Icon icon="material-symbols:star-rounded" color={"gold"} />
+            <Icon icon="material-symbols:star-rounded" color={"gold"} />
+            <Icon icon="material-symbols:star-rounded" color={"gold"} />
+            <Icon icon="material-symbols:star-rounded" color={"gold"} />
+            <Icon icon="material-symbols:star-rounded" color={"gold"} />
+          </Flex>
+          <Text fontSize="12px">{props.product.productDescription}</Text>
+          <Box className="buttonStyle small" mt="10px">
+            {t("addToCart")}
+          </Box>
         </Box>
       </VStack>
     </Box>

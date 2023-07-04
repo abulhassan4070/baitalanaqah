@@ -15,43 +15,23 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
-import abayaImage from "../../../assets/img/shop/abaya.jpeg";
-import blazersImage from "../../../assets/img/shop/blazers.jpeg";
-import poloImage from "../../../assets/img/shop/polo.jpeg";
-import shirtsImage from "../../../assets/img/shop/shirts.jpeg";
-import suitsImage from "../../../assets/img/shop/suits.jpeg";
-import trousersImage from "../../../assets/img/shop/trousers.jpeg";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
+import axios from "axios";
+import { apiUrl } from "variables/constants";
 
 export default function ShopCategories() {
   const { t } = useTranslation();
-  var categories = [
-    {
-      image: abayaImage,
-      title: "ABAYA",
-    },
-    {
-      image: suitsImage,
-      title: "SUITS",
-    },
-    {
-      image: shirtsImage,
-      title: "SHIRTS",
-    },
-    {
-      image: trousersImage,
-      title: "TROUSERS",
-    },
-    {
-      image: blazersImage,
-      title: "BLAZERS",
-    },
-    {
-      image: poloImage,
-      title: "POLO",
-    },
-  ];
+
+  const [categories, setCategories] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
+      localStorage.setItem("categories", JSON.stringify(response.data));
+      console.log(response.data);
+      setCategories(response.data);
+    });
+  }, []);
   const customizeImgUrl =
     "https://images.prismic.io/enzo/5a8b3909-9f81-4b46-a70d-907b1446f096_25557_J1.jpeg?auto=compress,format";
 
@@ -90,11 +70,11 @@ export default function ShopCategories() {
           <Box>
             <Link
               className="shopbycategory"
-              to={`/shop/${category.title.toLowerCase()}`}
+              to={`/shop/${category.categoryId.toLowerCase()}`}
             >
               <Box height="300px" width="100%" overflow={"hidden"}>
                 <Image
-                  src={category.image}
+                  src={category.categoryImage}
                   height="100%"
                   width="100%"
                   transitionDuration={"0.5s"}
@@ -107,7 +87,9 @@ export default function ShopCategories() {
               </Box>
               <Center>
                 <h3 style={{ color: "black", fontSize: "20px" }}>
-                  {t("ofShop." + category.title.toLowerCase()).toUpperCase()}
+                  {t(
+                    "ofShop." + category.categoryName.toLowerCase()
+                  ).toUpperCase()}
                 </h3>
               </Center>
               <br />

@@ -28,8 +28,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 
-import { Link, useLocation } from "react-router-dom";
-import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import React from "react";
 import {
   FaFacebook,
   FaPhoneAlt,
@@ -40,49 +40,29 @@ import {
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
+import axios from "axios";
+import { apiUrl } from "variables/constants";
 
 export default function Product() {
-  const refBottomImage = useRef(false);
-  const refName = useRef("");
+  var url = window.location.href;
+  var id = url.substring(url.lastIndexOf("/") + 1);
+  const [product, setProduct] = React.useState({});
+  const [categories, setCategories] = React.useState([]);
+  React.useEffect(() => {
+    axios.get(`${apiUrl()}getProductById/${id}`).then((response) => {
+      localStorage.setItem("productdata" + id, JSON.stringify(response.data));
+      console.log(response.data);
+      setProduct(response.data);
+    });
+  }, [id]);
 
-  var categ = {};
-  categ["abaya"] = 1;
-  categ["suits"] = 1;
-  categ["shirts"] = 1;
-  categ["trousers"] = 1;
-  categ["blazers"] = 3;
-  categ["polo"] = 1;
-  var nameofImage;
-  const location = useLocation();
-
-  if (refName.current === "") {
-    const { name } = location.state;
-    nameofImage = name;
-  } else {
-    if (refBottomImage.current === false) {
-      nameofImage = refName.current.replace(/[0-9]/g, "");
-    } else {
-      nameofImage = refName.current;
-    }
-  }
-
-  const [image, setImage] = useState(nameofImage);
-  const count = categ[nameofImage];
-  const categArray = Array.from({ length: count }, (_, i) => i + 1);
-
-  const handleImageClick = (img) => {
-    refBottomImage.current = false;
-    refName.current = img;
-    setImage(img);
-  };
-  const handleBottomImageClick = (img) => {
-    refBottomImage.current = true;
-    refName.current = img;
-    setImage(img);
-  };
-
-  const categories = Object.keys(categ);
-  const filteredCategories = categories.filter((c) => c !== nameofImage);
+  React.useEffect(() => {
+    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
+      localStorage.setItem("categories", JSON.stringify(response.data));
+      console.log(response.data);
+      setCategories(response.data);
+    });
+  }, []);
   const { t } = useTranslation();
   return (
     <>
@@ -106,30 +86,6 @@ export default function Product() {
           border={"1px"}
         >
           <HStack gridArea="left" align={"flex-start"}>
-            {count > 1 ? (
-              <VStack align={"flex-start"}>
-                {categArray.map((c) => {
-                  let append = nameofImage;
-                  if (c !== 1) append = append + c;
-                  return (
-                    <Box
-                      key={append}
-                      border={image === append ? "2px solid black" : ""}
-                    >
-                      <img
-                        width={"76px"}
-                        height={"114px"}
-                        src={require(`../../../assets/img/shop/${append}.jpeg`)}
-                        alt="product"
-                        onClick={() => handleImageClick(append)}
-                      />
-                    </Box>
-                  );
-                })}
-              </VStack>
-            ) : (
-              ""
-            )}
             <AspectRatio
               width={"full"}
               maxW={"720px"}
@@ -137,8 +93,8 @@ export default function Product() {
               ratio={2 / 3}
             >
               <Image
-                src={require(`../../../assets/img/shop/${image}.jpeg`)}
-                alt="product"
+                src={product.productImages[0].productImageUrl}
+                alt={"Product Image"}
                 border={"1px solid black"}
                 objectFit={"cover"}
               />
@@ -146,51 +102,44 @@ export default function Product() {
           </HStack>
           <VStack gridArea={"right"}>
             <VStack w={"full"} border={"3px double black"} py={4}>
-              <Heading pb={4} textTransform={"uppercase"}>
-                {t("ofShop." + nameofImage)}
-              </Heading>
+              <Heading pb={4} textTransform={"uppercase"}></Heading>
               <Heading fontSize={20} pb={4}>
-                320
+                {product.productName}
               </Heading>
-              <Heading fontSize={12} pb={4}>
-                <span style={{ textDecoration: "line-through" }}>
-                  {"\u20B9"} 10,046{" "}
-                </span>
-                <span>{"\u20B9"} 7,032 </span>
-                <span style={{ color: "red" }}>
-                  {t("products.save")} {"\u20B9"} 3,013
-                </span>
-              </Heading>
+              <span>
+                {"\u20B9"} {product.productPrice}
+              </span>{" "}
+              <span style={{ color: "red" }}>
+                {t("products.save")} {"\u20B9"} {product.productPrice * 0.25}
+              </span>
               <Box px="50px" w={"full"}>
                 <Divider />
               </Box>
               <Text py={4}>{t("products.size")}</Text>
-              <Box pb={4}>
-                <Box
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "1px solid black",
-                  }}
-                >
-                  L
-                </Box>
-              </Box>
-              <Box textTransform={"uppercase"} className="buttonStyle">
-                {t("products.custom")}
-              </Box>
+              <Flex>
+                {JSON.parse(product.productSizes).map((size) => {
+                  return (
+                    <Box
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        border: "1px solid black",
+                      }}
+                    >
+                      {size}
+                    </Box>
+                  );
+                })}
+              </Flex>
               <HStack py={4}>
                 <FaRuler /> <Text>{t("products.sizeChart")}</Text>
               </HStack>
               <HStack pb={4}>
                 <Box textTransform={"uppercase"} className="buttonStyle">
                   {t("addToCart")}
-                </Box>
-                <Box textTransform={"uppercase"} className="buttonStyle">
-                  {t("buyNow")}
                 </Box>
               </HStack>
             </VStack>
@@ -465,16 +414,15 @@ export default function Product() {
           }}
           spacing={4}
         >
-          {filteredCategories.map((category) => (
+          {categories.map((category) => (
             <Box>
-              <Link className="shopbycategory">
-                <Box
-                  height={{ md: "300px", sm: "200px", base: "100px" }}
-                  width="100%"
-                  overflow={"hidden"}
-                >
+              <Link
+                className="shopbycategory"
+                to={`/shop/${category.categoryId.toLowerCase()}`}
+              >
+                <Box height="300px" width="100%" overflow={"hidden"}>
                   <Image
-                    src={require(`../../../assets/img/shop/${category}.jpeg`)}
+                    src={category.categoryImage}
                     height="100%"
                     width="100%"
                     transitionDuration={"0.5s"}
@@ -483,12 +431,13 @@ export default function Product() {
                       transform: "scale(1.1)",
                     }}
                     objectFit="cover"
-                    onClick={() => handleBottomImageClick(category)}
                   />
                 </Box>
                 <Center>
                   <h3 style={{ color: "black", fontSize: "20px" }}>
-                    {t("ofShop." + category).toUpperCase()}
+                    {t(
+                      "ofShop." + category.categoryName.toLowerCase()
+                    ).toUpperCase()}
                   </h3>
                 </Center>
                 <br />

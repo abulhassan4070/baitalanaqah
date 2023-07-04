@@ -10,7 +10,6 @@ import CollaborationsPage from "views/collaborations/collaborations";
 import HowItWorksPage from "views/howitworks/howitworks";
 import CustomizePage from "views/customize/customize";
 import ShopCategories from "views/shop/helpers/categories";
-import ShopPage from "views/shop/shop";
 import Category from "views/shop/helpers/category";
 import Product from "views/products/helpers/product";
 import BlogView from "views/blog/BlogView";
@@ -132,16 +131,6 @@ const sidebarRoutes = [
     component: CustomizePage,
   },
   {
-    name: "Shop",
-    secondary: "Shop",
-    layout: "",
-    path: "/shop/*",
-    component: ShopPage,
-  },
-];
-
-const shopRoutes = [
-  {
     name: "Home",
     secondary: "Shop",
     layout: "",
@@ -149,58 +138,24 @@ const shopRoutes = [
     component: ShopCategories,
   },
   {
-    name: "Suits",
-    secondary: "Suits",
+    name: "Shop",
+    secondary: "Shop",
     layout: "",
-    path: "/shop/suits",
-    component: Category,
-  },
-  {
-    name: "Abaya",
-    secondary: "Abaya",
-    layout: "",
-    path: "/shop/abaya",
-    component: Category,
-  },
-  {
-    name: "Shirts",
-    secondary: "Shirts",
-    layout: "",
-    path: "/shop/shirts",
-    component: Category,
-  },
-  {
-    name: "Trousers",
-    secondary: "Trousers",
-    layout: "",
-    path: "/shop/trousers",
-    component: Category,
-  },
-  {
-    name: "Blazers",
-    secondary: "Blazers",
-    layout: "",
-    path: "/shop/blazers",
-    component: Category,
-  },
-  {
-    name: "Polo",
-    secondary: "Polo",
-    layout: "",
-    path: "/shop/polo",
+    path: "/shop/:category",
     component: Category,
   },
 ];
+
 const productsRoutes = [
   {
     name: "Product",
     secondary: "Product",
     layout: "",
-    path: "/products/*",
+    path: "/products/:product",
     component: Product,
   },
 ];
-const routes = [...sidebarRoutes, ...shopRoutes, ...productsRoutes];
+const routes = [...sidebarRoutes, ...productsRoutes];
 
 export default routes;
-export { sidebarRoutes, shopRoutes, productsRoutes };
+export { sidebarRoutes, productsRoutes };

@@ -126,7 +126,7 @@ export default function LoginCompoent() {
         sendRequestWithToken(
           {
             email: username,
-            password: "",
+            password: password,
           },
           `${apiUrl()}loginEmail`,
           "POST",
