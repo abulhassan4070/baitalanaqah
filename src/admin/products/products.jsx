@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Button, Icon } from '@chakra-ui/react';
+import { Flex, Text, Box, Button, Icon, useToast } from '@chakra-ui/react';
 import React from 'react';
 
 import Card from 'components/card/Card';
@@ -57,9 +57,13 @@ export default function AllProducts() {
       cell: row => (
         <>
           <Link to={`/admin/editproduct?id=${row.productId}`}>
-            <Button colorScheme="blue" mr="2" onClick={() => {
-              localStorage.setItem('editproduct', JSON.stringify(row));
-            }}>
+            <Button
+              colorScheme="blue"
+              mr="2"
+              onClick={() => {
+                localStorage.setItem('editproduct', JSON.stringify(row));
+              }}
+            >
               <Icon as={MdEdit} />
             </Button>
           </Link>
@@ -80,7 +84,7 @@ export default function AllProducts() {
       ),
     },
   ];
-
+  const toast = useToast();
   const handlePageChange = page => {
     setCurrentPage(page);
   };
@@ -90,7 +94,6 @@ export default function AllProducts() {
 
   const fetchUserDetails = async () => {
     setLoading(true);
-
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -147,7 +150,6 @@ export default function AllProducts() {
         },
       }),
     };
-
     axios
       .request(config)
       .then(response => {
@@ -160,6 +162,17 @@ export default function AllProducts() {
       })
       .catch(error => {
         console.log(error);
+        toast({
+          title: 'Error',
+          description: error.response.data.message,
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+        if (error.response.status === 401) {
+          localStorage.clear();
+          window.location.href = '/';
+        }
       });
 
     setLoading(false);
