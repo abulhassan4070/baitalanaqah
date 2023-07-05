@@ -134,22 +134,28 @@ export default function LoginCompoent() {
         )
           .then((data) => {
             if (data.status === 200) {
-              toast({
-                title: "Success",
-                description: "OTP Sent to your " + loginType,
-                status: "success",
-                duration: 9000,
-                isClosable: true,
-              });
-              setOtpSent(true);
-            } else {
-              toast({
-                title: "Error",
-                description: "This " + loginType + " doesn't exist",
-                status: "error",
-                duration: 9000,
-                isClosable: true,
-              });
+              var jsonData = data.data;
+              console.log(jsonData);
+              if (jsonData === undefined) {
+                toast({
+                  title: "Error",
+                  description: "OTP doesn't match",
+                  status: "error",
+                  duration: 9000,
+                  isClosable: true,
+                });
+              } else {
+                toast({
+                  title: "Success",
+                  description: "Login Successful",
+                  status: "success",
+                  duration: 9000,
+                  isClosable: true,
+                });
+                localStorage.setItem("token", jsonData.token);
+                localStorage.setItem("userdata", JSON.stringify(jsonData));
+                navigate("/profile", { replace: true });
+              }
             }
           })
           .catch((error) => {

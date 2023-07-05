@@ -12,8 +12,26 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
+import { apiUrl } from "variables/constants";
+import { sendRequestWithToken } from "variables/functions";
 export default function CartPage() {
   const { t } = useTranslation();
+  React.useEffect(() => {
+    var userData = JSON.parse(localStorage.getItem("userdata")).userId;
+    var token = localStorage.getItem("token") || "";
+    sendRequestWithToken(
+      {
+        userId: userData,
+      },
+      `${apiUrl()}getCart`,
+      "POST",
+      token
+    )
+      .then((data) => {})
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, []);
   return (
     <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
       <Breadcrumb

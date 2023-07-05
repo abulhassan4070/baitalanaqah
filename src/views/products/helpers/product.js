@@ -42,6 +42,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
 import axios from "axios";
 import { apiUrl } from "variables/constants";
+import { addToCardRequest } from "variables/functions";
 
 export default function Product() {
   var url = window.location.href;
@@ -138,7 +139,13 @@ export default function Product() {
                 <FaRuler /> <Text>{t("products.sizeChart")}</Text>
               </HStack>
               <HStack pb={4}>
-                <Box textTransform={"uppercase"} className="buttonStyle">
+                <Box
+                  textTransform={"uppercase"}
+                  className="buttonStyle"
+                  onClick={() => {
+                    addToCardRequest(product.productId, 1);
+                  }}
+                >
                   {t("addToCart")}
                 </Box>
               </HStack>

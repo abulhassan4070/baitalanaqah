@@ -20,6 +20,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
 import axios from "axios";
 import { apiUrl } from "variables/constants";
+import { addToCardRequest } from "variables/functions";
 
 export default function Category(props) {
   var url = window.location.href;
@@ -78,7 +79,10 @@ function CategoryList(props) {
     axios
       .get(`${apiUrl()}getAllProductsByCategories/${props.id}`)
       .then((response) => {
-        localStorage.setItem("categoriesdata" + props.id, response.data);
+        localStorage.setItem(
+          "categoriesdata" + props.id,
+          JSON.stringify(response.data)
+        );
         console.log(response.data);
         setProducts(response.data);
       });
@@ -144,7 +148,13 @@ function CategoryItem(props) {
             <Icon icon="material-symbols:star-rounded" color={"gold"} />
           </Flex>
           <Text fontSize="12px">{props.product.productDescription}</Text>
-          <Box className="buttonStyle small" mt="10px">
+          <Box
+            className="buttonStyle small"
+            mt="10px"
+            onClick={() => {
+              addToCardRequest(props.product.productId, 1);
+            }}
+          >
             {t("addToCart")}
           </Box>
         </Box>

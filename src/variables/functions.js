@@ -138,3 +138,25 @@ export async function sendRequestWithToken(data, url, method, token) {
     return res2;
   }
 }
+export async function addToCardRequest(productid) {
+  var token = localStorage.getItem("token");
+  if (token === null) {
+    window.location.href = "/login";
+  } else {
+    var headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    };
+    var formData = new FormData();
+    formData.append("userId", JSON.parse(localStorage.getItem("userdata")).userId);
+    formData.append("productId", productid);
+    formData.append("token", localStorage.getItem("token"));
+    var res = await axios.request({
+      url: apiUrl() + "addToCart",
+      method: "post",
+      headers: headers,
+      data: formData,
+    });
+    return res;
+  }
+}
