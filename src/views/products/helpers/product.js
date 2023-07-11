@@ -26,6 +26,7 @@ import {
   Tooltip,
   Heading,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
@@ -49,6 +50,7 @@ export default function Product() {
   var id = url.substring(url.lastIndexOf("/") + 1);
   const [product, setProduct] = React.useState({});
   const [categories, setCategories] = React.useState([]);
+  const toast = useToast();
   React.useEffect(() => {
     axios.get(`${apiUrl()}getProductById/${id}`).then((response) => {
       localStorage.setItem("productdata" + id, JSON.stringify(response.data));
@@ -144,6 +146,12 @@ export default function Product() {
                   className="buttonStyle"
                   onClick={() => {
                     addToCardRequest(product.productId, 1);
+                    toast({
+                      title: "Added to cart",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
                   }}
                 >
                   {t("addToCart")}

@@ -12,6 +12,7 @@ import {
   SimpleGrid,
   Text,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
@@ -107,6 +108,7 @@ function CategoryList(props) {
 
 function CategoryItem(props) {
   const { t } = useTranslation();
+  const toast = useToast();
   return (
     <Box
       height="100%"
@@ -153,6 +155,13 @@ function CategoryItem(props) {
             mt="10px"
             onClick={() => {
               addToCardRequest(props.product.productId, 1);
+              toast({
+                title: "Added to cart",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+              });
+
             }}
           >
             {t("addToCart")}
