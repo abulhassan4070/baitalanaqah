@@ -7,6 +7,7 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 import { apiUrl } from 'variables/constants';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { sendRequestWithToken } from 'variables/functions';
 
 export default function AllProducts() {
   // eslint-disable-next-line no-unused-vars
@@ -23,13 +24,8 @@ export default function AllProducts() {
       selector: (row, index) => index + 1,
     },
     {
-      name: 'category name',
-      selector: row => row.categoryName,
-      sortable: true,
-    },
-    {
       name: 'product name',
-      selector: row => row.categoryName,
+      selector: row => row.productName,
       sortable: true,
     },
 
@@ -71,11 +67,13 @@ export default function AllProducts() {
             colorScheme="red"
             mr="2"
             onClick={() => {
-              axios
-                .get(`${apiUrl()}deleteProductByCategoryId/${row.productId}`)
-                .then(res => {
-                  fetchUserDetails();
-                });
+              sendRequestWithToken(
+                {},
+                `${apiUrl()}deleteProductByCategoryId/${row.productId}`,
+                'GET'
+              ).then(res => {
+                fetchUserDetails();
+              });
             }}
           >
             <Icon as={MdDelete} />

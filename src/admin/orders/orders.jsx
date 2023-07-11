@@ -29,24 +29,25 @@ export default function OrderHistory() {
     },
     {
       name: 'Product Names',
-      selector: row => (
-        <>
-          {row.products.map((product, index) => {
-            return (
-              <div key={index}>
-                {product.product.productName} x {product.qty}
-              </div>
-            );
-          })}
-        </>
-      ),
+      selector: row =>
+        typeof products !== 'string' && (
+          <>
+            {row.products.map((product, index) => {
+              return (
+                <div key={index}>
+                  {product.product.productName} x {product.qty}
+                </div>
+              );
+            })}
+          </>
+        ),
       sortable: true,
     },
 
     {
       name: 'Category Name',
       selector: row => (
-        <>
+        typeof products !== 'string' &&      <>
           {row.products.map((product, index) => {
             return (
               <div key={index}>{product.product.category.categoryName}</div>
@@ -59,7 +60,7 @@ export default function OrderHistory() {
     {
       name: 'Price',
       selector: row => (
-        <>
+        typeof products !== 'string' &&    <>
           {row.products.map((product, index) => {
             return (
               <div key={index}>{product.product.subTotal * product.qty}</div>
