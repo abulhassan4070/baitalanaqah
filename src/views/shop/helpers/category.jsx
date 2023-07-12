@@ -106,7 +106,7 @@ function CategoryList(props) {
   );
 }
 
-function CategoryItem(props) {
+export function CategoryItem(props) {
   const { t } = useTranslation();
   const toast = useToast();
   return (
