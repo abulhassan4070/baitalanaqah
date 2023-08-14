@@ -90,7 +90,7 @@ export default function NavigationFooter() {
                 {t("title")},
                 <br /> {t("dubai")} {t("UAE")}
                 <br />
-                <strong>{t("phone")}:</strong> +1 9999 9999 99
+                <strong>{t("phone")}:</strong> +971 565777763
                 <br />
                 <strong>{t("email")}:</strong> info@baitalanaqah.com
                 <br />

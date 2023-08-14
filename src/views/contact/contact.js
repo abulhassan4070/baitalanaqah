@@ -182,7 +182,7 @@ export default function ContactPage() {
             <Text fontWeight={"bold"} fontSize={18}>
               {t("ofContact.callUs.title")}
             </Text>
-            <Text fontSize={12}>+9710000000</Text>
+            <Text fontSize={12}>+971 565777763</Text>
           </Stack>
           <Stack bgColor={paigeColor} p={5}>
             <Box as={MdEmail} size="40px" />
