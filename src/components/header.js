@@ -391,20 +391,6 @@ const MobileNavItem = ({ label, children, href }) => {
           />
         )}
       </NavLink>
-      {/* <Flex
-        py={2}
-        as={NavLink}
-        to={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
-        className={"hfont header-nav-link"}
-        activeClassName="active"
-        _hover={{
-          textDecoration: "none",
-        }}
-      >
-       
-      </Flex> */}
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
@@ -429,8 +415,12 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "shop",
-    href: "shop",
+    label: "men",
+    href: "men",
+  },
+  {
+    label: "women",
+    href: "women",
   },
   {
     label: "collaborations",
@@ -444,33 +434,20 @@ const NAV_ITEMS = [
     href: "tailors",
   },
   {
+    label: "blogs",
+    href: "blogs",
+  },
+  {
     label: "more",
     href: "more",
     children: [
       {
         label: "contact",
-        subLabel: "contactSub",
         href: "contact",
       },
       {
         label: "story",
-        subLabel: "storySub",
         href: "about",
-      },
-      // {
-      //   label: "How",
-      //   subLabel: "Know how it works",
-      //   href: "howitworks",
-      // },
-      // {
-      //   label: "Customize",
-      //   subLabel: "Customizing suits",
-      //   href: "customize",
-      // },
-      {
-        label: "blogs",
-        subLabel: "blogsSub",
-        href: "blogs",
       },
     ],
   },
