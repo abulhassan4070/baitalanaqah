@@ -16,6 +16,7 @@ import BlogView from "views/blog/BlogView";
 import Profile from "views/auth/profile";
 import RegistrationComponent from "views/auth/register";
 import LoginCompoent from "views/auth/login";
+import ShopCategoryType from "views/shop/helpers/categorytype";
 
 const sidebarRoutes = [
   {
@@ -90,16 +91,16 @@ const sidebarRoutes = [
   },
   {
     name: "Home",
-    secondary: "Collaborations",
+    secondary: "Custom",
     layout: "",
-    path: "/collaborations",
+    path: "/custom",
     component: CollaborationsPage,
   },
   {
     name: "Home",
-    secondary: "Tailors",
+    secondary: "Clients",
     layout: "",
-    path: "/tailors",
+    path: "/clients",
     component: TailorsPage,
   },
   {
@@ -136,6 +137,13 @@ const sidebarRoutes = [
     layout: "",
     path: "/shop",
     component: ShopCategories,
+  },
+  {
+    name: "Home",
+    secondary: "Men",
+    layout: "",
+    path: "/shop/:type",
+    component: ShopCategoryType,
   },
   {
     name: "Shop",

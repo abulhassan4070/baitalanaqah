@@ -10,20 +10,31 @@ import axios from "axios";
 import { apiUrl } from "variables/constants";
 import { CategoryItem } from "views/shop/helpers/category";
 
-export default function ListOfAbaya() {
+export default function ListOfProducts(props) {
   const { t } = useTranslation();
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
-    axios.get(`${apiUrl()}getAllProductsByCategories/12`).then((response) => {
-      localStorage.setItem("categoriesdata12", JSON.stringify(response.data));
-      console.log(response.data);
-      setProducts(response.data);
-    });
-  }, []);
+    if (props.id === "" || props.id === undefined) {
+      return;
+    }
+    axios
+      .get(`${apiUrl()}getAllProductsByCategories/${props.id}`)
+      .then((response) => {
+        localStorage.setItem(
+          `categoriesdata${props.id}`,
+          JSON.stringify(response.data)
+        );
+        console.log(response.data);
+        setProducts(response.data);
+      });
+  }, [props]);
   return (
     <Box id="abaya">
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
-        <HeaderText title={t("abaya")} subtitle={t("topSellingAbaya")} />
+        <HeaderText
+          title={props.name}
+          subtitle={t("topSelling") + " " + props.name}
+        />
         <br />
         <Swiper
           navigation={true}
@@ -53,7 +64,7 @@ export default function ListOfAbaya() {
         >
           {products.map((product) => (
             <SwiperSlide height="400px">
-              <Link to={`/products/abaya`} state={{ name: "abaya" }}>
+              <Link to={`/products/${product.productId}`}>
                 <CategoryItem key={product.productId} product={product} />
               </Link>
             </SwiperSlide>
