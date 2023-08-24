@@ -167,7 +167,7 @@ export default function NavigationFooter() {
                 </li>
                 <li>
                   <Icon icon="bi:chevron-right" />
-                  <span>{t("tailors")}</span>
+                  <span>{t("clients")}</span>
                 </li>
               </ul>
             </Box>

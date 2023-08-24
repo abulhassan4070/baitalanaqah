@@ -35,7 +35,7 @@ export default function CollaborationsPage() {
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              {t("collaborations")}
+              {t("customs")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>

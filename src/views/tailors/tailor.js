@@ -47,14 +47,14 @@ export default function TailorsPage() {
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              {t("tailors")}
+              {t("clients")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
         <HeaderText
-          title={t("ofTailors.title")}
-          subtitle={t("ofTailors.subtitle")}
+          title={t("ofClients.title")}
+          subtitle={t("ofClients.subtitle")}
         />
         <Center>
           <SimpleGrid
@@ -106,13 +106,13 @@ function Preface() {
               bgColor: "black",
             }}
           >
-            {t("ofTailors.title")}
+            {t("ofClients.title")}
           </Text>
         </HStack>
         <Stack mt={"50px"}>
-          <Heading>{t("ofTailors.text1")}</Heading>
-          <Heading>{t("ofTailors.text2")}</Heading>
-          <Heading>{t("ofTailors.text3")}</Heading>
+          <Heading>{t("ofClients.text1")}</Heading>
+          <Heading>{t("ofClients.text2")}</Heading>
+          <Heading>{t("ofClients.text3")}</Heading>
           <Box>
             <Box
               display={"inline-block"}
@@ -154,9 +154,9 @@ function Tailor() {
       <Box p={6}>
         <Stack spacing={0} align={"center"} mb={5}>
           <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-            {t("ofTailors.name")}
+            {t("ofClients.name")}
           </Heading>
-          <Text color={"gray.500"}>{t("ofTailors.experienced")}</Text>
+          <Text color={"gray.500"}>{t("ofClients.experienced")}</Text>
         </Stack>
       </Box>
     </Box>

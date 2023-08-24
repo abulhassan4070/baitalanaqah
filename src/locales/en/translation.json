@@ -2,8 +2,8 @@
   "shop": "Shop",
   "men": "Men",
   "women": "Women",
-  "collaborations": "Collaborations",
-  "tailors": "Tailors",
+  "customs": "Customs",
+  "clients": "Clients",
   "more": "More",
   "contact": "Contact",
   "story": "Our Story",
@@ -77,12 +77,12 @@
 
   "ofCollaborators": {},
 
-  "ofTailors": {
-    "title": "Our Tailors",
-    "subtitle": "See our hardworking tailors",
+  "ofClients": {
+    "title": "Our Clients",
+    "subtitle": "See our hardworking clients",
     "text1": "Meet Our",
     "text2": "Experienced",
-    "text3": "Tailors",
+    "text3": "Clients",
     "name": " Mohammad Ismail",
     "experienced": "Senior Tailor"
   },

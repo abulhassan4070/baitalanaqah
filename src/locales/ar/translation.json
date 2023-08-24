@@ -2,8 +2,8 @@
   "shop": "محل",
   "men": "رجال",
   "women": "نحيف",
-  "collaborations": "التعاون",
-  "tailors": "الخياطون",
+  "customs": "مخصص",
+  "clients": "العملاء",
   "more": "أكثر",
   "contact": "اتصال",
   "story": "قصتنا",
@@ -77,14 +77,14 @@
 
   "ofCollaborators": {},
 
-  "ofTailors": {
-    "title": "الخياطون لدينا",
-    "subtitle": "انظر لدينا الخياطين المجتهدين",
+  "ofClients": {
+    "title": "عملائنا",
+    "subtitle": "شاهد عملائنا المجتهدين",
     "text1": "تلبية لدينا",
     "text2": "ذوي الخبرة",
-    "text3": "الخياطون",
+    "text3": "العملاء",
     "name": "محمد اسماعيل",
-    "experienced": "خياط أول"
+    "experienced": "العميل أول"
   },
 
   "ofContact": {
