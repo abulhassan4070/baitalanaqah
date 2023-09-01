@@ -24,21 +24,24 @@ export default function CartPage() {
   const { t } = useTranslation();
   const toast = useToast();
   React.useEffect(() => {
-    var userData = JSON.parse(localStorage.getItem("userdata")).userId;
-    var token = localStorage.getItem("token") || "";
-    sendRequestWithToken(
-      {
-        userId: userData,
-      },
-      `${apiUrl()}getCart`,
-      "POST",
-      token
-    )
-      .then((data) => {
-        setCart(data.data.cart);
-        console.log(data.data.cart);
-      })
-      .catch((err) => {});
+    if (localStorage.getItem("userdata") === null) {
+    } else {
+      var userData = JSON.parse(localStorage.getItem("userdata")).userId;
+      var token = localStorage.getItem("token") || "";
+      sendRequestWithToken(
+        {
+          userId: userData,
+        },
+        `${apiUrl()}getCart`,
+        "POST",
+        token
+      )
+        .then((data) => {
+          setCart(data.data.cart);
+          console.log(data.data.cart);
+        })
+        .catch((err) => {});
+    }
   }, []);
   return (
     <Container maxW={"7xl"} p="12" dir={i18n.dir()}>
@@ -184,8 +187,7 @@ export default function CartPage() {
                   duration: 9000,
                   isClosable: true,
                 });
-              }
-              )
+              })
               .catch((err) => {});
           }}
         >

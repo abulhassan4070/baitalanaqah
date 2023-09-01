@@ -19,9 +19,6 @@ export default function ShopCategoryType() {
   const [id, setId] = React.useState("");
   var location = useLocation();
   React.useEffect(() => {
-    // setId(location.pathname.split("/")[2]);
-    // var url = window.location.href;
-    // var id = url.substring(url.lastIndexOf("/") + 1);
     var url = window.location.href;
     var id = url.substring(url.lastIndexOf("/") + 1);
     setId(id);
@@ -62,14 +59,6 @@ export default function ShopCategoryType() {
       </Breadcrumb>
       <br />
       <br />
-      {/* <SimpleGrid
-        columns={{
-          base: 1,
-          sm: 2,
-          md: 3,
-        }}
-        spacing={4}
-      > */}
       {categories.map((category) =>
         category.categoryName.startsWith(id) ? (
           <Box>
@@ -82,7 +71,6 @@ export default function ShopCategoryType() {
           <></>
         )
       )}
-      {/* </SimpleGrid> */}
     </Container>
   );
 }

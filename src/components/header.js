@@ -10,14 +10,18 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
+  SimpleGrid,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
 import logotext from "../assets/img/logotext.png";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../contexts/Wrapper";
+import axios from "axios";
+import { apiUrl } from "variables/constants";
 
 export default function NavigationHeader() {
   const context = useContext(Context);
@@ -186,6 +190,16 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
+      localStorage.setItem("categories", JSON.stringify(response.data));
+      console.log(response.data);
+      setCategories(response.data);
+    });
+  }, []);
+
   return (
     <Stack direction={"row"} spacing={4} w={"100%"}>
       {NAV_ITEMS.map((navItem) => {
@@ -254,24 +268,123 @@ const DesktopNav = () => {
                 </PopoverContent>
               </Popover>
             )}
-            {!navItem.children && (
-              <NavLink
-                to={navItem.href ?? "#"}
-                p={2}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                className={"hfont header-nav-link"}
-                activeClassName="active"
-                display={"flex"}
-              >
-                {t(navItem.label)}
-              </NavLink>
+            {(navItem.label === "men" || navItem.label === "women") && (
+              <Popover trigger={"hover"}>
+                <PopoverTrigger>
+                  <NavLink to={navItem.href ?? "#"}>
+                    <Flex
+                      to={navItem.href ?? "#"}
+                      p={2}
+                      fontSize={"sm"}
+                      fontWeight={500}
+                      color={linkColor}
+                      className={"hfont header-nav-link"}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontSize: "16px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {t(navItem.label)}
+                      <Icon icon="gridicons:dropdown" />
+                    </Flex>
+                  </NavLink>
+                </PopoverTrigger>
+                <PopoverContent
+                  width={{ base: "100%", lg: "max-content" }}
+                  border={0}
+                  boxShadow={"xl"}
+                  bg={popoverContentBgColor}
+                  p={4}
+                  rounded={"xl"}
+                >
+                  <Top3Categories
+                    categories={categories}
+                    label={navItem.label}
+                  />
+                </PopoverContent>
+              </Popover>
             )}
+            {!navItem.children &&
+              navItem.label !== "men" &&
+              navItem.label !== "women" && (
+                <NavLink
+                  to={navItem.href ?? "#"}
+                  p={2}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  color={linkColor}
+                  className={"hfont header-nav-link"}
+                  activeClassName="active"
+                  display={"flex"}
+                >
+                  {t(navItem.label)}
+                </NavLink>
+              )}
           </Box>
         );
       })}
     </Stack>
+  );
+};
+const Top3Categories = ({ categories, label }) => {
+  const { t } = useTranslation();
+  const linkColor = useColorModeValue("gray.600", "gray.200");
+  const [top3Categories, setTop3Categories] = useState([]);
+  useEffect(() => {
+    if (categories.length > 0) {
+      var index = 0;
+      let top3 = [];
+      for (let i = 0; i < categories.length; i++) {
+        if (index === 3) {
+          break;
+        }
+        if (categories[i].categoryName.startsWith(label)) {
+          top3.push(categories[i]);
+          index++;
+        }
+      }
+      setTop3Categories(top3);
+    }
+  }, [categories, label]);
+
+  return (
+    <SimpleGrid
+      columns={{ base: 1, sm: 2, md: 3 }}
+      spacing={4}
+      className="hfont"
+    >
+      {top3Categories.map((category) => (
+        <NavLink
+          to={`/shop/${category.categoryName}`}
+          p={2}
+          fontSize={"sm"}
+          fontWeight={500}
+          color={linkColor}
+          activeClassName="active"
+          display={"flex"}
+        >
+          <Image
+            src={category.categoryImage}
+            alt={category.categoryName}
+            width={200}
+            height={200}
+          />
+          <Text
+            textAlign={"center"}
+            fontSize={"lg"}
+            fontWeight={800}
+            transition={"all .3s ease"}
+            _groupHover={{ color: "black" }}
+            className="hfont"
+          >
+            {t(category.categoryName.replace(label + "", ""))}
+          </Text>
+        </NavLink>
+      ))}
+    </SimpleGrid>
   );
 };
 
