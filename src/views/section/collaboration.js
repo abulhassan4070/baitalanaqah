@@ -75,6 +75,7 @@ export default function CollaboratorsSection() {
                 style={{
                   display: "flex",
                   alignItems: "center",
+                  height: "100%",
                   justifyContent: "center",
                 }}
               >
@@ -122,17 +123,17 @@ export default function CollaboratorsSection() {
                 src="https://smartinternz.com/assets/homepage/companie/new/public_is_sapient.png"
               />
             </div>
-            <NavLink to={"/custom"}>
-              <div
-                class="column hero-brand-logo"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Text>{t("andManyMore")}</Text>
-              </div>
+            <NavLink
+              to={"/custom"}
+              class="column hero-brand-logo"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <Text>{t("andManyMore")}</Text>
             </NavLink>
           </SimpleGrid>
         )}
