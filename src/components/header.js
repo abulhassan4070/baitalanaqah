@@ -76,69 +76,6 @@ export default function NavigationHeader() {
             <option value="en">English</option>
             <option value="ar">اَلْعَرَبِيَّةُ</option>
           </select>
-          {/* <Popover trigger={"hover"} variant="responsive">
-            <PopoverTrigger>
-              <Flex
-                p={2}
-                fontSize={"sm"}
-                className={"hfont header-nav-link"}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "12px",
-                  cursor: "pointer",
-                }}
-              >
-                <Text display={{ base: "none", md: "block" }} mr={2}>
-                  {context.locale === "en" ? "English" : "اَلْعَرَبِيَّةُ"}
-                </Text>
-                <Icon icon="material-symbols:g-translate" />
-              </Flex>
-            </PopoverTrigger>
-            <PopoverContent
-              width={{ base: "100%", lg: "max-content" }}
-              bg={"white"}
-              p={4}
-            >
-              <Stack>
-                <Box
-                  display={"flex"}
-                  justifyItems={"space-between"}
-                  width={"100%"}
-                  alignItems={"center"}
-                  cursor={"pointer"}
-                  py={2}
-                  onClick={() => context.selectLanguage("en")}
-                >
-                  English
-                  {context.locale === "en" && (
-                    <>
-                      <Box padding={1}></Box>
-                      <Icon icon="eva:checkmark-circle-2-fill" color="green" />
-                    </>
-                  )}
-                </Box>
-                <Box
-                  display={"flex"}
-                  justifyItems={"space-between"}
-                  width={"100%"}
-                  alignItems={"center"}
-                  cursor={"pointer"}
-                  py={2}
-                  onClick={() => context.selectLanguage("ar")}
-                >
-                  اَلْعَرَبِيَّةُ
-                  {context.locale === "ar" && (
-                    <>
-                      <Box padding={1}></Box>
-                      <Icon icon="eva:checkmark-circle-2-fill" color="green" />
-                    </>
-                  )}
-                </Box>
-              </Stack>
-            </PopoverContent>
-          </Popover> */}
         </Flex>
         <Flex flex={{ base: 1 }} justify={"center"}>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -537,7 +474,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Custom",
-    href: "custom",
+    href: "customize",
   },
   {
     logo: true,

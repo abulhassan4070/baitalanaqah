@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { HeaderText } from "widgets/header";
 import i18n from "i18nConfig";
+import { NavLink } from "react-router-dom";
 
 export default function CollaboratorsSection() {
   const { t } = useTranslation();
@@ -68,16 +69,18 @@ export default function CollaboratorsSection() {
                 src="https://smartinternz.com/documents/college_logos/new/6.png"
               />
             </div>
-            <div
-              class="column hero-brand-logo"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text>{t("andManyMore")}</Text>
-            </div>
+            <NavLink to={"/custom"}>
+              <div
+                class="column hero-brand-logo"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text>{t("andManyMore")}</Text>
+              </div>
+            </NavLink>
           </SimpleGrid>
         ) : (
           <SimpleGrid
@@ -119,16 +122,18 @@ export default function CollaboratorsSection() {
                 src="https://smartinternz.com/assets/homepage/companie/new/public_is_sapient.png"
               />
             </div>
-            <div
-              class="column hero-brand-logo"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text>{t("andManyMore")}</Text>
-            </div>
+            <NavLink to={"/custom"}>
+              <div
+                class="column hero-brand-logo"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text>{t("andManyMore")}</Text>
+              </div>
+            </NavLink>
           </SimpleGrid>
         )}
       </Container>
