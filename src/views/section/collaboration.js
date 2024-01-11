@@ -1,9 +1,8 @@
-import { Box, Container, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Container, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { HeaderText } from "widgets/header";
 import i18n from "i18nConfig";
-import { NavLink } from "react-router-dom";
 
 export default function CollaboratorsSection() {
   const { t } = useTranslation();
