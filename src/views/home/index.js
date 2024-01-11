@@ -3,6 +3,7 @@ import NavigationFooter from "components/footer";
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import routes from "routes";
+import NotFound from "./pages/not-found";
 
 export default function Home() {
   const getRoutes = (routes) => {
@@ -24,7 +25,10 @@ export default function Home() {
     <>
       <Suspense fallback="...loading">
         <NavigationHeader />
-        <Routes>{getRoutes(routes)}</Routes>
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <NavigationFooter />
       </Suspense>
     </>

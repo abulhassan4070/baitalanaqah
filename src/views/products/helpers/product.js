@@ -26,7 +26,6 @@ import {
   Tooltip,
   Heading,
   Center,
-  useToast,
 } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
@@ -43,14 +42,13 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
 import axios from "axios";
 import { apiUrl } from "variables/constants";
-import { addToCardRequest } from "variables/functions";
+import { AddToCard } from "widgets/addToCart";
 
 export default function Product() {
   var url = window.location.href;
   var id = url.substring(url.lastIndexOf("/") + 1);
   const [product, setProduct] = React.useState(null);
   const [categories, setCategories] = React.useState([]);
-  const toast = useToast();
   React.useEffect(() => {
     axios.get(`${apiUrl()}getProductById/${id}`).then((response) => {
       localStorage.setItem("productdata" + id, JSON.stringify(response.data));
@@ -141,21 +139,7 @@ export default function Product() {
                   <FaRuler /> <Text>{t("products.sizeChart")}</Text>
                 </HStack>
                 <HStack pb={4}>
-                  <Box
-                    textTransform={"uppercase"}
-                    className="buttonStyle"
-                    onClick={() => {
-                      addToCardRequest(product.productId, 1);
-                      toast({
-                        title: "Added to cart",
-                        status: "success",
-                        duration: 3000,
-                        isClosable: true,
-                      });
-                    }}
-                  >
-                    {t("addToCart")}
-                  </Box>
+                  <AddToCard id={product.productId} />
                 </HStack>
               </VStack>
 

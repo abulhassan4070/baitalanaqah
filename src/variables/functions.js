@@ -148,15 +148,28 @@ export async function addToCardRequest(productid) {
       Authorization: "Bearer " + localStorage.getItem("token"),
     };
     var formData = new FormData();
-    formData.append("userId", JSON.parse(localStorage.getItem("userdata")).userId);
+    formData.append(
+      "userId",
+      JSON.parse(localStorage.getItem("userdata")).userId
+    );
     formData.append("productId", productid);
     formData.append("token", localStorage.getItem("token"));
-    var res = await axios.request({
-      url: apiUrl() + "addToCart",
-      method: "post",
-      headers: headers,
-      data: formData,
-    });
-    return res;
+    try {
+      var res = await axios.request({
+        url: apiUrl() + "addToCart",
+        method: "post",
+        headers: headers,
+        data: formData,
+      });
+      if (res.status === 200) {
+        return res;
+      }
+    } catch (error) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userdata");
+      window.location.href = "/login";
+      console.log(error);
+      return error;
+    }
   }
 }

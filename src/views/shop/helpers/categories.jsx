@@ -85,15 +85,15 @@ export default function ShopCategories() {
                   objectFit="cover"
                 />
               </Box>
-              <Center>
-                <h3 style={{ color: "black", fontSize: "20px" }}>
-                  {t(
-                    "ofShop." + category.categoryName.toLowerCase()
-                  ).toUpperCase()}
-                </h3>
-              </Center>
-              <br />
             </Link>
+            <Center>
+              <h3 style={{ color: "black", fontSize: "20px" }}>
+                {t(
+                  "ofShop." + category.categoryName.toLowerCase()
+                ).toUpperCase()}
+              </h3>
+            </Center>
+            <br />
           </Box>
         ))}
       </SimpleGrid>
