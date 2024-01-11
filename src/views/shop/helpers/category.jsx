@@ -12,7 +12,6 @@ import {
   SimpleGrid,
   Text,
   VStack,
-  useToast,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
@@ -21,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "i18nConfig";
 import axios from "axios";
 import { apiUrl } from "variables/constants";
-import { addToCardRequest } from "variables/functions";
+import { AddToCard } from "widgets/addToCart";
 
 export default function Category(props) {
   var url = window.location.href;
@@ -107,8 +106,6 @@ function CategoryList(props) {
 }
 
 export function CategoryItem(props) {
-  const { t } = useTranslation();
-  const toast = useToast();
   return (
     <Box
       height="100%"
@@ -150,22 +147,8 @@ export function CategoryItem(props) {
             <Icon icon="material-symbols:star-rounded" color={"gold"} />
           </Flex>
           <Text fontSize="12px">{props.product.productDescription}</Text>
-          <Box
-            className="buttonStyle small"
-            mt="10px"
-            onClick={() => {
-              addToCardRequest(props.product.productId, 1);
-              toast({
-                title: "Added to cart",
-                status: "success",
-                duration: 3000,
-                isClosable: true,
-              });
-
-            }}
-          >
-            {t("addToCart")}
-          </Box>
+          <br />
+          <AddToCard id={props.product.productId} />
         </Box>
       </VStack>
     </Box>

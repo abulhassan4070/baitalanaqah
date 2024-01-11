@@ -19,6 +19,7 @@ import i18n from "i18nConfig";
 import { apiUrl } from "variables/constants";
 import { sendRequestWithToken } from "variables/functions";
 import axios from "axios";
+import { AddToCard } from "widgets/addToCart";
 export default function CartPage() {
   const [cart, setCart] = React.useState([]);
   const { t } = useTranslation();
@@ -92,38 +93,16 @@ export default function CartPage() {
                   <Text fontSize="md" fontWeight="semibold">
                     {item.product.productPrice}
                   </Text>
-                  <Text fontSize="md" fontWeight="semibold">
-                    {item.qty} QTY
-                  </Text>
                 </Box>
               </Box>
               <Spacer />
-              <Button
-                colorScheme="red"
-                onClick={() => {
-                  var token = localStorage.getItem("token") || "";
-                  sendRequestWithToken(
-                    {
-                      userId: JSON.parse(localStorage.getItem("userdata"))
-                        .userId,
-                      productId: item.product.productId,
-                    },
-                    `${apiUrl()}removeFromCart`,
-                    "POST",
-                    token
-                  )
-                    .then((data) => {
-                      var newCart = cart.filter(
-                        (cartItem) =>
-                          cartItem.product.productId !== item.product.productId
-                      );
-                      setCart(newCart);
-                    })
-                    .catch((err) => {});
-                }}
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems={"center"}
               >
-                Remove
-              </Button>
+                <AddToCard id={item.product.productId} />
+              </Box>
             </Flex>
           </Box>
         );
@@ -142,24 +121,6 @@ export default function CartPage() {
           colorScheme="red"
           onClick={() => {
             var token = localStorage.getItem("token") || "";
-            // sendRequestWithToken(
-            //   {
-            //     userId: JSON.parse(localStorage.getItem("userdata")).userId,
-            //     totalAmount: cart.reduce(
-            //       (total, item) => total + item.product.subTotal,
-            //       0
-            //     ),
-            //     currency: "USD",
-            //     products: JSON,
-            //   },
-            //   `${apiUrl()}placeOrder`,
-            //   "POST",
-            //   token
-            // )
-            //   .then((data) => {
-            //     setCart([]);
-            //   })
-            //   .catch((err) => {});
             axios
               .post(
                 `${apiUrl()}placeOrder`,

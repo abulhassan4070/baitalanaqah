@@ -44,15 +44,12 @@ export default function AboutPage() {
 
           <BreadcrumbItem isCurrentPage>
             <BreadcrumbLink style={{ textDecoration: "none" }}>
-              {t("ourStory")}
+              {t("ourTeam")}
             </BreadcrumbLink>
           </BreadcrumbItem>
         </Breadcrumb>
         <br />
-        <HeaderText
-          title={t("ofAboutUs.title")}
-          subtitle={t("ofAboutUs.subtitle")}
-        />
+        <HeaderText title={t("ourTeam")} subtitle={t("ofAboutUs.subtitle")} />
         <div class="responsive-container-block Container bottomContainer">
           <div class="ultimateImg">
             <Image

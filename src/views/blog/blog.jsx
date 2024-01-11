@@ -50,7 +50,7 @@ const BlogsList = () => {
       .catch((error) => {
         console.log(error);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -136,6 +136,11 @@ const BlogsList = () => {
           </Box>
         );
       })}
+      {items.length === 0 && (
+        <Heading className={"title"}>
+          No Blogs Found. Please check back later.
+        </Heading>
+      )}
     </Container>
   );
 };

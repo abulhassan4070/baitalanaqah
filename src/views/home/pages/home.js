@@ -2,7 +2,7 @@ import React from "react";
 
 import AboutUsSection from "components/about";
 import HeroSection from "../../../components/hero";
-import TestimonialSection from "../../../components/testimonials";
+// import TestimonialSection from "../../../components/testimonials";
 import AbayaSection from "views/section/abaya";
 import SuitsSection from "views/section/suits";
 import CollaboratorsSection from "views/section/collaboration";
@@ -13,10 +13,10 @@ export default function HomePage() {
       <HeroSection />
       <AboutUsSection />
       <AbayaSection />
-      <ListOfProducts id="16" name="Shirts" />
+      <ListOfProducts id="15" name="Suits" />
       <SuitsSection />
       <ListOfProducts id="12" name="Abaya" />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <CollaboratorsSection />
     </>
   );

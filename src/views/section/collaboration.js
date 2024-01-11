@@ -11,22 +11,19 @@ export default function CollaboratorsSection() {
   return (
     <Box id="collaborator" dir={i18n.dir()}>
       <Container maxW={"7xl"} py={{ base: 20, md: 28 }}>
-        <HeaderText
-          title={t("collaboratorsTitle")}
-          subtitle={t("collaboratorsSubtitle")}
-        />
+        <HeaderText title={t("collaboratorsTitle")} />
         <div class="partner-tabs-container">
           <div
             class={activeTab === 0 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(0)}
           >
-            {t("partners")}
+            {t("fabrics")}
           </div>
           <div
             class={activeTab === 1 ? "partner-tab is-active" : "partner-tab"}
             onClick={() => setActiveTab(1)}
           >
-            {t("corporate")}
+            {t("clients")}
           </div>
         </div>
         {activeTab === 0 ? (
@@ -39,36 +36,13 @@ export default function CollaboratorsSection() {
               lg: 6,
             }}
           >
-            <div class="column hero-brand-logo">
+            {/* <div class="column hero-brand-logo">
               <Image
                 alt=""
                 src="https://smartinternz.com/documents/college_logos/manipal.png"
               />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/documents/college_logos/new/2.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/documents/college_logos/new/3.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/documents/college_logos/new/4.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/documents/college_logos/new/6.png"
-              />
-            </div>
+            </div> */}
+            {/*             
             <NavLink to={"/custom"}>
               <div
                 class="column hero-brand-logo"
@@ -81,7 +55,7 @@ export default function CollaboratorsSection() {
               >
                 <Text>{t("andManyMore")}</Text>
               </div>
-            </NavLink>
+            </NavLink> */}
           </SimpleGrid>
         ) : (
           <SimpleGrid
@@ -93,31 +67,7 @@ export default function CollaboratorsSection() {
               lg: 6,
             }}
           >
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/assets/homepage/companie/new/assetcues.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/assets/homepage/companie/new/cyrrup.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/assets/homepage/companie/new/enovvator_ingineering.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
-              <Image
-                alt=""
-                src="https://smartinternz.com/assets/homepage/companie/new/global.png"
-              />
-            </div>
-            <div class="column hero-brand-logo">
+            {/* <div class="column hero-brand-logo">
               <Image
                 alt=""
                 src="https://smartinternz.com/assets/homepage/companie/new/public_is_sapient.png"
@@ -134,7 +84,7 @@ export default function CollaboratorsSection() {
               }}
             >
               <Text>{t("andManyMore")}</Text>
-            </NavLink>
+            </NavLink> */}
           </SimpleGrid>
         )}
       </Container>

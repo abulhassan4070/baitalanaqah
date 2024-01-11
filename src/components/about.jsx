@@ -35,7 +35,7 @@ export default function AboutUsSection() {
               fontWeight={600}
               fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
             >
-              <h5 class="section-title">{t("ourStory")}</h5>
+              <h5 class="section-title">{t("ourTeam")}</h5>
               <br />
               <Text as={"span"} position={"relative"}>
                 {t("title")},
