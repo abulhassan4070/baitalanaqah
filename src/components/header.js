@@ -130,11 +130,16 @@ const DesktopNav = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
-      localStorage.setItem("categories", JSON.stringify(response.data));
-      console.log(response.data);
-      setCategories(response.data);
-    });
+    axios
+      .get(`${apiUrl()}getProductCategories`)
+      .then((response) => {
+        localStorage.setItem("categories", JSON.stringify(response.data));
+        console.log(response.data);
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (

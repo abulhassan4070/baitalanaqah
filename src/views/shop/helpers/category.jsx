@@ -85,6 +85,9 @@ function CategoryList(props) {
         );
         console.log(response.data);
         setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [props.id]);
   return (

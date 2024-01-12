@@ -14,11 +14,16 @@ export default function ListOfSuits() {
   const { t } = useTranslation();
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
-    axios.get(`${apiUrl()}getAllProductsByCategories/15`).then((response) => {
-      localStorage.setItem("categoriesdata15", JSON.stringify(response.data));
-      console.log(response.data);
-      setProducts(response.data);
-    });
+    axios
+      .get(`${apiUrl()}getAllProductsByCategories/15`)
+      .then((response) => {
+        localStorage.setItem("categoriesdata15", JSON.stringify(response.data));
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   return (
     <Box id="suits">

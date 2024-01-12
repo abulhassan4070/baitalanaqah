@@ -29,11 +29,16 @@ export default function ShopCategoryType() {
   const [categories, setCategories] = React.useState([]);
 
   React.useEffect(() => {
-    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
-      localStorage.setItem("categories", JSON.stringify(response.data));
-      console.log(response.data);
-      setCategories(response.data);
-    });
+    axios
+      .get(`${apiUrl()}getProductCategories`)
+      .then((response) => {
+        localStorage.setItem("categories", JSON.stringify(response.data));
+        console.log(response.data);
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (

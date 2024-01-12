@@ -50,18 +50,28 @@ export default function Product() {
   const [product, setProduct] = React.useState(null);
   const [categories, setCategories] = React.useState([]);
   React.useEffect(() => {
-    axios.get(`${apiUrl()}getProductById/${id}`).then((response) => {
-      localStorage.setItem("productdata" + id, JSON.stringify(response.data));
-      setProduct(response.data);
-    });
+    axios
+      .get(`${apiUrl()}getProductById/${id}`)
+      .then((response) => {
+        localStorage.setItem("productdata" + id, JSON.stringify(response.data));
+        setProduct(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [id]);
 
   React.useEffect(() => {
-    axios.get(`${apiUrl()}getProductCategories`).then((response) => {
-      localStorage.setItem("categories", JSON.stringify(response.data));
-      console.log(response.data);
-      setCategories(response.data);
-    });
+    axios
+      .get(`${apiUrl()}getProductCategories`)
+      .then((response) => {
+        localStorage.setItem("categories", JSON.stringify(response.data));
+        console.log(response.data);
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   const { t } = useTranslation();
   return (

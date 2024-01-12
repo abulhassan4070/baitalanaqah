@@ -26,6 +26,9 @@ export default function ListOfProducts(props) {
         );
         console.log(response.data);
         setProducts(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [props]);
   return (

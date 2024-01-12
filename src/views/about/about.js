@@ -195,25 +195,26 @@ export default function AboutPage() {
         />
         <br />
         <Accordion defaultIndex={[0]} allowToggle>
-          {[1, 2, 3, 4, 5, 6].map((item) => {
-            return (
-              <AccordionItem>
-                <h2>
-                  <AccordionButton>
-                    <Box as="span" flex="1" textAlign="left">
-                      <h1>
-                        {t("ofAboutUs.faq.qNo")} {item}
-                      </h1>
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
-                <AccordionPanel pb={4}>
-                  {t("ofAboutUs.faq.text")}
-                </AccordionPanel>
-              </AccordionItem>
-            );
-          })}
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left">
+                  <h1>Do you provide Corporate Services?</h1>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              Bait Al Anaqah Corporate Service invites companies and
+              organizations to dress employees and participants cohesively for
+              events and fairs. We assist in selecting the perfect fit and
+              fabric from our diverse range, tailoring the experience with
+              personalized measurements or by following standard sizing.
+              <br />
+              Ensuring convenience and tailored solutions to meet your corporate
+              dressing needs.
+            </AccordionPanel>
+          </AccordionItem>
         </Accordion>
       </Container>
     </>
