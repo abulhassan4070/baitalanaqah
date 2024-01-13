@@ -94,7 +94,7 @@ export default function NavigationHeader() {
                 as="a"
                 backgroundColor={"white"}
                 href="#"
-                aria-label="Twitter"
+                aria-label="Title"
                 icon={
                   <Icon icon="solar:bag-3-outline" width={30} height={30} />
                 }
@@ -107,7 +107,7 @@ export default function NavigationHeader() {
                 as="a"
                 href="#"
                 backgroundColor={"white"}
-                aria-label="Twitter"
+                aria-label="Title"
                 icon={<Icon icon="fa-regular:user" width={20} height={20} />}
               />
             </Link>
@@ -393,7 +393,7 @@ const MobileNav = () => {
             as="a"
             backgroundColor={"white"}
             href="#"
-            aria-label="Twitter"
+            aria-label="Title"
             icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
           />
         </Link>
@@ -402,7 +402,7 @@ const MobileNav = () => {
             as="a"
             href="#"
             backgroundColor={"white"}
-            aria-label="Twitter"
+            aria-label="Title"
             icon={<Icon icon="fa-regular:user" width={20} height={20} />}
           />
         </Link>
@@ -477,21 +477,29 @@ const NAV_ITEMS = [
     label: "abaya",
     href: "shop/abaya",
   },
-  {
-    label: "Custom",
-    href: "customize",
-  },
+  // {
+  //   label: "Custom",
+  //   href: "customize",
+  // },
   {
     logo: true,
   },
-  {
-    label: "Clients",
-    href: "clients",
-  },
+  // {
+  //   label: "Clients",
+  //   href: "clients",
+  // },
   {
     label: "blogs",
     href: "blogs",
   },
+  // {
+  //   label: "contact",
+  //   href: "contact",
+  // },
+  // {
+  //   label: "team",
+  //   href: "about",
+  // },
   {
     label: "more",
     href: "more",

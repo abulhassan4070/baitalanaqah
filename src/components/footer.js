@@ -4,14 +4,8 @@ import {
   Container,
   IconButton,
   SimpleGrid,
-  Text,
 } from "@chakra-ui/react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import logowithtext from "../assets/img/logowithtext.png";
 import { Icon } from "@iconify/react";
 import { paigeColoOpacity } from "variables/constants";
@@ -27,7 +21,7 @@ export default function NavigationFooter() {
     <></>
   ) : (
     <footer class="footer" style={{ backgroundColor: paigeColoOpacity["5"] }}>
-      <Box
+      {/* <Box
         position="fixed"
         bottom="20px"
         right="20px"
@@ -51,7 +45,7 @@ export default function NavigationFooter() {
         <Text fontSize={20} ms={3}>
           Whatsapp
         </Text>
-      </Box>
+      </Box> */}
       <div
         class="footer-top"
         style={{ backgroundColor: paigeColoOpacity["5"] }}
@@ -96,14 +90,6 @@ export default function NavigationFooter() {
                 <br />
               </p>
               <br />
-              <IconButton
-                background={paigeColor}
-                as="a"
-                href="#"
-                me={1}
-                aria-label="Twitter"
-                icon={<FaTwitter fontSize="1.25rem" />}
-              />
               <IconButton
                 background={paigeColor}
                 as="a"

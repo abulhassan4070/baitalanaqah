@@ -35,7 +35,6 @@ import {
   FaPhoneAlt,
   FaPinterest,
   FaRuler,
-  FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -367,21 +366,6 @@ export default function Product() {
                     _
                   </Box>
                   <Text>{t("products.share")}</Text>
-                </HStack>
-                <HStack pr={4} className="tweet">
-                  <FaTwitter />
-                  <Box
-                    as="span"
-                    visibility="hidden"
-                    sx={{
-                      ".tweet:hover &": {
-                        visibility: "visible",
-                      },
-                    }}
-                  >
-                    _
-                  </Box>
-                  <Text>{t("products.tweet")}</Text>
                 </HStack>
                 <HStack className="pin-it">
                   <FaPinterest />

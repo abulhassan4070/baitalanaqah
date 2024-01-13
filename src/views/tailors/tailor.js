@@ -18,7 +18,6 @@ import {
 
 import tailor from "../../assets/img/tailor/tailor.png";
 import facebook from "../../assets/img/tailor/facebook.png";
-import twitter from "../../assets/img/tailor/twitter.png";
 import linkedin from "../../assets/img/tailor/linkedin.png";
 import instagram from "../../assets/img/tailor/instagram.png";
 import { HeaderText } from "widgets/header";
@@ -145,7 +144,6 @@ function Tailor() {
       <Image h={"360px"} w={"full"} src={tailor} objectFit={"cover"} />
       <Flex justify={"center"} mt={-6}>
         <HStack gap={2} bg={"white"} p={2}>
-          <Image src={twitter} objectFit={"cover"} />
           <Image src={facebook} objectFit={"cover"} />
           <Image src={linkedin} objectFit={"cover"} />
           <Image src={instagram} objectFit={"cover"} />
