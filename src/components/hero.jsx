@@ -67,7 +67,7 @@ function HeroSection() {
                   margin: "0 auto",
                 }}
               >
-                <Text color="white">{t("aboutShort")}</Text>
+                <Text color="white">Welcome To</Text>
                 <Text
                   as={"h1"}
                   color="white"
@@ -82,7 +82,7 @@ function HeroSection() {
                   {t("title")}
                 </Text>
                 <Text color="white" fontSize="lg">
-                  {t("lorem")}
+                  {t("aboutDesc")}
                 </Text>
                 <Flex justifyContent="center">
                   <Link to="/shop">

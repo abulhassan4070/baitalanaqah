@@ -1,11 +1,13 @@
-import { Button, Container, Heading, Text } from "@chakra-ui/react";
-import { Illustration } from "variables/constants";
+import { Container, Heading } from "@chakra-ui/react";
+// import { Illustration } from "variables/constants";
 
 export default function NotFound() {
   return (
     <Container className={"root"}>
-      <Heading className={"title"}>Nothing to see here</Heading>
       <br />
+      <Heading className={"title"}>This page is under contruction</Heading>
+      <br />
+      {/* <br />
       <br />
       <div className={"inner"}>
         <Illustration className={"image"} />
@@ -30,7 +32,7 @@ export default function NotFound() {
           <br />
           <br />
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 }

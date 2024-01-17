@@ -469,18 +469,26 @@ const MobileNavItem = ({ label, children, href }) => {
 };
 
 const NAV_ITEMS = [
-  {
-    label: "suits",
-    href: "shop/suits",
-  },
-  {
-    label: "abaya",
-    href: "shop/abaya",
-  },
+  // {
+  //   label: "suits",
+  //   href: "shop/suits",
+  // },
+  // {
+  //   label: "abaya",
+  //   href: "shop/abaya",
+  // },
   // {
   //   label: "Custom",
   //   href: "customize",
   // },
+  {
+    label: "shop",
+    href: "shop",
+  },
+  {
+    label: "Services",
+    href: "services",
+  },
   {
     logo: true,
   },
@@ -492,26 +500,26 @@ const NAV_ITEMS = [
     label: "blogs",
     href: "blogs",
   },
-  // {
-  //   label: "contact",
-  //   href: "contact",
-  // },
-  // {
-  //   label: "team",
-  //   href: "about",
-  // },
   {
-    label: "more",
-    href: "more",
-    children: [
-      {
-        label: "contact",
-        href: "contact",
-      },
-      {
-        label: "team",
-        href: "about",
-      },
-    ],
+    label: "contact",
+    href: "contact",
   },
+  {
+    label: "team",
+    href: "about",
+  },
+  // {
+  //   label: "more",
+  //   href: "more",
+  //   children: [
+  //     {
+  //       label: "contact",
+  //       href: "contact",
+  //     },
+  //     {
+  //       label: "team",
+  //       href: "about",
+  //     },
+  //   ],
+  // },
 ];

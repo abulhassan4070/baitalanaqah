@@ -70,7 +70,7 @@ export default function ShopCategories() {
           <Box>
             <Link
               className="shopbycategory"
-              to={`/shop/${category.categoryId.toLowerCase()}`}
+              to={`/shop/${category.categoryName.toLowerCase()}`}
             >
               <Box height="300px" width="100%" overflow={"hidden"}>
                 <Image
