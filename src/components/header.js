@@ -12,6 +12,7 @@ import {
   useDisclosure,
   SimpleGrid,
   Image,
+  Spacer,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link, NavLink } from "react-router-dom";
@@ -96,7 +97,12 @@ export default function NavigationHeader() {
                 href="#"
                 aria-label="Title"
                 icon={
-                  <Icon icon="solar:bag-3-outline" width={30} height={30} />
+                  <Icon
+                    icon="solar:bag-3-outline"
+                    fontWeight={100}
+                    width={30}
+                    height={30}
+                  />
                 }
               />
             </Link>
@@ -108,14 +114,25 @@ export default function NavigationHeader() {
                 href="#"
                 backgroundColor={"white"}
                 aria-label="Title"
-                icon={<Icon icon="fa-regular:user" width={20} height={20} />}
+                icon={
+                  <Icon
+                    fontWeight={100}
+                    icon="fa-regular:user"
+                    width={20}
+                    height={20}
+                  />
+                }
               />
             </Link>
           </Box>
         </Stack>
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse
+        in={isOpen}
+        transition={{ enter: { duration: 0 }, exit: { duration: 0 } }}
+        animateOpacity
+      >
         <MobileNav />
       </Collapse>
     </Box>
@@ -382,89 +399,91 @@ const MobileNav = () => {
         }
         return <MobileNavItem key={navItem.label} {...navItem} />;
       })}
-      <Stack
-        flex={{ base: 1, md: 0 }}
-        justify={"flex-start"}
-        direction={"row"}
-        spacing={6}
+      <NavLink
+        to={"/cart"}
+        className={"hfont"}
+        style={{
+          fontSize: "16px",
+          padding: "10px 0",
+          display: "flex",
+        }}
+        activeClassName="active"
       >
-        <Link to={"/cart"}>
-          <IconButton
-            as="a"
-            backgroundColor={"white"}
-            href="#"
-            aria-label="Title"
-            icon={<Icon icon="solar:bag-3-outline" width={30} height={30} />}
-          />
-        </Link>
-        <Link to={"/login"}>
-          <IconButton
-            as="a"
-            href="#"
-            backgroundColor={"white"}
-            aria-label="Title"
-            icon={<Icon icon="fa-regular:user" width={20} height={20} />}
-          />
-        </Link>
-      </Stack>
+        <Text
+          fontWeight={400}
+          color={useColorModeValue("gray.600", "gray.200")}
+        >
+          {"Cart"}
+        </Text>
+        <Spacer />
+        <Icon
+          fontWeight={100}
+          icon="fa-solid:chevron-right"
+          color="pink.400"
+          transition={"all .25s ease-in-out"}
+          w={6}
+          h={6}
+        />
+      </NavLink>
+      <NavLink
+        to={"/login"}
+        className={"hfont"}
+        style={{
+          fontSize: "16px",
+          padding: "10px 0",
+          display: "flex",
+        }}
+        activeClassName="active"
+      >
+        <Text
+          fontWeight={400}
+          color={useColorModeValue("gray.600", "gray.200")}
+        >
+          {"Login"}
+        </Text>
+        <Spacer />
+        <Icon
+          icon="fa-solid:chevron-right"
+          color="pink.400"
+          fontWeight={100}
+          transition={"all .25s ease-in-out"}
+          w={6}
+          h={6}
+        />
+      </NavLink>
     </Stack>
   );
 };
 
 const MobileNavItem = ({ label, children, href }) => {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen } = useDisclosure();
   const { t } = useTranslation();
 
   return (
-    <Stack
-      spacing={6}
-      onClick={children && onToggle}
-      style={{ cursor: "pointer" }}
+    <NavLink
+      to={href ?? "#"}
+      className={"hfont"}
+      style={{
+        fontSize: "16px",
+        padding: "10px 0",
+        display: "flex",
+      }}
+      activeClassName="active"
     >
-      <NavLink
-        to={href ?? "#"}
-        p={2}
-        fontSize={"sm"}
-        fontWeight={500}
-        className={"hfont header-nav-link"}
-        activeClassName="active"
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
-          {t(label)}
-        </Text>
-        {children && (
-          <Icon
-            icon="material-symbols:chevron-down"
-            color="pink.400"
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
-      </NavLink>
-
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
-        <Stack
-          mt={2}
-          pl={4}
-          borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
-        >
-          {children &&
-            children.map((child) => (
-              <Link key={child.label} py={2} to={child.href}>
-                {t(child.label)}
-              </Link>
-            ))}
-        </Stack>
-      </Collapse>
-    </Stack>
+      <Text fontWeight={400} color={useColorModeValue("gray.600", "gray.200")}>
+        {t(label)}
+      </Text>
+      <Spacer />
+      <Icon
+        icon="fa-solid:chevron-right"
+        color="pink.400"
+        fontWeight={400}
+        transition={"all .25s ease-in-out"}
+        transform={isOpen ? "rotate(180deg)" : ""}
+        w={6}
+        h={6}
+      />
+    </NavLink>
   );
 };
 
