@@ -43,7 +43,12 @@ export default function NavigationHeader() {
       >
         <Flex display={{ base: "flex", md: "none" }}>
           <IconButton
-            onClick={onToggle}
+            onClick={() => {
+              // remove overflow hidden from body and add it to html
+              document.body.classList.toggle("overflow-hidden");
+              document.documentElement.classList.toggle("overflow-hidden");
+              onToggle();
+            }}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
@@ -392,6 +397,7 @@ const MobileNav = () => {
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
+      height={"100vh"}
     >
       {NAV_ITEMS.map((navItem) => {
         if (navItem.logo === true) {
@@ -418,7 +424,7 @@ const MobileNav = () => {
         <Spacer />
         <Icon
           fontWeight={100}
-          icon="fa-solid:chevron-right"
+          icon="material-symbols:chevron-right"
           color="pink.400"
           transition={"all .25s ease-in-out"}
           w={6}
@@ -443,7 +449,7 @@ const MobileNav = () => {
         </Text>
         <Spacer />
         <Icon
-          icon="fa-solid:chevron-right"
+          icon="material-symbols:chevron-right"
           color="pink.400"
           fontWeight={100}
           transition={"all .25s ease-in-out"}
@@ -475,7 +481,7 @@ const MobileNavItem = ({ label, children, href }) => {
       </Text>
       <Spacer />
       <Icon
-        icon="fa-solid:chevron-right"
+        icon="material-symbols:chevron-right"
         color="pink.400"
         fontWeight={400}
         transition={"all .25s ease-in-out"}
