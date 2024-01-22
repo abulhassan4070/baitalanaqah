@@ -138,7 +138,7 @@ export default function NavigationHeader() {
         transition={{ enter: { duration: 0 }, exit: { duration: 0 } }}
         animateOpacity
       >
-        <MobileNav />
+        <MobileNav onToggle={() => onToggle()} />
       </Collapse>
     </Box>
   );
@@ -391,7 +391,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = (onToggle) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -403,7 +403,7 @@ const MobileNav = () => {
         if (navItem.logo === true) {
           return <></>;
         }
-        return <MobileNavItem key={navItem.label} {...navItem} />;
+        return <MobileNavItem key={navItem.label} {...navItem} {...onToggle} />;
       })}
       <NavLink
         to={"/cart"}
@@ -461,13 +461,19 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href, onToggle }) => {
   const { isOpen } = useDisclosure();
   const { t } = useTranslation();
 
   return (
     <NavLink
       to={href ?? "#"}
+      onClick={(e) => {
+        e.preventDefault();
+        onToggle();
+        document.body.classList.remove("overflow-hidden");
+        document.documentElement.classList.remove("overflow-hidden");
+      }}
       className={"hfont"}
       style={{
         fontSize: "16px",
