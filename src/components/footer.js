@@ -93,7 +93,7 @@ export default function NavigationFooter() {
               <IconButton
                 background={paigeColor}
                 as="a"
-                href="#"
+                href="https://www.instagram.com/anaqah_uae"
                 me={1}
                 aria-label="Instagram"
                 icon={<FaInstagram fontSize="1.25rem" />}
@@ -101,7 +101,7 @@ export default function NavigationFooter() {
               <IconButton
                 background={paigeColor}
                 as="a"
-                href="#"
+                href="https://www.facebook.com/profile.php?id=100091247813263"
                 me={1}
                 aria-label="Facebook"
                 icon={<FaFacebookF fontSize="1.25rem" />}

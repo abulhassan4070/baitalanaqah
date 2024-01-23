@@ -407,6 +407,11 @@ const MobileNav = (onToggle) => {
       })}
       <NavLink
         to={"/cart"}
+        onClick={(e) => {
+          onToggle();
+          document.body.classList.remove("overflow-hidden");
+          document.documentElement.classList.remove("overflow-hidden");
+        }}
         className={"hfont"}
         style={{
           fontSize: "16px",
@@ -433,6 +438,11 @@ const MobileNav = (onToggle) => {
       </NavLink>
       <NavLink
         to={"/login"}
+        onClick={(e) => {
+          onToggle();
+          document.body.classList.remove("overflow-hidden");
+          document.documentElement.classList.remove("overflow-hidden");
+        }}
         className={"hfont"}
         style={{
           fontSize: "16px",
@@ -469,7 +479,6 @@ const MobileNavItem = ({ label, children, href, onToggle }) => {
     <NavLink
       to={href ?? "#"}
       onClick={(e) => {
-        e.preventDefault();
         onToggle();
         document.body.classList.remove("overflow-hidden");
         document.documentElement.classList.remove("overflow-hidden");
