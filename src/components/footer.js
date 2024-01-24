@@ -109,7 +109,7 @@ export default function NavigationFooter() {
               <IconButton
                 background={paigeColor}
                 as="a"
-                href="#"
+                href="https://wa.me/971565777763"
                 me={1}
                 aria-label="Whatsapp"
                 icon={<FaWhatsapp fontSize="1.25rem" />}
